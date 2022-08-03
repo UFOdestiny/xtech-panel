@@ -1,9 +1,7 @@
 <template>
-
-
     <div>
         <keep-alive>
-            <component :is="strategyTabs" />
+            <component :is="KlineGraph" />
         </keep-alive>
     </div>
 
@@ -17,9 +15,8 @@ export default {
     props: {},
     data() {
         return {
-            strategyInfo: {},
             infoLoading: true,
-            strategyTabs: 'EchartContainer',
+            KlineGraph: 'EchartContainer',
         }
     },
 

@@ -73,13 +73,13 @@ export default {
         disabledDate(time) {
             return (
                 time.getTime() > Date.now() ||
-                time.getTime() < +new Date("2017-01-01")
+                time.getTime() < +new Date("2010-01-01")
             );
         },
 
         dateChange(value) {
             console.log(value)
-            
+
         },
 
         calendarChange(dates) {
