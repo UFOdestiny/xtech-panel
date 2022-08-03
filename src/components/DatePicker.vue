@@ -76,68 +76,10 @@ export default {
                 time.getTime() < +new Date("2017-01-01")
             );
         },
-        // dateChange(dates) {
-        //     this.date = dates
-        //     if (dates === null || dates.length === 0) {
-        //         this.startDate = null
-        //     }
-        // },
+
         dateChange(value) {
-            let that = this
-            this.customTimeShow = false
-            let shortcuts = [
-                {
-                    text: '全部',
-                    onClick() {
-                        const start = new Date("2000-01-01")
-                        const end = new Date(new Date(that.tradeDayDate))
-                        return [start, end]
-                    },
-                },
-                {
-                    text: '最近三个月',
-                    onClick() {
-                        // const end = that.tradeDayDate
-                        const end = new Date(new Date(that.tradeDayDate))
-                        const start = new Date()
-                        start.setTime(end.getTime() - 3600 * 1000 * 24 * 90)
-                        return [start, end]
-                    },
-                },
-                {
-                    text: '最近半年',
-                    onClick() {
-                        const end = new Date(new Date(that.tradeDayDate))
-                        const start = new Date()
-                        start.setTime(end.getTime() - 3600 * 1000 * 24 * 180)
-                        // start.setMonth(end.getMonth() - 6)
-                        return [start, end]
-                    },
-                },
-                {
-                    text: '最近一年',
-                    onClick() {
-                        const end = new Date(new Date(that.tradeDayDate))
-                        const start = new Date()
-                        start.setTime(end.getTime() - 3600 * 1000 * 24 * 365)
-                        // start.setMonth(end.getMonth() - 12)
-                        return [start, end]
-                    },
-                },
-            ]
-            shortcuts.forEach((element) => {
-                if (element.text == value) {
-                    let time = element.onClick()
-                    let arr = []
-                    if (time.length !== 0) {
-                        arr.push(defaultDate(time[0], false), defaultDate(time[1], false))
-                    } else {
-                        arr = []
-                    }
-                    console.log(arr)
-                    //this.$emit('datePickerVal', arr)
-                }
-            })
+            console.log(value)
+            
         },
 
         calendarChange(dates) {
