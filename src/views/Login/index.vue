@@ -206,7 +206,7 @@ body {
 .particles-js {
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/login_background.png');
+  background-image: url('@/assets/login_background.png');
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
