@@ -39,7 +39,7 @@ export let userLogin = (data) => {
   return http.post('/login', data)
 }
 //查询用户信息
-export let getMemberInfo = (data) => {
+export let getMemberInfo = () => {
   return http.get('/api/v1/system/getMemberInfo')
 }
 //保存事件库

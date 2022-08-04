@@ -30,7 +30,6 @@
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
-    "eslint": "^8.20.0",
     "eslint-plugin-vue": "^9.3.0"
   },
   "eslintConfig": {
@@ -45,7 +44,9 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-control-regex": 0
+    }
   },
   "browserslist": [
     "> 1%",

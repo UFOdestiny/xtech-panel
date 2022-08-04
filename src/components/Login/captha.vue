@@ -25,13 +25,13 @@
   </div>
 </template>
 <script>
-function sum(x, y) {
-  return x + y
-}
+// function sum(x, y) {
+//   return x + y
+// }
 
-function square(x) {
-  return x * x
-}
+// function square(x) {
+//   return x * x
+// }
 export default {
   name: 'SlideVerify',
   props: {
@@ -210,10 +210,11 @@ export default {
       this.verify()
     },
     verify() {
-      const arr = this.trail // drag y move distance
-      const average = arr.reduce(sum) / arr.length // average
-      const deviations = arr.map(x => x - average) // deviation array
-      const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length) // standard deviation
+      // const arr = this.trail // drag y move distance
+      // const average = arr.reduce(sum) / arr.length // average
+      // const deviations = arr.map(x => x - average) // deviation array
+      // const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length) // standard deviation
+
       const left = parseInt(this.block.style.left)
       this.$emit('success', left)
     },
@@ -372,7 +373,7 @@ export default {
 .slide-verify-slider-mask-item-icon {
   width: 14px;
   height: 12px;
-  background: url('../../assets/icon-light.png') 0 -13px;
+  background: url('@/assets/icon-light.png') 0 -13px;
   background-size: 32px 172px;
 }
 

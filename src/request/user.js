@@ -1,8 +1,8 @@
 //用户基本权限
-import store from "../store"
+//import store from "../store"
 //用户信息
 import http from '@/plugins/http';
-import { getCookie } from '@/utils/cookies.js';
+//import { getCookie } from '@/utils/cookies.js';
 //查询所有菜单
 export let findAllMemu = () => {
   return http.get('/api/v1/system/memu/findAllMemu')
@@ -55,13 +55,13 @@ export let userBan = (data) => {
 }
 
 //生成微信扫描二维码
-export let wxLogin = (data) => {
-  return http.get('/api/ucenter/system/wx/login')
-}
+// export let wxLogin = (data) => {
+//   return http.get('/api/ucenter/system/wx/login')
+// }
 
 
 //校验ODS账号是否存在
-export let getImageVerifyCode = (data) => {
+export let getImageVerifyCode = () => {
   return http.post('/api/v1/system/getImageVerifyCode')
 }
 //校验验证是否匹配

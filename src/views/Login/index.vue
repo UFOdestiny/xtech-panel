@@ -30,12 +30,12 @@
 </template>
 <script>
 // 注册组件
-import register from '@/components/Login/register'
+//import register from '@/components/Login/register'
 import MyLogin from '@/components/Login/login'
 export default {
   name: 'user_defined_id',
   components: {
-    register,
+//    register,
     MyLogin,
   },
   data() {

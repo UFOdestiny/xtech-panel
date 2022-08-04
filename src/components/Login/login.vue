@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <!-- 滑动验证码弹框 -->
-    <el-dialog title="请完成安全验证" :visible.sync="puzzePass.visible" width="340px">
+    <el-dialog title="请完成安全验证" v-model="puzzePass.visible" width="340px">
       <div>
         <VerifyImg :l="42" ref="dialogopen" :r="10" :w="300" :h="150" :sh="puzzePass.minheight" :sw="puzzePass.minwidth"
           :block_y="puzzePass.block_y" :imgurl="puzzePass.imgurl" :miniimgurl="puzzePass.miniimgurl"
@@ -21,7 +21,8 @@
       </div>
       <el-form-item>
         <el-button type="primary" @click="submitForm('LoginForm')" :loading="loginLoading"
-          @keyup.enter.native="submitForm()">登陆</el-button>
+
+          @keyup.enter="submitForm()">登陆</el-button>
       </el-form-item>
     </el-form>
     <!-- <div class="third-party">
@@ -34,12 +35,12 @@
 </template>
 <script>
 import { setCookie, getCookie, delCookie } from '@/utils/cookies.js'
-import { userLogin, getMemberInfo } from '@/request/index'
+import { userLogin } from '@/request/index'
 import { userInfo, getImageVerifyCode, verifyImageVerifyCode } from '@/request/user'
 import VerifyImg from './captha.vue'
 // import dragVerifyImgChip from "@/components/dragVerifyImgChip";
 export default {
-  name: 'login',
+  name: 'LogIn',
   components: { VerifyImg },
   data() {
     let password = (rule, value, callback) => {
@@ -98,10 +99,11 @@ export default {
     //enter登录
     var that = this
     document.onkeydown = function (e) {
+      var key;
       if (window.event == undefined) {
-        var key = e.keyCode
+        key = e.key
       } else {
-        var key = window.event.keyCode
+        key = window.event.key
       }
       if (key == 13) {
         that.submitForm('LoginForm')
@@ -158,7 +160,7 @@ export default {
             this.loginLoading = false
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$alert('登陆失败,请检查网络')
           this.puzzePass.imgurl = ''
           this.puzzePass.miniimgurl = ''
@@ -246,26 +248,26 @@ export default {
 .login {
   margin-top: 20px;
 
-  /deep/.el-form-item__content {
+  :deep(.el-form-item__content) {
     padding: 0px 38px 0 33px;
   }
 
-  /deep/.el-input__inner {
+  :deep(.el-input__inner) {
     border: 0;
   }
 
-  /deep/.el-input {
+  :deep(.el-input) {
     border: 0;
     border-bottom: 1px solid #e5e7f0;
     width: 100%;
     margin: auto;
   }
 
-  /deep/ .el-form-item__error {
+  :deep( .el-form-item__error) {
     left: 33px;
   }
 
-  /deep/ .el-button--primary {
+  :deep( .el-button--primary ){
     width: 320px;
     height: 40px;
     background: #43497b;
@@ -274,15 +276,15 @@ export default {
     margin-top: 30px;
   }
 
-  /deep/.el-input-group__append,
-  .el-input-group__prepend {
+  :deep(.el-input-group__append,
+  .el-input-group__prepend ){
     border: 0;
   }
 
   .remember-password {
     padding: 0px 38px 0 33px;
 
-    /deep/.el-checkbox__input.is-checked+.el-checkbox__label {
+    :deep(.el-checkbox__input.is-checked+.el-checkbox__label) {
       color: #666666;
       font-weight: 400;
     }
@@ -312,7 +314,7 @@ export default {
   }
 }
 
-/deep/.v-modal {
+:deep(.v-modal) {
   display: none !important;
 }
 </style>

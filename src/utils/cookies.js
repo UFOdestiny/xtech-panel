@@ -3,7 +3,7 @@ import AES from "./AES.js";
 //获取cookie、
 export function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg)) {
+    if ((arr = document.cookie.match(reg))) {
         return AES.Decrypt(decodeURIComponent(arr[2]));
     } else {
         return null;
@@ -15,7 +15,7 @@ export function setCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + encodeURIComponent(cipherPortId) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());
-};
+}
 
 //删除cookie
 export function delCookie(name) {
@@ -24,5 +24,5 @@ export function delCookie(name) {
     var cval = getCookie(name);
     if (cval != null)
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
-};
+}
 
