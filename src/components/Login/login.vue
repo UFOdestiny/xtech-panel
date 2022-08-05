@@ -29,10 +29,9 @@
   </div>
 </template>
 <script>
-import { getCookie } from '@/utils/cookies.js'
-// import { setCookie, getCookie, delCookie } from '@/utils/cookies.js'
-//import { userLogin } from '@/request/index'
-// import { userInfo } from '@/request/user'
+import { setCookie, getCookie, delCookie } from '@/utils/cookies.js'
+import { userLogin } from '@/request/index.js'
+import { userInfo } from '@/request/user.js'
 //import VerifyImg from '@/components/Login/captha.vue'
 
 // import dragVerifyImgChip from "@/components/dragVerifyImgChip";
@@ -105,7 +104,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          
+
           //this.puzzePass.visible = true
           //this.codeImage()
           this.toLogin()
@@ -126,46 +125,46 @@ export default {
       this.loginLoading = true
       let _this = this
       let obj = { username: this.LoginForm.userName, password: this.LoginForm.password }
-      console.log(obj)
-      _this.$router.push('/kline')
-      // userLogin(obj)
-      //   .then((result) => {
-      //     if (result.code == 200) {
-      //       this.loginLoading = false
-      //       setCookie('result', JSON.stringify(result.data), 1)
-      //       //请求用户信息
-      //       userInfo().then((res) => {
-      //         setCookie('userPermission', JSON.stringify(res.data.permissionValueList))
-      //         //传入账号名，密码，和保存天数3个参数
-      //         setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
-      //         setCookie('userid', res.data.id, 7)
-      //         _this.$router.push('/Home')
-      //       })
-      //       //判断复选框是否被勾选 勾选则调用配置cookie方法
-      //       //传入账号名，密码，和保存天数3个参数
-      //       _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
-      //     } else {
-      //       this.puzzePass.imgurl = ''
-      //       this.puzzePass.miniimgurl = ''
-      //       this.loginLoading = false
-      //     }
-      //   })
-      //   .catch(() => {
-      //     this.$alert('登陆失败,请检查网络')
-      //     this.puzzePass.imgurl = ''
-      //     this.puzzePass.miniimgurl = ''
-      //     this.loginLoading = false
-      //   })
+      // console.log(obj)
+      // _this.$router.push('/kline')
+      userLogin(obj)
+        .then((result) => {
+          if (result.code == 200) {
+            this.loginLoading = false
+            setCookie('result', JSON.stringify(result.data), 1)
+            //请求用户信息
+            userInfo().then((res) => {
+              setCookie('userPermission', JSON.stringify(res.data.permissionValueList))
+              //传入账号名，密码，和保存天数3个参数
+              setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
+              setCookie('userid', res.data.id, 7)
+              _this.$router.push('/Home')
+            })
+            //判断复选框是否被勾选 勾选则调用配置cookie方法
+            //传入账号名，密码，和保存天数3个参数
+            _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
+          } else {
+            // this.puzzePass.imgurl = ''
+            // this.puzzePass.miniimgurl = ''
+            this.loginLoading = false
+          }
+        })
+        .catch(() => {
+          this.$alert('登陆失败,请检查网络')
+          // this.puzzePass.imgurl = ''
+          // this.puzzePass.miniimgurl = ''
+          this.loginLoading = false
+        })
     },
 
 
 
     // 验证码拉动距离返回
-    onSuccess() {
-      this.$refs.slideblock.handleSuccess()
-      this.puzzePass.visible = false
-      this.toLogin()
-    },
+    // onSuccess() {
+    //   this.$refs.slideblock.handleSuccess()
+    //   this.puzzePass.visible = false
+    //   this.toLogin()
+    // },
 
 
 

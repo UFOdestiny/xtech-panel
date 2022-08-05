@@ -13,7 +13,7 @@
           <el-tabs v-model="activeName">
             <el-tab-pane label="登录" name="1">
 
-        <LogIn />
+              <LogIn />
             </el-tab-pane>
             <!-- <el-tab-pane label="注册" name="2">
                             <register @toggle="activeName = '1'" />
