@@ -8,5 +8,5 @@ module.exports = defineConfig({
     open: true,
     host: 'localhost',
     port: 8081,
-  }
+  },
 })

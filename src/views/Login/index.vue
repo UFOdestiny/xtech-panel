@@ -12,7 +12,8 @@
         <div class="matter_right_table">
           <el-tabs v-model="activeName">
             <el-tab-pane label="登录" name="1">
-              <my-login />
+
+        <LogIn />
             </el-tab-pane>
             <!-- <el-tab-pane label="注册" name="2">
                             <register @toggle="activeName = '1'" />
@@ -31,19 +32,18 @@
 <script>
 // 注册组件
 //import register from '@/components/Login/register'
-import MyLogin from '@/components/Login/login'
+import LogIn from '@/components/Login/login.vue'
 export default {
   name: 'user_defined_id',
   components: {
-//    register,
-    MyLogin,
+    LogIn,
   },
   data() {
     return {
       activeName: '1',
     }
   },
-  mounted() { },
+
 }
 </script>
 <style lang="scss" scoped>
@@ -66,7 +66,7 @@ export default {
       background-color: #fff;
       box-shadow: 0 6px 20px 5px rgba(40, 120, 255, 0.1), 0 16px 24px 2px rgba(0, 0, 0, 0.05);
       border-radius: 15px;
-      // top: 20%;
+      top: 100px;
       /*偏移*/
       // left: 0;
       // right: 0;

@@ -1,5 +1,5 @@
 //导入加密方法
-import AES from "./AES.js";
+import AES from "@/utils/AES.js";
 //获取cookie、
 export function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");

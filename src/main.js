@@ -4,9 +4,12 @@ import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import preventReClick from "@/directive/index.js"
-let app = createApp(App)
+//import Particles from 'particles.vue3'
 
+let app = createApp(App)
 app.use(ElementPlus)
 app.use(router)
+//app.use(Particles)
+
 app.directive('preventReClick', preventReClick)
 app.mount('#app');
