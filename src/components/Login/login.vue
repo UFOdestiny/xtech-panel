@@ -31,7 +31,7 @@
 <script>
 import { setCookie, getCookie, delCookie } from '@/utils/cookies.js'
 import { userLogin } from '@/request/index.js'
-import { userInfo } from '@/request/user.js'
+// import { userInfo } from '@/request/user.js'
 //import VerifyImg from '@/components/Login/captha.vue'
 
 // import dragVerifyImgChip from "@/components/dragVerifyImgChip";
@@ -129,20 +129,28 @@ export default {
       // _this.$router.push('/kline')
       userLogin(obj)
         .then((result) => {
-          if (result.code == 200) {
+          if (result.header.code == 200) {
             this.loginLoading = false
-            setCookie('result', JSON.stringify(result.data), 1)
-            //请求用户信息
-            userInfo().then((res) => {
-              setCookie('userPermission', JSON.stringify(res.data.permissionValueList))
-              //传入账号名，密码，和保存天数3个参数
-              setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
-              setCookie('userid', res.data.id, 7)
-              _this.$router.push('/Home')
-            })
+            setCookie('result', JSON.stringify(result.body), 1)
+            setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
+            _this.$router.push('/kline')
+
+            // 请求用户信息
+            // userInfo().then((res) => {
+            //   setCookie('userPermission', JSON.stringify(res.data.permissionValueList))
+            //   //传入账号名，密码，和保存天数3个参数
+            //   setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
+            //   setCookie('userid', res.data.id, 7)
+            //   _this.$router.push('/Home')
+            // })
+
+
+
             //判断复选框是否被勾选 勾选则调用配置cookie方法
             //传入账号名，密码，和保存天数3个参数
+
             _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
+
           } else {
             // this.puzzePass.imgurl = ''
             // this.puzzePass.miniimgurl = ''
@@ -165,8 +173,6 @@ export default {
     //   this.puzzePass.visible = false
     //   this.toLogin()
     // },
-
-
 
   },
 }

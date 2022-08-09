@@ -1,9 +1,11 @@
 <template>
   <div class="user_defined_id">
-    <vue-particles class="particles-js" color="#dedede" :particleOpacity="0.7" :particlesNumber="80" shapeType="circle"
-      :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150"
-      :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
-    </vue-particles>
+
+    <Particles class="particles-js" id="tsparticles" color="#dedede" :particleOpacity="0.7" :particlesNumber="80"
+      shapeType="circle" :particleSize="4" linesColor="#dedede" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4"
+      :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
+    </Particles>
+
     <div class="matter">
       <div class="matter_right">
         <div class="company_name">

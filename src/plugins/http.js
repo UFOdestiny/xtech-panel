@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 //import {router} from "@/router/index.js"
 // API链接
 let baseURL='http://127.0.0.1:8000';
-
+//let baseURL='/////';
 // 实例化请求器
 const instance = axios.create({
     baseURL: baseURL,
@@ -30,9 +30,9 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(response => {
     if (response.status === 200) {
-        if (response.data.code === 200) {
+        if (response.data.header.code === 200) {
             return response.data
-        } else if (response.data.code === 500) {
+        } else if (response.data.header.code === 500) {
             ElMessage({
                 showClose: true,
                 message: response.data.message,
