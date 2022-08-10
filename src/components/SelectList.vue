@@ -8,7 +8,7 @@
 <script>
 //import { ref } from 'vue'
 //50ETF、300ETF沪、300ETF深、HS300、zz100
-import emitter from "@/utils/bus"
+import emitter from "@/utils/bus.js"
 export default {
     name: 'SelectList',
     data() {

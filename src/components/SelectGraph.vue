@@ -6,7 +6,7 @@
 </template>
 <script>
 
-import emitter from "@/utils/bus"
+import emitter from "@/utils/bus.js"
 export default {
     name: 'SelectGraph',
     data() {
