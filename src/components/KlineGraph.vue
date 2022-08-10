@@ -15,13 +15,11 @@ export default {
     props: {},
     data() {
         return {
-            infoLoading: true,
             KlineGraph: 'EchartContainer',
         }
     },
 
 }
 </script>
-<style scoped>
-</style>
+z
 

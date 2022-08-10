@@ -46,3 +46,8 @@ export let getMemberInfo = () => {
 export let eventlibSave = (data) => {
   return http.post('/api/v1/eventlib/save', data)
 }
+
+//test 
+export let test = (data) => {
+  return http.post('/targetquote/price', data)
+}

@@ -1,14 +1,21 @@
 <template>
+    <SelectGraph />
     <DatePicker />
+    <SelectList />
+
     <div>
         <h1>因子值k线图</h1>
         <div id="EchartContainer" ref="EchartContainer" style="width:100%; height:500px"></div>
     </div>
+
+
+
 </template>
 
 <script>
-
+import SelectGraph from '@/components/SelectGraph.vue';
 import DatePicker from '@/components/DatePicker.vue';
+import SelectList from '@/components/SelectList.vue';
 var axios = require('axios');
 var echarts = require("echarts");
 //数据模型 time0 open1 close2 min3 max4 vol5 tag6 macd7 dif8 dea9
@@ -102,9 +109,17 @@ var echartsdata = [
     ["2019-7-22", 14.88, 15.01, 14.79, 15.11, 38.0, 1, 0.01, -0.4, -0.4],
     ["2019-7-23", 15.01, 14.83, 14.72, 15.01, 24.0, 0, -0.09, -0.45, -0.4]
 ];
+
+// for (var i = 0; i < echartsdata.length; i++) {
+//     echartsdata[i][0] = new Date(echartsdata[i][0])
+// }
+
+// console.log(echartsdata)
+
+
 export default {
     name: 'EchartContainer',
-    components: { DatePicker },
+    components: { SelectGraph,DatePicker, SelectList },
     props: {
         msg: String
     },
@@ -112,19 +127,20 @@ export default {
         return {
             data: echartsdata,
             startDate: null,
-            date: ["2022-05-01", "2022-06-01"]
+            date: ["2022-05-01", "2022-06-01"],
         };
     },
 
     methods: {
-
-
         splitData(rawData) {
             var categoryData = [];
             var values = [];
             var macds = [];
             var difs = [];
             var deas = [];
+
+            var values2 = [];
+            var values3 = [];
 
             // for (var i = 0; i < rawData.length; i++) {
             //     categoryData.push(rawData[i].splice(0, 1)[0]);
@@ -134,43 +150,62 @@ export default {
             //     deas.push(rawData[i][8]);
             // }
             for (var i = 0; i < rawData.length; i++) {
-                categoryData.push(rawData[i][0]);
+                categoryData.push(new Date(rawData[i][0]));
 
                 values.push(rawData[i].slice(1, rawData[i].length));
                 macds.push(rawData[i][7]);
                 difs.push(rawData[i][8]);
                 deas.push(rawData[i][9]);
+
+                values2.push([new Date(rawData[i][0]), rawData[i][1]])
+                values3.push([new Date(rawData[i][0]), rawData[i][2]])
+
             }
+            //console.log(values[0])
             return {
                 categoryData: categoryData,
                 values: values,
                 macds: macds,
                 difs: difs,
-                deas: deas
+                deas: deas,
+
+                values2: values2,
+                values3: values3,
             };
         },
-        calculateMA:
-            // ma均线函数
-            function calculateMA(dayCount, data0) {
-                var result = [];
-                for (var i = 0, len = data0.values.length; i < len; i++) {
-                    if (i < dayCount) {
-                        result.push("-");
-                        continue;
-                    }
-                    var sum = 0;
-                    for (var j = 0; j < dayCount; j++) {
-                        sum += data0.values[i - j][1];
-                    }
-                    result.push(sum / dayCount);
+
+        calculateMA(dayCount, data0) {
+            var result = [];
+            for (var i = 0, len = data0.values.length; i < len; i++) {
+                if (i < dayCount) {
+                    result.push("-");
+                    continue;
                 }
-                return result;
-            },
+                var sum = 0;
+                for (var j = 0; j < dayCount; j++) {
+                    sum += data0.values[i - j][1];
+                }
+                result.push(sum / dayCount);
+            }
+            return result;
+        },
+
         drawLine(data) {
             // 这里实现的是一个比较简单的，可以按照需求将函数移动到methods函数中
             var data0 = this.splitData(data);
+            console.log(data0)
             // k线配置项
+            //console.log(data0.categoryData)
+
+
+
             var option = {
+                legend: {
+                    // Try 'horizontal'
+                    orient: 'vertical',
+                    right: 10,
+                    top: 'center'
+                },
                 tooltip: {
                     trigger: "axis",
                     axisPointer: {
@@ -195,7 +230,7 @@ export default {
                     {
                         type: "time"//"category"
                         ,
-                        data: data0.categoryData,
+                        //data: data0.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -210,9 +245,9 @@ export default {
                         splitNumber: 20
                     },
                     {
-                        type: "category",
+                        type: "time",
                         gridIndex: 1,
-                        data: data0.categoryData,
+                        //data: data0.categoryData,
                         axisLabel: { show: false }
                     }
                 ],
@@ -269,8 +304,8 @@ export default {
                 series: [
                     {
                         name: "555",
-                        type: "candlestick",
-                        data: data0.values,
+                        type: "line",
+                        data: data0.values2,
                         markPoint: {
                             data: [
                                 {
@@ -287,10 +322,11 @@ export default {
                             ]
                         }
                     },
+
                     {
                         name: "MA5",
                         type: "line",
-                        data: this.calculateMA(5, data0),
+                        data: data0.values3,//this.calculateMA(5, data0),
                         smooth: true,
                         lineStyle: {
 
@@ -298,78 +334,80 @@ export default {
 
                         }
                     },
-                    {
-                        name: "MA10",
-                        type: "line",
-                        data: this.calculateMA(10, data0),
-                        smooth: true,
-                        lineStyle: {
+                    // {
+                    //     name: "MA10",
+                    //     type: "line",
+                    //     data: this.calculateMA(10, data0),
+                    //     smooth: true,
+                    //     lineStyle: {
 
-                            opacity: 0.5
+                    //         opacity: 0.5
 
-                        }
-                    },
-                    {
-                        name: "MA20",
-                        type: "line",
-                        data: this.calculateMA(20, data0),
-                        smooth: true,
-                        lineStyle: {
+                    //     }
+                    // },
+                    // {
+                    //     name: "MA20",
+                    //     type: "line",
+                    //     data: this.calculateMA(20, data0),
+                    //     smooth: true,
+                    //     lineStyle: {
 
-                            opacity: 0.5
+                    //         opacity: 0.5
 
-                        }
-                    },
-                    {
-                        name: "MA30",
-                        type: "line",
-                        data: this.calculateMA(30, data0),
-                        smooth: true,
-                        lineStyle: {
+                    //     }
+                    // },
+                    // {
+                    //     name: "MA30",
+                    //     type: "line",
+                    //     data: this.calculateMA(30, data0),
+                    //     smooth: true,
+                    //     lineStyle: {
 
-                            opacity: 0.5
+                    //         opacity: 0.5
 
-                        }
-                    },
-                    {
-                        name: "MACD",
-                        type: "bar",
-                        xAxisIndex: 1,
-                        yAxisIndex: 1,
-                        data: data0.macds,
-                        itemStyle: {
+                    //     }
+                    // },
+                    // {
+                    //     name: "MACD",
+                    //     type: "bar",
+                    //     xAxisIndex: 1,
+                    //     yAxisIndex: 1,
+                    //     data: data0.macds,
+                    //     itemStyle: {
 
-                            color: function (params) {
-                                var colorList;
-                                if (params.data >= 0) {
-                                    colorList = "#ef232a";
-                                } else {
-                                    colorList = "#14b143";
-                                }
-                                return colorList;
-                            }
+                    //         color: function (params) {
+                    //             var colorList;
+                    //             if (params.data >= 0) {
+                    //                 colorList = "#ef232a";
+                    //             } else {
+                    //                 colorList = "#14b143";
+                    //             }
+                    //             return colorList;
+                    //         }
 
-                        }
-                    },
-                    {
-                        name: "DIF",
-                        type: "line",
-                        xAxisIndex: 1,
-                        yAxisIndex: 1,
-                        data: data0.difs
-                    },
-                    {
-                        name: "DEA",
-                        type: "line",
-                        xAxisIndex: 1,
-                        yAxisIndex: 1,
-                        data: data0.deas
-                    }
+                    //     }
+                    // },
+                    // {
+                    //     name: "DIF",
+                    //     type: "line",
+                    //     xAxisIndex: 1,
+                    //     yAxisIndex: 1,
+                    //     data: data0.difs
+                    // },
+                    // {
+                    //     name: "DEA",
+                    //     type: "line",
+                    //     xAxisIndex: 1,
+                    //     yAxisIndex: 1,
+                    //     data: data0.deas
+                    // }
                 ]
             };
             // 进行初始化
+
             this.charts = echarts.init(this.$refs.EchartContainer);
             this.charts.setOption(option);
+
             window.addEventListener("resize", () => {
                 // 第六步，执行echarts自带的resize方法，即可做到让echarts图表自适应
                 this.charts.resize();
@@ -475,11 +513,11 @@ export default {
 
 
         getData() {
-            axios.get('/api/test.json').then(response => {
-                console.log(response.data);
-                this.opinionData = response.data.data;
-                this.drawLine('main')
-                this.data = 123;
+            axios.get('http://localhost:8000/targetquote/price').then(response => {
+                console.log(response.data.body);
+                //this.opinionData = response.data.data;
+                //this.drawLine('main')
+                //this.data = 123;
             });
         },
 
@@ -565,8 +603,10 @@ export default {
     mounted() {
 
         this.drawLine(this.data);
+        //this.drawLine(this.data);
         //this.drawnewLine(this.data)
-        this.start()
+        //this.start()
+        //this.getData()
 
 
     },
