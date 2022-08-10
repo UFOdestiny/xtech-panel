@@ -8,6 +8,7 @@
 <script>
 //import { ref } from 'vue'
 //50ETF、300ETF沪、300ETF深、HS300、zz100
+import emitter from "@/utils/bus"
 export default {
     name: 'SelectList',
     data() {
@@ -34,11 +35,11 @@ export default {
     },
     methods: {
         TypeChange(selected) {
-            console.log(selected)
+            emitter.emit('QuoteTypeChange', { QuoteType: selected })
         },
 
         TimeChange(selected) {
-            console.log(selected)
+            emitter.emit('TimeTypeChange', { TimeType: selected })
         }
     }
 
