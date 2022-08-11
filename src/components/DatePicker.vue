@@ -71,21 +71,22 @@ export default {
             ],
             //默认开始日期
             startDate: null,
-            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date())],
+            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date().getTime() + 8.64e7)],
             //下拉框
         };
     },
     methods: {
         disabledDate(time) {
+
             return (
-                time.getTime() > Date.now() ||
+                time.getTime() > Date.now() + 8.64e7 ||
                 time.getTime() < +new Date("2010-01-01")
             );
         },
 
         dateChange(value) {
             //console.log(value)
-            emitter.emit('DateChange', {DateChange: value})
+            emitter.emit('DateChange', { DateChange: value })
 
         },
 

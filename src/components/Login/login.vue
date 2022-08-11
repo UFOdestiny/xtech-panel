@@ -133,7 +133,7 @@ export default {
             this.loginLoading = false
             setCookie('result', JSON.stringify(result.body), 1)
             setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
-            _this.$router.push('/kline')
+            _this.$router.push('/EchartContainer')
 
             // 请求用户信息
             // userInfo().then((res) => {

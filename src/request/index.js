@@ -48,6 +48,6 @@ export let eventlibSave = (data) => {
 }
 
 //test 
-export let test = (data) => {
-  return http.post('/targetquote/price', data)
+export let getTestData = (data) => {
+  return http.post('/targetquote/price/', data)
 }
