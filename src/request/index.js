@@ -36,7 +36,7 @@ export let register = (data) => {
 }
 //用户登陆
 export let userLogin = (data) => {
-  return http.post('/login', data)
+  return http.post('/user/login', data)
 }
 //查询用户信息
 export let getMemberInfo = () => {
