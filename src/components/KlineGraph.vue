@@ -5,32 +5,30 @@
         <div id="KlineGraphL" ref="KlineGraphL" style="width:50%; height:500px;float:left"></div>
         <div id="KlineGraphR" ref="KlineGraphR" style="width:50%; height:500px;float:right"></div>
     </div>
-
-
-
 </template>
 
 <script>
 import SelectRightGraph from '@/components/SelectRightGraph.vue';
-import { getTestData } from '@/request/index.js'
-//import { dateFormater } from '@/utils/index.js'
-import emitter from "@/utils/bus.js"
+import { getTestData } from '@/request/index.js';
+import emitter from "@/utils/bus.js";
 var echarts = require("echarts");
-
 
 export default {
     name: 'KlineGraph',
     components: { SelectRightGraph, },
-
     data() {
         return {
             data: '',
-            dataRight: '',
             ontime: true,
         };
     },
-
     methods: {
+        /** 
+         * @description: unpack data
+         * @param data : data
+         * @param leng : length of results
+         * @return : { values2 : [...], values3 : [...] }
+        */
         process_data(data, leng = data.length) {
             var values2 = [];
             var values3 = [];
@@ -44,10 +42,14 @@ export default {
             };
         },
 
+        /** 
+         * @description: draw the left graph
+         * @param data : packed(original) data
+         * @return : void
+        */
         drawLeft(data) {
 
-            var data0 = this.process_data(data)//this.splitData(data);
-
+            var data0 = this.process_data(data)
             var option = {
                 legend: {
                     // Try 'horizontal'
@@ -262,7 +264,11 @@ export default {
 
         },
 
-
+        /** 
+         * @description: draw the right graph
+         * @param data : packed(original) data
+         * @return : void
+        */
         drawRight(data) {
             var data0
             if (data) {
@@ -419,6 +425,11 @@ export default {
 
         },
 
+        /** 
+         * @description: draw the right graph 2
+         * @param data : packed(original) data
+         * @return : void
+        */
         drawRight2(data) {
             var data0
             if (data) {
@@ -576,29 +587,55 @@ export default {
 
         },
 
-        freshLeft() {
-            var d = [parseInt(this.data[this.data.length - 1]) + 1000, Math.random() * 100, Math.random() * 50]
-            this.data.push(d)
-            var data0 = this.process_data(this.data)
-            this.chartLeft.setOption({
-                series: [
-                    {
-                        data: data0.values2,
-                    },
-                    {
-                        data: data0.values3,
-                    },]
+        /** 
+         * @description: draw the right graph 2
+         * @param data : packed(original) data
+         * @return : void
+        */
+        freshLeft(data) {
+            if (!data) {
+                var d = [parseInt(this.data[this.data.length - 1]) + 1000, Math.random() * 100, Math.random() * 50]
+                this.data.push(d)
+                var data0 = this.process_data(this.data)
+
+                this.chartLeft.setOption({
+                    series: [
+                        { data: data0.values2, },
+                        { data: data0.values3, },
+                    ]
+                })
             }
-            )
+            else {
+                getTestData({ "start": data[0], "stop": data[1], "type": 1, })
+                    .then(response => {
+                        this.data = response.data
+                        var data0 = this.process_data(this.data)
+
+                        this.chartLeft.setOption({
+                            series: [
+                                { data: data0.values2, },
+                                { data: data0.values3, },
+                            ]
+                        })
+                    });
+
+
+            }
+
 
         },
 
+        /** 
+         * @description: draw the right graph 2
+         * @param data : packed(original) data
+         * @return : void
+        */
         freshRight(point) {
             const start = point
             const stop = point
             getTestData({ "start": start, "stop": stop + 10000, "type": 2, })
                 .then(response => {
-                    var new_data = response.body.data
+                    var new_data = response.data
                     //console.log(new_data)
                     var data0 = this.process_data(new_data)
                     this.chartRight.setOption({
@@ -614,6 +651,21 @@ export default {
                 });
         },
 
+        /** 
+         * @description: debounce
+         * @param func : function
+         * @param delay : delay time
+         * @return : void
+        */
+        debounce(func, delay) {
+            let timer
+            return (e) => {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    func(e)
+                }, delay)
+            }
+        },
 
         /** 
          * @description: initialize data and graph
@@ -626,28 +678,21 @@ export default {
             const stop = stopTime || new Date().getTime() + 8.64e7
             const start = startTime || new Date().getTime() - 7 * 8.64e7
 
-            getTestData({
-                "start": start,
-                "stop": stop,
-                "type": 1,
-            }).then(response => {
+            getTestData({ "start": start, "stop": stop, "type": 1, })
+                .then(response => {
+                    this.data = response.data.slice(900, 1000)
+                    this.drawLeft(this.data);
+                    this.drawRight();
 
-                this.data = response.body.data.slice(900, 1000)
-
-                this.drawLeft(this.data);
-                this.drawRight();
-
-                this.chartLeft.on('updateAxisPointer',
-                    this.debounce((event) => {
-                        var xAxisInfo = event.axesInfo[0];
-                        if (xAxisInfo) {
-                            this.freshRight(xAxisInfo.value)
-                        }
-                    }, 300)
-                );
-            });
-
-
+                    this.chartLeft.on('updateAxisPointer',
+                        this.debounce((event) => {
+                            var xAxisInfo = event.axesInfo[0];
+                            if (xAxisInfo) {
+                                this.freshRight(xAxisInfo.value)
+                            }
+                        }, 300)
+                    );
+                });
         },
 
         /** 
@@ -678,15 +723,7 @@ export default {
             };
         },
 
-        debounce(fn, delay) {
-            let timer
-            return (e) => {
-                clearTimeout(timer)
-                timer = setTimeout(() => {
-                    fn(e)
-                }, delay)
-            }
-        }
+
 
     },
     mounted() {
@@ -697,6 +734,10 @@ export default {
 
         emitter.on('TimeTypeChange', data => {
             this.ontime = data.TimeType
+        })
+
+        emitter.on('DateChange', data => {
+            this.freshLeft(data.DateChange)
         })
 
         emitter.on('RightGraphTypeChange', data => {
@@ -721,9 +762,9 @@ export default {
         });
 
         emitter.off('TimeTypeChange')
+        emitter.off('DateChange')
         emitter.off('RightGraphTypeChange')
         clearInterval(this.timer)
     },
 }
 </script>
-

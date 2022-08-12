@@ -33,8 +33,8 @@ import { setCookie, getCookie, delCookie } from '@/utils/cookies.js'
 import { userLogin } from '@/request/index.js'
 // import { userInfo } from '@/request/user.js'
 //import VerifyImg from '@/components/Login/captha.vue'
+import AES from '@/utils/AES.js'
 
-// import dragVerifyImgChip from "@/components/dragVerifyImgChip";
 export default {
   name: 'LogIn',
   //components: { VerifyImg },
@@ -124,16 +124,18 @@ export default {
     toLogin() {
       this.loginLoading = true
       let _this = this
-      let obj = { username: this.LoginForm.userName, password: this.LoginForm.password }
-      // console.log(obj)
+      let obj = { username: AES.Encrypt(this.LoginForm.userName), password: AES.Encrypt(this.LoginForm.password) }
       // _this.$router.push('/kline')
       userLogin(obj)
         .then((result) => {
-          if (result.header.code == 200) {
+          if (result.code == 200) {
             this.loginLoading = false
-            setCookie('result', JSON.stringify(result.body), 1)
+            setCookie('result', JSON.stringify(result.data), 1)
             setCookie('userNamePwd', JSON.stringify(this.LoginForm), 1)
-            _this.$router.push('/EchartContainer')
+
+            //console.log(JSON.parse(getCookie("result")).token_type+' '+JSON.parse(getCookie("result")).access_token)
+
+            //_this.$router.push('/EchartContainer')
 
             // 请求用户信息
             // userInfo().then((res) => {
@@ -144,11 +146,8 @@ export default {
             //   _this.$router.push('/Home')
             // })
 
-
-
             //判断复选框是否被勾选 勾选则调用配置cookie方法
             //传入账号名，密码，和保存天数3个参数
-
             _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
 
           } else {
@@ -220,29 +219,6 @@ export default {
     :deep(.el-checkbox__input.is-checked+.el-checkbox__label) {
       color: #666666;
       font-weight: 400;
-    }
-  }
-
-  //第三方账号登陆
-  .third-party {
-    width: 320px;
-    margin: auto;
-    margin-top: 40px;
-
-    .divider {
-      color: #666666;
-      font-weight: 400;
-    }
-
-    .loginWay {
-      width: 30px;
-      padding-top: 20px;
-      margin: auto;
-
-      .svgImg {
-        width: 30px;
-        height: 30px;
-      }
     }
   }
 }

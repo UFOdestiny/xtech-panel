@@ -3,7 +3,7 @@ import { getCookie } from '@/utils/cookies.js';
 import { ElMessage } from 'element-plus'
 //import {router} from "@/router/index.js"
 // API链接
-let baseURL='http://127.0.0.1:8000';
+let baseURL = 'http://127.0.0.1:8000';
 //let baseURL='/////';
 // 实例化请求器
 const instance = axios.create({
@@ -17,8 +17,9 @@ const instance = axios.create({
 // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token
 // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
 instance.interceptors.request.use(config => {
-    if (getCookie('result')) {
-        config.headers.token = JSON.parse(getCookie('result'))
+    const cookie = JSON.parse(getCookie('result'))
+    if (cookie) {
+        config.headers.Authorization = cookie.token_type + ' ' + cookie.access_token //JSON.parse(getCookie('result'))
     }
     return config
 },
@@ -30,9 +31,9 @@ instance.interceptors.request.use(config => {
 // 响应拦截器
 instance.interceptors.response.use(response => {
     if (response.status === 200) {
-        if (response.data.header.code === 200) {
+        if (response.data.code === 200) {
             return response.data
-        } else if (response.data.header.code === 500) {
+        } else if (response.data.code === 500) {
             ElMessage({
                 showClose: true,
                 message: response.data.message,

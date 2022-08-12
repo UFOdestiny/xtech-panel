@@ -49,5 +49,5 @@ export let eventlibSave = (data) => {
 
 //test 
 export let getTestData = (data) => {
-  return http.post('/targetquote/price/', data)
+  return http.post('/targetquote/price', data)
 }
