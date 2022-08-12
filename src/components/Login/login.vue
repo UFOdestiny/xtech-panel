@@ -135,7 +135,7 @@ export default {
 
             //console.log(JSON.parse(getCookie("result")).token_type+' '+JSON.parse(getCookie("result")).access_token)
 
-            //_this.$router.push('/EchartContainer')
+            _this.$router.push('/EchartContainer')
 
             // 请求用户信息
             // userInfo().then((res) => {
@@ -151,20 +151,14 @@ export default {
             _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
 
           } else {
-            // this.puzzePass.imgurl = ''
-            // this.puzzePass.miniimgurl = ''
             this.loginLoading = false
           }
         })
         .catch(() => {
           this.$alert('登陆失败,请检查网络')
-          // this.puzzePass.imgurl = ''
-          // this.puzzePass.miniimgurl = ''
           this.loginLoading = false
         })
     },
-
-
 
     // 验证码拉动距离返回
     // onSuccess() {

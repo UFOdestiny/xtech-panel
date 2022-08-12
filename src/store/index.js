@@ -5,19 +5,27 @@ const store = createStore({
     namespaced: true,
     state() {
         return {
-            //permissionList: null,
+            Token: '',
+            UserInfo:'',
         }
     },
     mutations: {
         // 修改token，并将token存入localStorage
-        setToken(state, user) {
-            state.Authentication = user.Authentication;
-            localStorage.setItem('Authentication', user.Authentication);
+        setToken(state, token) {
+            state.Token = token;
+            localStorage.setItem('Token', token);
         },
+        
+        deltoken(state) {
+            state.Token = "";
+            localStorage.removeItem("Token");
+        },
+
         //用户信息
-        USER_INFO(state, info) {
-            state.userInfo = info
+        setUserInfo(state, info) {
+            state.UserInfo = info
         },
+
     },
     actions: {
         // async FETCH_PERMISSION({ commit, state }) {

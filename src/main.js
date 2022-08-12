@@ -6,6 +6,23 @@ import 'element-plus/dist/index.css'
 import preventReClick from "@/directive/index.js"
 import Particles from 'particles.vue3'
 import store from "@/store/index.js"
+import { getCookie } from '@/utils/cookies.js';
+
+
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+router.beforeEach((to, from, next) => {
+    if (to.path == '/login') {
+        next();
+    } else {
+        let token = JSON.parse(getCookie('result'))
+        if (token == null || token == '') {
+            next('/login');
+        } else {
+            next();
+        }
+    }
+});
 
 let app = createApp(App)
 app.use(ElementPlus)
