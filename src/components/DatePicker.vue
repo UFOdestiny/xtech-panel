@@ -8,7 +8,6 @@
 </template>   
 
 <script>
-import emitter from "@/utils/bus.js"
 import { defaultDate } from '@/utils/index'
 //快捷方式
 
@@ -86,7 +85,7 @@ export default {
 
         dateChange(value) {
             //console.log(value)
-            emitter.emit('DateChange', { DateChange: value })
+            this.$store.commit('changeDate', value)
 
         },
 

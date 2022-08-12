@@ -10,7 +10,6 @@
 <script>
 import SelectRightGraph from '@/components/SelectRightGraph.vue';
 import { getTestData } from '@/request/index.js';
-import emitter from "@/utils/bus.js";
 var echarts = require("echarts");
 
 export default {
@@ -21,6 +20,26 @@ export default {
             data: '',
             ontime: true,
         };
+    },
+    watch: {
+        '$store.state.RightGraphType': function () {
+            this.chartRight.dispose()
+            if (this.$store.state.RightGraphType == "当天波动率曲面图") {
+                this.drawRight()
+            }
+            else if (this.$store.state.RightGraphType == "成交量/持仓量增量分布图") {
+                this.drawRight2()
+            }
+        },
+
+        '$store.state.Date': function () {
+            this.freshLeft(this.$store.state.Date)
+        },
+
+        '$store.state.TimeType': function () {
+            this.ontime = this.$store.state.TimeType
+        }
+
     },
     methods: {
         /** 
@@ -732,23 +751,6 @@ export default {
 
         this.start_timer()
 
-        emitter.on('TimeTypeChange', data => {
-            this.ontime = data.TimeType
-        })
-
-        emitter.on('DateChange', data => {
-            this.freshLeft(data.DateChange)
-        })
-
-        emitter.on('RightGraphTypeChange', data => {
-            this.chartRight.dispose()
-            if (data.RightGraphType == "当天波动率曲面图") {
-                this.drawRight(data)
-            }
-            else if (data.RightGraphType == "成交量/持仓量增量分布图") {
-                this.drawRight2(data)
-            }
-        })
 
     },
     /**
@@ -761,9 +763,9 @@ export default {
             this.chartRight.resize();
         });
 
-        emitter.off('TimeTypeChange')
-        emitter.off('DateChange')
-        emitter.off('RightGraphTypeChange')
+
+
+
         clearInterval(this.timer)
     },
 }

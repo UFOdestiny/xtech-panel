@@ -6,7 +6,14 @@ const store = createStore({
     state() {
         return {
             Token: '',
-            UserInfo:'',
+            UserInfo: '',
+            GraphType: '名义本金',
+            TimeType: true,
+            Date: '',
+            RightGraphType: '',
+
+
+
         }
     },
     mutations: {
@@ -15,7 +22,7 @@ const store = createStore({
             state.Token = token;
             localStorage.setItem('Token', token);
         },
-        
+
         deltoken(state) {
             state.Token = "";
             localStorage.removeItem("Token");
@@ -26,6 +33,20 @@ const store = createStore({
             state.UserInfo = info
         },
 
+        changeGraphType(state, GraphType) {
+            state.GraphType = GraphType
+        },
+
+        changeRightGraphType(state, RightGraphType) {
+            state.RightGraphType = RightGraphType
+        },
+        changeDate(state, Date) {
+            state.Date = Date
+        },
+
+        changeTimeType(state, TimeType) {
+            state.TimeType = TimeType
+        },
     },
     actions: {
         // async FETCH_PERMISSION({ commit, state }) {

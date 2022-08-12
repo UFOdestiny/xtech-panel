@@ -16,6 +16,7 @@ router.beforeEach((to, from, next) => {
         next();
     } else {
         let token = JSON.parse(getCookie('result'))
+        //console.log(token)
         if (token == null || token == '') {
             next('/login');
         } else {

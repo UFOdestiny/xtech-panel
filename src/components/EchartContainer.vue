@@ -18,21 +18,14 @@ import DatePicker from '@/components/DatePicker.vue';
 import SelectList from '@/components/SelectList.vue';
 import Graph from '@/components/KlineGraph.vue';
 
-import emitter from "@/utils/bus"
-import { onBeforeUnmount, onMounted } from "vue";
-
 export default {
     name: 'EchartContainer',
     components: { Graph, SelectGraph, DatePicker, SelectList, },
-    setup() {
-        onMounted(() => {
-            emitter.on('GraphTypeChange', data => {
-                console.log(data)
-            })
-        });
-        onBeforeUnmount(() => {
-            emitter.off('GraphTypeChange')  //关闭
-        })
+
+    watch: {
+        '$store.state.GraphType': function () {
+            //console.log(this.$store.state.GraphType)
+        },
     },
 };
 

@@ -5,8 +5,6 @@
     </el-select>
 </template>
 <script>
-
-import emitter from "@/utils/bus.js"
 export default {
     name: 'SelectGraph',
     data() {
@@ -45,7 +43,8 @@ export default {
 
     methods: {
         GraphChange(selected) {
-            emitter.emit('GraphTypeChange', {GraphType: selected})
+            this.$store.commit('changeGraphType', selected)
+            //console.log(this.$store.state.GraphType)
         },
 
     }

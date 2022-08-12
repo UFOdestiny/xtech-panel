@@ -6,7 +6,7 @@
 </template>
 <script>
 
-import emitter from "@/utils/bus"
+
 export default {
     name: 'SelectRightGraph',
     data() {
@@ -33,7 +33,7 @@ export default {
 
     methods: {
         RightGraphChange(selected) {
-            emitter.emit('RightGraphTypeChange', {RightGraphType: selected})
+            this.$store.commit('changeRightGraphType', selected)
         },
 
     }
