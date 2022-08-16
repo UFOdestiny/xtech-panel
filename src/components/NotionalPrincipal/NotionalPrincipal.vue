@@ -1,20 +1,24 @@
 <template>
+    <DatePicker />
+    <SelectList />
     <SelectRightGraph />
     <div>
         <h1>名义本金</h1>
-        <div id="KlineGraphL" ref="KlineGraphL" style="width:50%; height:500px;float:left"></div>
-        <div id="KlineGraphR" ref="KlineGraphR" style="width:50%; height:500px;float:right"></div>
+        <div id="NotionalPrincipalL" ref="NotionalPrincipalL" style="width:50%; height:500px;float:left"></div>
+        <div id="NotionalPrincipalR" ref="NotionalPrincipalR" style="width:50%; height:500px;float:right"></div>
     </div>
 </template>
 
 <script>
-import SelectRightGraph from '@/components/SelectRightGraph.vue';
+import SelectRightGraph from '@/components/NotionalPrincipal/SelectRightGraph.vue';
+import DatePicker from '@/components/Utils/DatePicker.vue';
+import SelectList from '@/components/Utils/SelectList.vue';
 import { getTestData } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
-    name: 'KlineGraph',
-    components: { SelectRightGraph, },
+    name: 'NotionalPrincipal',
+    components: { SelectRightGraph, DatePicker, SelectList, },
     data() {
         return {
             data: '',
@@ -274,7 +278,7 @@ export default {
             };
             // 进行初始化
 
-            this.chartLeft = echarts.init(this.$refs.KlineGraphL);
+            this.chartLeft = echarts.init(this.$refs.NotionalPrincipalL);
             this.chartLeft.setOption(option);
             window.addEventListener("resize", () => {
                 // 执行echarts自带的resize方法，即可做到让echarts图表自适应
@@ -436,7 +440,7 @@ export default {
                 ]
             };
             // 进行初始化
-            this.chartRight = echarts.init(this.$refs.KlineGraphR);
+            this.chartRight = echarts.init(this.$refs.NotionalPrincipalR);
             this.chartRight.setOption(option);
             window.addEventListener("resize", () => {
                 this.chartRight.resize();
@@ -598,7 +602,7 @@ export default {
                 ]
             };
             // 进行初始化
-            this.chartRight = echarts.init(this.$refs.KlineGraphR);
+            this.chartRight = echarts.init(this.$refs.NotionalPrincipalR);
             this.chartRight.setOption(option);
             window.addEventListener("resize", () => {
                 this.chartRight.resize();

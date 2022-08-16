@@ -135,7 +135,7 @@ export default {
 
             //console.log(JSON.parse(getCookie("result")).token_type+' '+JSON.parse(getCookie("result")).access_token)
 
-            _this.$router.push('/EchartContainer')
+            _this.$router.push('/MainPage')
 
             // 请求用户信息
             // userInfo().then((res) => {

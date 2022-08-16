@@ -4,55 +4,55 @@
             <el-aside :width="collapse ? '64px' : '200px'">
                 <div class="toggle-button" @click="togglecollapse">|||</div>
                 <el-menu default-active="2" :collapse="collapse" :router="true">
-                    <el-menu-item index="/EchartContainer2">
+                    <el-menu-item index="/NotionalPrincipal">
                         <el-icon>
                             <Location />
                         </el-icon>
                         <template #title>名义本金</template>
                     </el-menu-item>
-                    <el-menu-item index="/kline">
+                    <el-menu-item index="/Volatility">
                         <el-icon>
                             <icon-menu />
                         </el-icon>
                         <template #title>历史波动率</template>
                     </el-menu-item>
-                    <el-menu-item index="3">
+                    <el-menu-item index="/CPR">
                         <el-icon>
                             <document />
                         </el-icon>
                         <template #title>CPR</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/PremiumDiscount">
                         <el-icon>
                             <setting />
                         </el-icon>
                         <template #title>升贴水</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/Skewness">
                         <el-icon>
                             <setting />
                         </el-icon>
                         <template #title>偏度</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/SmileSurface">
                         <el-icon>
                             <setting />
                         </el-icon>
                         <template #title>SmileSurface</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/IVDiff">
                         <el-icon>
                             <setting />
                         </el-icon>
                         <template #title>波动率差异</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/IVATM">
                         <el-icon>
                             <setting />
                         </el-icon>
                         <template #title>平值隐波</template>
                     </el-menu-item>
-                    <el-menu-item index="4">
+                    <el-menu-item index="/VerticalSpread">
                         <el-icon>
                             <setting />
                         </el-icon>
@@ -80,7 +80,7 @@ function togglecollapse() {
 }
 
 onMounted(() => {
-    router.push('/kline')
+    router.push('/NotionalPrincipal')
 })
 
 </script>
