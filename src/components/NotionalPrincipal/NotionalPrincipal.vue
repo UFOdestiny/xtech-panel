@@ -1,5 +1,4 @@
 <template>
-    <h1>名义本金</h1>
     <el-row type="flex" justify="center">
         <el-col :span="6">
             <DatePicker />
@@ -11,7 +10,6 @@
             <SelectRightGraph />
         </el-col>
     </el-row>
-
     <div style="padding-bottom: 20px;"></div>
     <div>
         <div id="NotionalPrincipalL" ref="NotionalPrincipalL" style="width:50%; height:500px;float:left"></div>
@@ -23,7 +21,7 @@
 import SelectRightGraph from '@/components/NotionalPrincipal/SelectRightGraph.vue';
 import DatePicker from '@/components/Utils/DatePicker.vue';
 import QuoteType from '@/components/Utils/QuoteType.vue';
-import { getTestData } from '@/request/index.js';
+import { get_NotionalPrincipal_all } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
@@ -53,10 +51,6 @@ export default {
             this.freshLeft(datetime)
         },
 
-        // '$store.state.TimeType': function () {
-        //     this.ontime = this.$store.state.TimeType
-        // }
-
     },
     methods: {
         /** 
@@ -78,20 +72,33 @@ export default {
             };
         },
 
+        unpack_data(data, leng = data.length) {
+            var dataset = [[], [], [], [], [], [], [], [], [], [], []]
+            for (var i = 0; i < leng; i++) {
+                for (var j = 0; j < 11; j++) {
+                    dataset[j].push([data[i][0], data[i][j + 1]])
+                }
+            }
+            return dataset
+        },
         /** 
          * @description: draw the left graph
          * @param data : packed(original) data
          * @return : void
         */
         drawLeft(data) {
-            var data0 = this.process_data(data)
+            var data0 = this.unpack_data(data)
             var option = {
+                title: {
+                    text: '名义本金',
+                    subtext: 'Demo 虚构数据',
+                    x: 'center'
+                },
                 legend: {
                     orient: 'vertical',
                     x: 'left',
                     y: 'top',
                     selected: {
-
                         "成交(总)": true,
                         "持仓(本金)": true,
                         "持仓(认购总)": true,
@@ -116,7 +123,7 @@ export default {
                     {
                         left: "10%",
                         right: "10%",
-                        top: "0",
+                        top: "10%",
                         height: "75%"
                     },
                     {
@@ -129,7 +136,6 @@ export default {
                 xAxis: [
                     {
                         type: "time",
-                        //data: data0.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -141,12 +147,12 @@ export default {
                         splitLine: {
                             show: false
                         },
-                        splitNumber: 20
+                        splitNumber: 20,
+                        minInterval: 8.64e7
                     },
                     {
                         type: "time",
                         gridIndex: 1,
-                        //data: data0.categoryData,
                         axisLabel: { show: false }
                     }
                 ],
@@ -205,7 +211,7 @@ export default {
                     {
                         name: "成交(总)",
                         type: "line",
-                        data: data0.values2,
+                        data: data0[0],
                         markPoint: {
                             data: [
                                 // {
@@ -236,69 +242,60 @@ export default {
                     {
                         name: "持仓(本金)",
                         type: "line",
-                        data: data0.values3,//this.calculateMA(5, data0),
+                        data: data0[1],
                         //smooth: true,
-                        lineStyle: {
-                            //opacity: 0.5
-                        }
+                        // lineStyle: {
+                        //     opacity: 0.5
+                        // }
                     },
                     {
                         name: "持仓(认购总)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[2],
                     },
 
                     {
                         name: "持仓(认沽总)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[3],
                     },
 
                     {
                         name: "标的",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[4],
                     },
 
                     {
                         name: "成交(当月)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[5],
                     },
 
                     {
                         name: "成交(下月)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[6],
                     },
                     {
                         name: "成交(认购总)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[7],
                     },
                     {
                         name: "成交(认沽总)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[8],
                     }, {
                         name: "持仓(当月)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[9],
                     },
                     {
                         name: "持仓(下月)",
                         type: "line",
-                        //data: data0.values3,
+                        data: data0[10],
                     },
-
-
-
-
-
-
-
-
-
 
                     // },
                     // {
@@ -339,153 +336,77 @@ export default {
          * @param data : packed(original) data
          * @return : void
         */
-        drawRight(data) {
-            var data0
-            if (data) {
-                data0 = this.process_data(data)
-            }
-            else {
-                data0 = { values2: [], values3: [] }
-            }
+        drawRight() {
+            // var data0
+            // if (data) {
+            //     data0 = this.process_data(data)
+            // }
+            // else {
+            //     data0 = { values2: [], values3: [] }
+            // }
             var option = {
-                // legend: {
-                //     // Try 'horizontal'
-                //     orient: 'vertical',
-                //     right: 10,
-                //     top: 'center'
-                // },
                 tooltip: {
                     trigger: "axis",
                     axisPointer: {
                         type: "cross"
                     }
                 },
-                grid: [
-                    {
-                        left: "10%",
-                        right: "10%",
-                        top: "0",
-                        height: "75%"
-                    },
-                    {
-                        left: "10%",
-                        right: "10%",
-                        top: "80%",
-                        height: "10%"
-                    }
-                ],
-                xAxis: [
-                    {
-                        type: "time",
-                        name: "执行价",
-                        //data: data0.categoryData,
-                        scale: true,
-                        boundaryGap: false,
-                        axisLine: {
-                            onZero: false,
-                            lineStyle: {
-                                color: "red"
-                            }
-                        },
-                        splitLine: {
-                            show: false
-                        },
-                        splitNumber: 20
-                    },
-                    {
-                        type: "time",
-                        gridIndex: 1,
-                        //data: data0.categoryData,
-                        axisLabel: { show: false }
-                    }
-                ],
-                yAxis: [
-                    {
-                        name: "波动率",
-                        scale: true,
-                        splitArea: {
-                            show: true
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: "red"
-                            }
-                        },
-                        position: "right"
-                    },
-                    {
-                        gridIndex: 1,
-                        splitNumber: 3,
-                        //axisLine: {  },
-                        axisTick: { show: false },
-                        splitLine: { show: false },
-                        axisLabel: { show: true },
-                        axisLine: {
-                            onZero: false,
-                            lineStyle: {
-                                color: "red"
-                            }
-                        },
-                        position: "right"
-                    }
-                ],
-                dataZoom: [
-                    {
-                        type: "inside",
-                        start: 50,
-                        end: 100
-                    },
-                    {
+                title: {
+                    text: '当天波动率',
+                    subtext: 'Demo 虚构数据',
+                    x: 'center'
+                },
+
+                legend: {
+                    orient: 'horizontal',
+                    x: 'left',
+                    y: 'top',
+                    data: ['猜想', '预期', '实际']
+                },
+                grid: {
+                    top: '20%',
+                    left: '3%',
+                    right: '10%',
+                    bottom: '5%',
+                    containLabel: true
+                },
+                xAxis: {
+                    name: '执行价',
+                    type: 'category',
+                    data: []// [1, 7, 6, 5, 13, 8, 4, 2, 15, 9, 11, 20,]
+                },
+                yAxis: {
+                    scale: true,
+                    name: '波动率',
+                    type: 'value',
+                    axisLine: {
                         show: true,
-                        type: "slider",
-                        y: "90%",
-                        start: 50,
-                        end: 100
-                    },
+
+                    }
+                },
+
+                series: [ // 多组折线图数据
                     {
-                        show: false,
-                        xAxisIndex: [0, 1],
-                        type: "slider",
-                        start: 20,
-                        end: 100
+                        name: '猜想',
+                        data: [],//[454, 226, 891, 978, 901, 581, 400, 543, 272, 955, 1294, 1581],
+                        type: 'line'
+                    },
+
+                    {
+                        name: '预期',
+                        data: [],//[2455, 2534, 2360, 2301, 2861, 2181, 1944, 2197, 1745, 1810, 2283, 2298],
+                        type: 'line',
+                    },
+
+
+                    {
+                        name: '实际',
+                        data: [],// [1107, 1352, 1740, 1968, 1647, 1570, 1343, 1757, 2547, 2762, 3170, 3665],
+                        type: 'line'
                     }
                 ],
-                series: [
-                    {
-                        name: "执行价",
-                        type: "line",
-                        data: data0.values2,
-                        markPoint: {
-                            data: [
-                                {
-                                    name: "XX标点"
-                                }
-                            ]
-                        },
-                        markLine: {
-                            silent: true,
-                            data: [
-                                {
-                                    yAxis: 2222
-                                }
-                            ]
-                        }
-                    },
-
-                    {
-                        name: "波动率",
-                        type: "line",
-                        data: data0.values3,//this.calculateMA(5, data0),
-                        smooth: true,
-                        lineStyle: {
-
-                            opacity: 0.5
-
-                        }
-                    },
-
-                ]
-            };
+                color: ['#3366CC', '#FFCC99', '#99CC33']
+            }
             // 进行初始化
             this.chartRight = echarts.init(this.$refs.NotionalPrincipalR);
             this.chartRight.setOption(option);
@@ -578,7 +499,6 @@ export default {
                         name: "持仓量",
                         gridIndex: 1,
                         splitNumber: 3,
-                        //axisLine: {  },
                         axisTick: { show: false },
                         splitLine: { show: false },
                         axisLabel: { show: true },
@@ -664,10 +584,13 @@ export default {
         */
         freshLeft(data) {
             if (!data) {
-                var d = [parseInt(this.data[this.data.length - 1]) + 1000, Math.random() * 100, Math.random() * 50]
-                this.data.push(d)
-                var data0 = this.process_data(this.data)
 
+                var d = [parseInt(this.data[this.data.length - 1]) + 8.64e7]
+                for (var i = 0; i < 11; i++) {
+                    d.push(Math.random() * 100)
+                }
+                this.data.push(d)
+                var data0 = this.unpack_data(this.data)
                 this.chartLeft.setOption({
                     series: [
                         { data: data0.values2, },
@@ -676,16 +599,24 @@ export default {
                 })
             }
             else {
-                getTestData({ "start": data[0], "stop": data[1], "type": 1, })
+                get_NotionalPrincipal_all({ "start": data[0], "stop": data[1], "type": 1, })
                     .then(response => {
                         console.log(response)
-                        this.data = response.data
-                        var data0 = this.process_data(this.data)
-
+                        var data0 = this.unpack_data(response.data)
                         this.chartLeft.setOption({
                             series: [
-                                { data: data0.values2, },
-                                { data: data0.values3, },
+                                { data: data0[0], },
+                                { data: data0[1], },
+                                { data: data0[2], },
+                                { data: data0[3], },
+                                { data: data0[4], },
+                                { data: data0[5], },
+                                { data: data0[6], },
+                                { data: data0[7], },
+                                { data: data0[8], },
+                                { data: data0[9], },
+                                { data: data0[10], },
+                                { data: data0[11], },
                             ]
                         })
                     });
@@ -702,24 +633,55 @@ export default {
          * @return : void
         */
         freshRight(point) {
-            const start = point
-            const stop = point
-            getTestData({ "start": start, "stop": stop + 10000, "type": 2, })
-                .then(response => {
-                    var new_data = response.data
-                    //console.log(new_data)
-                    var data0 = this.process_data(new_data)
-                    this.chartRight.setOption({
-                        series: [
-                            {
-                                data: data0.values2,
-                            },
-                            {
-                                data: data0.values3,
-                            },]
+            //const start = point
+            //const stop = point
+            // get_NotionalPrincipal_all({ "start": start, "stop": stop + 10000, "type": 2, })
+            //     .then(response => {
+            //         var new_data = response.data
+            //         //console.log(new_data)
+            //         var data0 = this.process_data(new_data)
+            //         this.chartRight.setOption({
+            //             series: [
+            //                 {
+            //                     data: data0.values2,
+            //                 },
+            //                 {
+            //                     data: data0.values3,
+            //                 },]
+            //         }
+            //         )
+            //     });
+            if (point) {
+                var dataset = [[], [], [], []]
+
+                var start = Math.floor(Math.random() * 10)
+                for (var i = 0; i < 10; i++) {
+                    dataset[0].push(start + i / 10)
+                }
+
+                for (var i2 = 0; i2 < 3; i2++) {
+                    for (var j = 0; j < 10; j++) {
+                        dataset[i2 + 1].push(Math.random())
                     }
-                    )
-                });
+                }
+                console.log(dataset)
+
+                this.chartRight.setOption({
+                    xAxis: { data: dataset[0] },
+                    series: [
+                        {
+                            data: dataset[1],
+                        },
+                        {
+                            data: dataset[2],
+                        },
+                        {
+                            data: dataset[3],
+                        },]
+                }
+                )
+            }
+
         },
 
         /** 
@@ -747,11 +709,11 @@ export default {
         InitialDataGraph(startTime, stopTime) {
 
             const stop = stopTime || new Date().getTime() + 8.64e7
-            const start = startTime || new Date().getTime() - 7 * 8.64e7
+            const start = startTime || new Date().getTime() - 30 * 8.64e7
 
-            getTestData({ "start": start, "stop": stop, "type": 1, })
+            get_NotionalPrincipal_all({ "start": start, "stop": stop, "type": 1, })
                 .then(response => {
-                    this.data = response.data.slice(900, 1000)
+                    this.data = response.data
                     this.drawLeft(this.data);
                     this.drawRight();
 

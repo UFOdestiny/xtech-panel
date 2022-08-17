@@ -1,5 +1,4 @@
 <template>
-    <!-- 日期选择器 -->
     <el-date-picker v-model="date" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" type="datetimerange"
         range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :disabledDate="disabledDate"
         @change="dateChange" :shortcuts="shortcuts" @calendar-change="calendarChange"
@@ -62,7 +61,7 @@ export default {
             ],
             //默认开始日期
             startDate: null,
-            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date().getTime())],
+            date: [defaultDate(new Date().getTime() - 8.64e7 * 30), defaultDate(new Date().getTime())],
             //下拉框
         };
     },

@@ -48,6 +48,6 @@ export let eventlibSave = (data) => {
 }
 
 //test 
-export let getTestData = (data) => {
-  return http.post('/targetquote/price', data)
+export let get_NotionalPrincipal_all = (data) => {
+  return http.post('/NotionalPrincipal/all', data)
 }
