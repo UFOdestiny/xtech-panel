@@ -7,7 +7,7 @@ export default {
     name: 'QuoteType',
     data() {
         return {
-            ontime: true,
+            ontime: false,
         };
     },
     methods: {

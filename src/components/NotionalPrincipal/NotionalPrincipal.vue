@@ -1,10 +1,19 @@
 <template>
-    <DatePicker />
-    <Live />
-    <QuoteType />
-    <SelectRightGraph />
+    <h1>名义本金</h1>
+    <el-row type="flex" justify="center">
+        <el-col :span="6">
+            <DatePicker />
+        </el-col>
+        <el-col :span="2">
+            <QuoteType />
+        </el-col>
+        <el-col :span="3">
+            <SelectRightGraph />
+        </el-col>
+    </el-row>
+
+    <div style="padding-bottom: 20px;"></div>
     <div>
-        <h1>名义本金</h1>
         <div id="NotionalPrincipalL" ref="NotionalPrincipalL" style="width:50%; height:500px;float:left"></div>
         <div id="NotionalPrincipalR" ref="NotionalPrincipalR" style="width:50%; height:500px;float:right"></div>
     </div>
@@ -14,17 +23,16 @@
 import SelectRightGraph from '@/components/NotionalPrincipal/SelectRightGraph.vue';
 import DatePicker from '@/components/Utils/DatePicker.vue';
 import QuoteType from '@/components/Utils/QuoteType.vue';
-import Live from '@/components/Utils/Live.vue';
 import { getTestData } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
     name: 'NotionalPrincipal',
-    components: { SelectRightGraph, DatePicker, QuoteType, Live },
+    components: { SelectRightGraph, DatePicker, QuoteType },
     data() {
         return {
             data: '',
-            ontime: true,
+            ontime: false,
         };
     },
     watch: {
@@ -39,16 +47,15 @@ export default {
         },
 
         '$store.state.Date': function () {
-            console.log(this.$store.state.Date)
             const datetime = [
                 new Date(this.$store.state.Date[0]).getTime(),
                 new Date(this.$store.state.Date[1]).getTime()]
             this.freshLeft(datetime)
         },
 
-        '$store.state.TimeType': function () {
-            this.ontime = this.$store.state.TimeType
-        }
+        // '$store.state.TimeType': function () {
+        //     this.ontime = this.$store.state.TimeType
+        // }
 
     },
     methods: {
@@ -77,14 +84,27 @@ export default {
          * @return : void
         */
         drawLeft(data) {
-
             var data0 = this.process_data(data)
             var option = {
                 legend: {
-                    // Try 'horizontal'
                     orient: 'vertical',
-                    right: 10,
-                    top: 'center'
+                    x: 'left',
+                    y: 'top',
+                    selected: {
+
+                        "成交(总)": true,
+                        "持仓(本金)": true,
+                        "持仓(认购总)": true,
+                        "持仓(认沽总)": true,
+                        "标的": true,
+
+                        "成交(当月)": false,
+                        "成交(下月)": false,
+                        "成交(认购总)": false,
+                        "成交(认沽总)": false,
+                        "持仓(当月)": false,
+                        "持仓(下月)": false,
+                    },
                 },
                 tooltip: {
                     trigger: "axis",
@@ -156,8 +176,9 @@ export default {
                                 color: "red"
                             }
                         },
-                        position: "right"
+                        position: "left"
                     }
+
                 ],
                 dataZoom: [
                     {
@@ -182,69 +203,103 @@ export default {
                 ],
                 series: [
                     {
-                        name: "成交名义本金",
+                        name: "成交(总)",
                         type: "line",
                         data: data0.values2,
                         markPoint: {
                             data: [
-                                {
-                                    name: "XX标点"
-                                }
+                                // {
+                                //     type: 'max', name: '最大值'
+                                // },
+                                // {
+                                //     type: 'min', name: '最小值'
+                                // }
                             ]
                         },
                         markLine: {
                             silent: true,
+                            label: {
+                                position: "start", //标线位置，start，middle，end
+                            },
                             data: [
-                                {
-                                    yAxis: 2222
-                                }
-                            ]
+                                // {
+                                //     type: "average", //'min', 'max', 'average' 最小、最大、平均
+                                //     label: {
+                                //         formatter: "Mean",
+                                //         fontSize: "10",
+                                //     },
+                                // },
+
+                            ],
                         }
+                    },
+                    {
+                        name: "持仓(本金)",
+                        type: "line",
+                        data: data0.values3,//this.calculateMA(5, data0),
+                        //smooth: true,
+                        lineStyle: {
+                            //opacity: 0.5
+                        }
+                    },
+                    {
+                        name: "持仓(认购总)",
+                        type: "line",
+                        //data: data0.values3,
                     },
 
                     {
-                        name: "持仓名义本金",
+                        name: "持仓(认沽总)",
                         type: "line",
-                        data: data0.values3,//this.calculateMA(5, data0),
-                        smooth: true,
-                        lineStyle: {
-
-                            opacity: 0.5
-
-                        }
+                        //data: data0.values3,
                     },
-                    // {
-                    //     name: "MA10",
-                    //     type: "line",
-                    //     data: this.calculateMA(10, data0),
-                    //     smooth: true,
-                    //     lineStyle: {
 
-                    //         opacity: 0.5
+                    {
+                        name: "标的",
+                        type: "line",
+                        //data: data0.values3,
+                    },
 
-                    //     }
-                    // },
-                    // {
-                    //     name: "MA20",
-                    //     type: "line",
-                    //     data: this.calculateMA(20, data0),
-                    //     smooth: true,
-                    //     lineStyle: {
+                    {
+                        name: "成交(当月)",
+                        type: "line",
+                        //data: data0.values3,
+                    },
 
-                    //         opacity: 0.5
+                    {
+                        name: "成交(下月)",
+                        type: "line",
+                        //data: data0.values3,
+                    },
+                    {
+                        name: "成交(认购总)",
+                        type: "line",
+                        //data: data0.values3,
+                    },
+                    {
+                        name: "成交(认沽总)",
+                        type: "line",
+                        //data: data0.values3,
+                    }, {
+                        name: "持仓(当月)",
+                        type: "line",
+                        //data: data0.values3,
+                    },
+                    {
+                        name: "持仓(下月)",
+                        type: "line",
+                        //data: data0.values3,
+                    },
 
-                    //     }
-                    // },
-                    // {
-                    //     name: "MA30",
-                    //     type: "line",
-                    //     data: this.calculateMA(30, data0),
-                    //     smooth: true,
-                    //     lineStyle: {
 
-                    //         opacity: 0.5
 
-                    //     }
+
+
+
+
+
+
+
                     // },
                     // {
                     //     name: "MACD",
@@ -265,21 +320,7 @@ export default {
                     //         }
 
                     //     }
-                    // },
-                    // {
-                    //     name: "DIF",
-                    //     type: "line",
-                    //     xAxisIndex: 1,
-                    //     yAxisIndex: 1,
-                    //     data: data0.difs
-                    // },
-                    // {
-                    //     name: "DEA",
-                    //     type: "line",
-                    //     xAxisIndex: 1,
-                    //     yAxisIndex: 1,
-                    //     data: data0.deas
-                    // }
+
                 ]
             };
             // 进行初始化
@@ -729,18 +770,16 @@ export default {
          * @description: start timer
          * @return : void
         */
-        start_timer(interval = 2000) {
-            this.timer = setInterval(() => {
-                if (this.ontime) { this.freshLeft() }
+        // start_timer(interval = 2000) {
+        //     this.timer = setInterval(() => {
+        //         if (this.ontime) { this.freshLeft() }
 
-            }, interval)
-        },
+        //     }, interval)
+        // },
 
         right(rawData) {
             var values2 = [];
             var values3 = [];
-
-
             for (var i = 0; i < 20; i++) {
                 var randomint = Math.floor(Math.random() * this.data.length)
                 values2.push([rawData[i][0], rawData[randomint][1]])
@@ -760,7 +799,7 @@ export default {
 
         this.InitialDataGraph()
 
-        this.start_timer()
+        //this.start_timer()
 
 
     },
