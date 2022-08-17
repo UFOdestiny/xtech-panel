@@ -3,13 +3,12 @@
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
         </el-option>
     </el-select>
-    <el-checkbox v-model="ontime" label="实时" @change="TimeChange" border />
 </template>
 <script>
 //import { ref } from 'vue'
 //50ETF、300ETF沪、300ETF深、HS300、zz100
 export default {
-    name: 'SelectList',
+    name: 'QuoteType',
     data() {
         return {
             options: [{
@@ -29,17 +28,12 @@ export default {
                 label: 'zz100'
             }],
             type: '50ETF',
-            ontime: true,
         };
     },
     methods: {
         TypeChange(selected) {
             this.$store.commit('changeQuoteType', selected)
         },
-
-        TimeChange(selected) {
-            this.$store.commit('changeTimeType', selected)
-        }
     }
 
 };

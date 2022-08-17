@@ -1,10 +1,9 @@
 <template>
-
     <!-- 日期选择器 -->
-    <el-date-picker v-model="date" format="YYYY-MM-DD" value-format="YYYY-MM-DD" type="daterange" range-separator="至"
-        start-placeholder="开始日期" end-placeholder="结束日期" :disabledDate="disabledDate" @change="dateChange"
-        :shortcuts="shortcuts" @calendar-change="calendarChange"></el-date-picker>
-
+    <el-date-picker v-model="date" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" type="datetimerange"
+        range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :disabledDate="disabledDate"
+        @change="dateChange" :shortcuts="shortcuts" @calendar-change="calendarChange">
+    </el-date-picker>
 </template>   
 
 <script>
@@ -24,14 +23,6 @@ export default {
                         start.setDate(start.getDate() - 7);
                         return [start, new Date()]
                     }
-
-
-                    // onClick(picker) {
-                    //     const end = new Date(new Date().setHours(0, 0, 0, 0));
-                    //     const start = new Date(new Date().setHours(0, 0, 0, 0));
-                    //     start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-                    //     picker.$emit("pick", [start, end]);
-                    // },
                 },
                 {
                     text: "最近一个月",
@@ -70,15 +61,20 @@ export default {
             ],
             //默认开始日期
             startDate: null,
-            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date().getTime() + 8.64e7)],
+            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date().getTime())],
             //下拉框
         };
+    },
+    watch: {
+        'data.date'(newValue, oldValue) {
+            console.log(newValue, oldValue);
+        },
     },
     methods: {
         disabledDate(time) {
 
             return (
-                time.getTime() > Date.now() + 8.64e7 ||
+                time.getTime() > Date.now() ||
                 time.getTime() < +new Date("2010-01-01")
             );
         },

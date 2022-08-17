@@ -1,6 +1,7 @@
 <template>
     <DatePicker />
-    <SelectList />
+    <Live />
+    <QuoteType />
     <SelectRightGraph />
     <div>
         <h1>名义本金</h1>
@@ -12,13 +13,14 @@
 <script>
 import SelectRightGraph from '@/components/NotionalPrincipal/SelectRightGraph.vue';
 import DatePicker from '@/components/Utils/DatePicker.vue';
-import SelectList from '@/components/Utils/SelectList.vue';
+import QuoteType from '@/components/Utils/QuoteType.vue';
+import Live from '@/components/Utils/Live.vue';
 import { getTestData } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
     name: 'NotionalPrincipal',
-    components: { SelectRightGraph, DatePicker, SelectList, },
+    components: { SelectRightGraph, DatePicker, QuoteType, Live },
     data() {
         return {
             data: '',
@@ -37,7 +39,11 @@ export default {
         },
 
         '$store.state.Date': function () {
-            this.freshLeft(this.$store.state.Date)
+            console.log(this.$store.state.Date)
+            const datetime = [
+                new Date(this.$store.state.Date[0]).getTime(),
+                new Date(this.$store.state.Date[1]).getTime()]
+            this.freshLeft(datetime)
         },
 
         '$store.state.TimeType': function () {
@@ -631,6 +637,7 @@ export default {
             else {
                 getTestData({ "start": data[0], "stop": data[1], "type": 1, })
                     .then(response => {
+                        console.log(response)
                         this.data = response.data
                         var data0 = this.process_data(this.data)
 

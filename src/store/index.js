@@ -11,6 +11,7 @@ const store = createStore({
             TimeType: true,
             Date: '',
             RightGraphType: '',
+            Frequence:'',
 
 
 
@@ -46,6 +47,10 @@ const store = createStore({
 
         changeTimeType(state, TimeType) {
             state.TimeType = TimeType
+        },
+
+        changeFrequence(state, Frequence) {
+            state.Frequence = Frequence
         },
     },
     actions: {
