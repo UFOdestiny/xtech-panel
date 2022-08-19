@@ -128,14 +128,14 @@ onMounted(() => {
 .container-wrapper {
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 0px;
     margin: 0;
 }
 
 .el-main {
     height: 100%;
     width: 100%;
-    padding: 30px;
+    padding: 0px;
     margin: 0;
 }
 

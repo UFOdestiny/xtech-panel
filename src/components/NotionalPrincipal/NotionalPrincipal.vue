@@ -1,5 +1,5 @@
 <template>
-    <el-row type="flex" justify="center">
+    <el-row justify="center">
         <el-col :span="6">
             <DatePicker />
         </el-col>
@@ -10,10 +10,25 @@
             <SelectRightGraph />
         </el-col>
     </el-row>
+
+    <el-row justify="center">
+        <el-col :span="6">
+            <DatePicker />
+        </el-col>
+        <el-col :span="2">
+            <QuoteType />
+        </el-col>
+        <el-col :span="3">
+            <SelectRightGraph />
+        </el-col>
+
+    </el-row>
+
+
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="NotionalPrincipalL" ref="NotionalPrincipalL" style="width:50%; height:500px;float:left"></div>
-        <div id="NotionalPrincipalR" ref="NotionalPrincipalR" style="width:50%; height:500px;float:right"></div>
+        <div id="NotionalPrincipalL" ref="NotionalPrincipalL" style="width:60%; height:600% ;float:left"></div>
+        <div id="NotionalPrincipalR" ref="NotionalPrincipalR" style="width:40%; height:600%;float:right"></div>
     </div>
 </template>
 
@@ -95,9 +110,9 @@ export default {
                     x: 'center'
                 },
                 legend: {
-                    orient: 'vertical',
-                    x: 'left',
-                    y: 'top',
+                    orient: 'horizontal',
+                    x: 'center',
+                    y: 'bottom',
                     selected: {
                         "成交(总)": true,
                         "持仓(本金)": true,
@@ -124,12 +139,12 @@ export default {
                         left: "10%",
                         right: "10%",
                         top: "10%",
-                        height: "75%"
+                        height: "80%"
                     },
                     {
                         left: "10%",
                         right: "10%",
-                        top: "80%",
+                        top: "90%",
                         height: "10%"
                     }
                 ],
@@ -141,7 +156,7 @@ export default {
                         axisLine: {
                             onZero: false,
                             lineStyle: {
-                                color: "red"
+                                color: "black"
                             }
                         },
                         splitLine: {
@@ -153,7 +168,8 @@ export default {
                     {
                         type: "time",
                         gridIndex: 1,
-                        axisLabel: { show: false }
+                        axisLabel: { show: false },
+                        show: false
                     }
                 ],
                 yAxis: [
@@ -186,58 +202,58 @@ export default {
                     }
 
                 ],
-                dataZoom: [
-                    {
-                        type: "inside",
-                        start: 80,
-                        end: 100
-                    },
-                    {
-                        show: true,
-                        type: "slider",
-                        y: "90%",
-                        start: 50,
-                        end: 100
-                    },
-                    {
-                        show: false,
-                        xAxisIndex: [0, 1],
-                        type: "slider",
-                        start: 20,
-                        end: 100
-                    }
-                ],
+                // dataZoom: [
+                //     {
+                //         type: "inside",
+                //         start: 80,
+                //         end: 100
+                //     },
+                //     {
+                //         show: true,
+                //         type: "slider",
+                //         y: "90%",
+                //         start: 50,
+                //         end: 100
+                //     },
+                //     {
+                //         show: false,
+                //         xAxisIndex: [0, 1],
+                //         type: "slider",
+                //         start: 20,
+                //         end: 100
+                //     }
+                // ],
                 series: [
                     {
                         name: "成交(总)",
                         type: "line",
                         data: data0[0],
-                        markPoint: {
-                            data: [
-                                // {
-                                //     type: 'max', name: '最大值'
-                                // },
-                                // {
-                                //     type: 'min', name: '最小值'
-                                // }
-                            ]
-                        },
-                        markLine: {
-                            silent: true,
-                            label: {
-                                position: "start", //标线位置，start，middle，end
-                            },
-                            data: [
-                                // {
-                                //     type: "average", //'min', 'max', 'average' 最小、最大、平均
-                                //     label: {
-                                //         formatter: "Mean",
-                                //         fontSize: "10",
-                                //     },
-                                // },
+                        // markPoint: {
+                        //     data: [
+                        //         {
+                        //             type: 'max', name: '最大值'
+                        //         },
+                        //         {
+                        //             type: 'min', name: '最小值'
+                        //         }
+                        //     ]
+                        // },
+                        // markLine: {
+                        //     silent: true,
+                        //     label: {
+                        //         position: "start", //标线位置，start，middle，end
+                        //     },
+                        //     data: [
+                        //         {
+                        //             type: "average", //'min', 'max', 'average' 最小、最大、平均
+                        //             label: {
+                        //                 formatter: "Mean",
+                        //                 fontSize: "10",
+                        //             },
+                        //         },
 
-                            ],
-                        }
+                        //     ],
+                        // }
                     },
                     {
                         name: "持仓(本金)",
@@ -364,10 +380,10 @@ export default {
                     data: ['猜想', '预期', '实际']
                 },
                 grid: {
-                    top: '20%',
+                    top: '10%',
                     left: '3%',
                     right: '10%',
-                    bottom: '5%',
+                    height: '85%',
                     containLabel: true
                 },
                 xAxis: {
@@ -584,7 +600,6 @@ export default {
         */
         freshLeft(data) {
             if (!data) {
-
                 var d = [parseInt(this.data[this.data.length - 1]) + 8.64e7]
                 for (var i = 0; i < 11; i++) {
                     d.push(Math.random() * 100)
@@ -782,3 +797,21 @@ export default {
     },
 }
 </script>
+<style lang="scss">
+.el-row {
+    margin-bottom: 20px;
+}
+
+.el-row:last-child {
+    margin-bottom: 0;
+}
+
+.el-col {
+    border-radius: 4px;
+}
+
+.grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+}
+</style>
