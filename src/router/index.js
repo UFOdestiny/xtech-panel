@@ -15,6 +15,7 @@ const IVDiff = () => import("@/components/IVDiff/IVDiff.vue")
 const IVATM = () => import("@/components/IVATM/IVATM.vue")
 const VerticalSpread = () => import("@/components/VerticalSpread/VerticalSpread.vue")
 
+const FormVue = () => import("@/components/Utils/FormVue.vue")
 const routes = [
   { path: "/", redirect: "/MainPage" },
   {
@@ -36,6 +37,8 @@ const routes = [
       { path: "/IVDiff", component: IVDiff, },
       { path: "/IVATM", component: IVATM, },
       { path: "/VerticalSpread", component: VerticalSpread, },
+
+      { path: "/FormVue", component: FormVue, },
     ]
   },
 

@@ -1,5 +1,5 @@
 <template>
-    <el-checkbox v-model="ontime" label="实时" @change="TimeChange" border />
+    <el-checkbox v-model="ontime" label="实时" @change="TimeChange" style="width: 100%;" border />
 </template>
 <script>
 

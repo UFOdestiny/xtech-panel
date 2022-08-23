@@ -1,26 +1,23 @@
 <template>
-    <el-row justify="center">
-        <el-col :span="6">
-            <DatePicker />
-        </el-col>
-        <el-col :span="2">
-            <QuoteType />
-        </el-col>
-        <el-col :span="3">
-            <SelectRightGraph />
-        </el-col>
-    </el-row>
+    <el-row justify="start" :gutter="10" style="width: 80%;">
 
-    <el-row justify="center">
+        <el-col :span="3">
+            <QuoteType />
+        </el-col>
+
         <el-col :span="6">
             <DatePicker />
         </el-col>
-        <el-col :span="2">
-            <QuoteType />
-        </el-col>
+        
+        
         <el-col :span="3">
             <SelectRightGraph />
         </el-col>
+
+        <el-col :span="3">
+            <SelectRightGraph />
+        </el-col>
+        
 
     </el-row>
 
@@ -41,7 +38,7 @@ var echarts = require("echarts");
 
 export default {
     name: 'NotionalPrincipal',
-    components: { SelectRightGraph, DatePicker, QuoteType },
+    components: { SelectRightGraph, DatePicker, QuoteType,},
     data() {
         return {
             data: '',

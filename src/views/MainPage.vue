@@ -80,7 +80,7 @@ function togglecollapse() {
 }
 
 onMounted(() => {
-    router.push('/NotionalPrincipal')
+    router.push('/NotionalPrincipal') //router.push('/FormVue')
 })
 
 </script>

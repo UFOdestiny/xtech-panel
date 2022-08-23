@@ -1,5 +1,5 @@
 <template>
-    <el-select v-model="type" placeholder="请选择频率" @change="FrequenceChange">
+    <el-select v-model="type" placeholder="请选择频率" @change="FrequenceChange" style="width: 100%;">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
         </el-option>
     </el-select>

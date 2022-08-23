@@ -2,7 +2,7 @@
     <el-date-picker v-model="date" format="YYYY-MM-DD HH:mm:ss" value-format="YYYY-MM-DD HH:mm:ss" type="datetimerange"
         range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :disabledDate="disabledDate"
         @change="dateChange" :shortcuts="shortcuts" @calendar-change="calendarChange"
-        :default-time='[new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 2, 1, 23, 59, 59)]'>
+        :default-time='[new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 2, 1, 23, 59, 59)]' style="width: 97%;">
     </el-date-picker>
 </template>   
 
