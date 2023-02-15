@@ -25,14 +25,10 @@
             <el-form-item prop="verificationCode">
                 <el-input placeholder="输入7位验证码" v-model="ruleForm.verificationCode" class="input-with-select"
                     autocomplete="off">
-
-            <template v:slot="append">
-                    <el-button v-show="show" @click="getCode('ruleForm')">获取验证码</el-button>
-                    <el-button v-show="!show">{{ count }}s后重新获取</el-button>
-            </template>
-
-                    
-
+                    <template v:slot="append">
+                        <el-button v-show="show" @click="getCode('ruleForm')">获取验证码</el-button>
+                        <el-button v-show="!show">{{ count }}s后重新获取</el-button>
+                    </template>
                 </el-input>
             </el-form-item>
             <el-form-item>
@@ -43,10 +39,7 @@
 </template>
 
 <script>
-import {
-    userRegister,
-    register
-} from "@/request/index";
+import { userRegister, register } from "@/request/index";
 export default {
     name: "RegisterPage",
     data() {
@@ -96,18 +89,24 @@ export default {
                 verificationCode: "",
             },
             rules: {
-                pass: [{
-                    validator: validatePass,
-                    trigger: "blur"
-                }],
-                checkPass: [{
-                    validator: validatePass2,
-                    trigger: "blur"
-                }],
-                nickname: [{
-                    validator: nickname,
-                    trigger: "blur"
-                }],
+                pass: [
+                    {
+                        validator: validatePass,
+                        trigger: "blur",
+                    },
+                ],
+                checkPass: [
+                    {
+                        validator: validatePass2,
+                        trigger: "blur",
+                    },
+                ],
+                nickname: [
+                    {
+                        validator: nickname,
+                        trigger: "blur",
+                    },
+                ],
                 // verificationCode: [{ validator: verificationCode, trigger: "blur" }],
             },
         };
@@ -181,22 +180,22 @@ export default {
         padding: 0px 38px 0 33px;
     }
 
-    :deep(.el-input__inner ) {
+    :deep(.el-input__inner) {
         border: 0;
     }
 
-    :deep(.el-input ) {
+    :deep(.el-input) {
         border: 0;
         border-bottom: 1px solid #e5e7f0;
         width: 100%;
         margin: auto;
     }
 
-    :deep( .el-form-item__error)  {
+    :deep(.el-form-item__error) {
         left: 45px;
     }
 
-    :deep( .el-button--primary)  {
+    :deep(.el-button--primary) {
         width: 320px;
         height: 40px;
         background: #43497b;
@@ -205,12 +204,11 @@ export default {
         margin-top: 40px;
     }
 
-    :deep(.el-input-group__append,
-    .el-input-group__prepend ) {
+    :deep(.el-input-group__append, .el-input-group__prepend) {
         border: 0;
     }
 
-   :deep(.el-button+.el-button ) {
+    :deep(.el-button + .el-button) {
         margin-left: 0;
     }
 }

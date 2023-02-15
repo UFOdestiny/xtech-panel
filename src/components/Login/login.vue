@@ -107,7 +107,9 @@ export default {
 
           //this.puzzePass.visible = true
           //this.codeImage()
-          this.toLogin()
+
+          //this.toLogin()
+          this.toLogin_test()
         }
       })
     },
@@ -119,6 +121,13 @@ export default {
           this.LoginForm.password = JSON.parse(getCookie('userNamePwd')).password
         }
       }
+    },
+
+    toLogin_test() {
+      this.loginLoading = true
+      let _this = this
+      _this.$router.push('/MainPage')
+      _this.RememberPassword ? setCookie('userPwd', _this.LoginForm.password, 7) : delCookie('userPwd')
     },
 
     toLogin() {

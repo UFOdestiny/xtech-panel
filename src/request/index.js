@@ -51,3 +51,7 @@ export let eventlibSave = (data) => {
 export let get_NotionalPrincipal_all = (data) => {
   return http.post('/NotionalPrincipal/all', data)
 }
+
+export let get_data = (data) => {
+  return http.post('/query', data)
+}

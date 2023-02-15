@@ -8,7 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@vue/composition-api": "^1.7.0",
     "axios": "^0.27.2",
     "bufferutil": "^4.0.6",
     "caniuse-lite": "^1.0.30001452",
