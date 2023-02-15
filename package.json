@@ -11,6 +11,7 @@
     "@vue/composition-api": "^1.7.0",
     "axios": "^0.27.2",
     "bufferutil": "^4.0.6",
+    "caniuse-lite": "^1.0.30001452",
     "core-js": "^3.24.0",
     "crypto-js": "^4.1.1",
     "echarts": "^5.3.3",
