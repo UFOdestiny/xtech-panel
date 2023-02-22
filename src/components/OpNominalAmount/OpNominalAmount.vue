@@ -81,6 +81,15 @@ export default {
                         "money": true,
                         "money_c": true,
                         "money_p": true,
+
+
+                        "money_00": false,
+                        "money_01": false,
+                        "money_c_00": false,
+                        "money_c_01": false,
+                        "money_p_00": false,
+                        "money_p_01": false,
+
                     },
                 },
                 tooltip: {
@@ -93,34 +102,34 @@ export default {
 
                         align: 'left'
                     },
-                    formatter: function (params) {
-                        let str = '';
-                        params.forEach((item, idx) => {
-                            if (typeof item.data == 'string') {
+                    // formatter: function (params) {
+                    //     let str = '';
+                    //     params.forEach((item, idx) => {
+                    //         if (typeof item.data == 'string') {
 
-                                str += `${item.marker}${item.seriesName}: ${item.data}`
-                            }
-                            else {
-                                console.log(item.data)
-                                str += `${item.marker}${item.seriesName}: ${item.data.toFixed(4)}`
-                            }
-                            switch (idx) {
-                                case 0:
-                                    str += '';
-                                    break;
-                                case 1:
-                                    str += '';
-                                    break;
-                                case 2:
-                                    str += '';
-                                    break;
-                                default:
-                                    str += ''
-                            }
-                            str += idx === params.length - 1 ? '' : '<br/>'
-                        })
-                        return str
-                    }
+                    //             str += `${item.marker}${item.seriesName}: ${item.data}`
+                    //         }
+                    //         else {
+                    //             console.log(item.data)
+                    //             str += `${item.marker}${item.seriesName}: ${item.data.toFixed(4)}`
+                    //         }
+                    //         switch (idx) {
+                    //             case 0:
+                    //                 str += '';
+                    //                 break;
+                    //             case 1:
+                    //                 str += '';
+                    //                 break;
+                    //             case 2:
+                    //                 str += '';
+                    //                 break;
+                    //             default:
+                    //                 str += ''
+                    //         }
+                    //         str += idx === params.length - 1 ? '' : '<br/>'
+                    //     })
+                    //     return str
+                    // }
 
                 },
                 grid: [
@@ -153,7 +162,7 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 7200
+                        minInterval: 8.64e7
                     },
                     {
                         type: "time",
@@ -219,10 +228,17 @@ export default {
                     }
                 ],
                 series: [
+
+                    {
+                        name: "targetcode",
+                        type: "line",
+                        data: data[1],
+                    },
+
                     {
                         name: "money",
                         type: "line",
-                        data: data[1],
+                        data: data[2],
                         // markPoint: {
                         //     data: [
                         //         {
@@ -253,7 +269,7 @@ export default {
                     {
                         name: "money_00",
                         type: "line",
-                        data: data[2],
+                        data: data[3],
                         //smooth: true,
                         // lineStyle: {
                         //     opacity: 0.5
@@ -262,37 +278,37 @@ export default {
                     {
                         name: "money_01",
                         type: "line",
-                        data: data[3],
+                        data: data[4],
                     },
                     {
                         name: "money_c",
                         type: "line",
-                        data: data[4],
+                        data: data[5],
                     },
                     {
                         name: "money_c_00",
                         type: "line",
-                        data: data[5],
+                        data: data[6],
                     },
                     {
                         name: "money_c_01",
                         type: "line",
-                        data: data[6],
+                        data: data[7],
                     },
                     {
                         name: "money_p",
                         type: "line",
-                        data: data[7],
+                        data: data[8],
                     },
                     {
                         name: "money_p_00",
                         type: "line",
-                        data: data[8],
+                        data: data[9],
                     },
                     {
                         name: "money_p_01",
                         type: "line",
-                        data: data[9],
+                        data: data[10],
                     },
 
 

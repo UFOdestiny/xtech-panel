@@ -7,7 +7,7 @@ const MainPage = () => import("@/views/MainPage.vue")
 
 const NotionalPrincipal = () => import("@/components/NotionalPrincipal/NotionalPrincipal.vue")
 const OpTargetQuote = () => import("@/components/OpTargetQuote/OpTargetQuote.vue")
-
+const OpNominalAmount = () => import("@/components/OpNominalAmount/OpNominalAmount.vue")
 const Volatility = () => import("@/components/Volatility/Volatility.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
 const PremiumDiscount = () => import("@/components/PremiumDiscount/PremiumDiscount.vue")
@@ -31,6 +31,8 @@ const routes = [
     component: MainPage,
     children: [
       { path: "/OpTargetQuote", component: OpTargetQuote, },
+
+      { path: "/OpNominalAmount", component: OpNominalAmount, },
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },
 
 

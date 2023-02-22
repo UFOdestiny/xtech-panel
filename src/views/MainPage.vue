@@ -13,6 +13,18 @@
                         <template #title>OpTargetQuote</template>
                     </el-menu-item>
 
+
+
+
+
+                    <el-menu-item index="/OpNominalAmount">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>OpNominalAmount</template>
+                    </el-menu-item>
+
+
                     <el-menu-item index="/NotionalPrincipal">
                         <el-icon>
                             <Location />
@@ -20,14 +32,7 @@
                         <template #title>名义本金</template>
                     </el-menu-item>
 
-                    
 
-                    <el-menu-item index="/Volatility">
-                        <el-icon>
-                            <icon-menu />
-                        </el-icon>
-                        <template #title>历史波动率</template>
-                    </el-menu-item>
                     <el-menu-item index="/CPR">
                         <el-icon>
                             <document />
