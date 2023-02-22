@@ -10,7 +10,7 @@ const store = createStore({
             Date: '',
             RightGraphType: '',
             Frequence: '',
-            QuoteType: '',
+            QuoteType: '510050.XSHG',
         }
     },
     mutations: {

@@ -160,7 +160,7 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 8.64e7
+                        minInterval: 7200
                     },
                     {
                         type: "time",

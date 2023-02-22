@@ -22,7 +22,7 @@
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpTargetQuote" ref="OpTargetQuote" style="width:60%; height:600% ;float:left"></div>
+        <div id="OpNominalAmount" ref="OpNominalAmount" style="width:60%; height:600% ;float:left"></div>
     </div>
 </template>
 
@@ -33,7 +33,7 @@ import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
-    name: 'OpTargetQuote',
+    name: 'OpNominalAmount',
     components: { DatePicker, QuoteType, },
     data() {
         return {
@@ -68,7 +68,7 @@ export default {
         draw(data) {
             var option = {
                 title: {
-                    text: 'optargetquote',
+                    text: 'opnominalamount',
                     subtext: 'Demo 数据',
                     x: 'center'
                 },
@@ -78,8 +78,9 @@ export default {
                     y: 'bottom',
                     selected: {
                         "targetcode": true,
-                        "pct": true,
-                        "price": true,
+                        "money": true,
+                        "money_c": true,
+                        "money_p": true,
                     },
                 },
                 tooltip: {
@@ -219,7 +220,7 @@ export default {
                 ],
                 series: [
                     {
-                        name: "code",
+                        name: "money",
                         type: "line",
                         data: data[1],
                         // markPoint: {
@@ -250,7 +251,7 @@ export default {
                         // }
                     },
                     {
-                        name: "pct",
+                        name: "money_00",
                         type: "line",
                         data: data[2],
                         //smooth: true,
@@ -259,9 +260,39 @@ export default {
                         // }
                     },
                     {
-                        name: "price",
+                        name: "money_01",
                         type: "line",
                         data: data[3],
+                    },
+                    {
+                        name: "money_c",
+                        type: "line",
+                        data: data[4],
+                    },
+                    {
+                        name: "money_c_00",
+                        type: "line",
+                        data: data[5],
+                    },
+                    {
+                        name: "money_c_01",
+                        type: "line",
+                        data: data[6],
+                    },
+                    {
+                        name: "money_p",
+                        type: "line",
+                        data: data[7],
+                    },
+                    {
+                        name: "money_p_00",
+                        type: "line",
+                        data: data[8],
+                    },
+                    {
+                        name: "money_p_01",
+                        type: "line",
+                        data: data[9],
                     },
 
 
@@ -291,7 +322,7 @@ export default {
             };
             // 进行初始化
 
-            this.chartLeft = echarts.init(this.$refs.OpTargetQuote);
+            this.chartLeft = echarts.init(this.$refs.OpNominalAmount);
             this.chartLeft.setOption(option);
             window.addEventListener("resize", () => {
                 // 执行echarts自带的resize方法，即可做到让echarts图表自适应
@@ -306,8 +337,8 @@ export default {
          * @return : void
         */
         fresh(data) {
-            //console.log({ "time": [data[0], data[1]], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [data[0], data[1]], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     this.chartLeft.setOption({
@@ -349,8 +380,8 @@ export default {
 
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
             const start = startTime || new Date().getTime() - 8 * 8.64e7
-            //console.log({ "time": [start, stop], "name": "optargetquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [start, stop], "name": "opnominalamount", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
+            get_data({ "time": [start, stop], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     //console.log(this.data)

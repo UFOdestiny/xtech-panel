@@ -61,7 +61,7 @@ export default {
             ],
             //默认开始日期
             startDate: null,
-            date: [defaultDate(new Date().getTime() - 8.64e7 * 30), defaultDate(new Date().getTime())],
+            date: [defaultDate(new Date().getTime() - 8.64e7 * 7), defaultDate(new Date().getTime())],
             //下拉框
         };
     },

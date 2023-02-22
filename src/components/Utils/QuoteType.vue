@@ -12,22 +12,37 @@ export default {
     data() {
         return {
             options: [{
-                value: '50ETF',
-                label: '50ETF'
+                value: '510050.XSHG',
+                label: '510050'
             }, {
-                value: '300ETF沪',
-                label: '300ETF沪'
+                value: '510300.XSHG',
+                label: '510300'
             }, {
-                value: '300ETF深',
-                label: '300ETF深'
+                value: '510500.XSHG',
+                label: '510500'
             }, {
-                value: 'HS300',
-                label: 'HS300'
+                value: '159901.XSHE',
+                label: '159901'
             }, {
-                value: 'zz100',
-                label: 'zz100'
+                value: '159915.XSHE',
+                label: '159915'
+            },{
+                value: '159919.XSHE',
+                label: '159919'
+            }, {
+                value: '159922.XSHE',
+                label: '159922'
+            }, {
+                value: '000016.XSHG',
+                label: '000016'
+            }, {
+                value: '000300.XSHE',
+                label: '000300'
+            }, {
+                value: '000852.XSHE',
+                label: '000852'
             }],
-            type: '50ETF',
+            type: '510050',
         };
     },
     methods: {
