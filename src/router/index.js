@@ -6,6 +6,8 @@ const login = () => import("@/views/Login/index.vue")
 const MainPage = () => import("@/views/MainPage.vue")
 
 const NotionalPrincipal = () => import("@/components/NotionalPrincipal/NotionalPrincipal.vue")
+const OpTargetQuote = () => import("@/components/OpTargetQuote/OpTargetQuote.vue")
+
 const Volatility = () => import("@/components/Volatility/Volatility.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
 const PremiumDiscount = () => import("@/components/PremiumDiscount/PremiumDiscount.vue")
@@ -28,7 +30,10 @@ const routes = [
     name: "MainPage",
     component: MainPage,
     children: [
+      { path: "/OpTargetQuote", component: OpTargetQuote, },
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },
+
+
       { path: "/Volatility", component: Volatility, },
       { path: "/CPR", component: CPR, },
       { path: "/PremiumDiscount", component: PremiumDiscount, },

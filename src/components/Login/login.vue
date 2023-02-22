@@ -108,8 +108,8 @@ export default {
           //this.puzzePass.visible = true
           //this.codeImage()
 
-          //this.toLogin()
-          this.toLogin_test()
+          this.toLogin()
+          //this.toLogin_test()
         }
       })
     },

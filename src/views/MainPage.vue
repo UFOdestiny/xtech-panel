@@ -4,12 +4,24 @@
             <el-aside :width="collapse ? '64px' : '200px'">
                 <div class="toggle-button" @click="togglecollapse">|||</div>
                 <el-menu default-active="2" :collapse="collapse" :router="true">
+
+
+                    <el-menu-item index="/OpTargetQuote">
+                        <el-icon>
+                            <Location />
+                        </el-icon>
+                        <template #title>OpTargetQuote</template>
+                    </el-menu-item>
+
                     <el-menu-item index="/NotionalPrincipal">
                         <el-icon>
                             <Location />
                         </el-icon>
                         <template #title>名义本金</template>
                     </el-menu-item>
+
+                    
+
                     <el-menu-item index="/Volatility">
                         <el-icon>
                             <icon-menu />
@@ -80,7 +92,7 @@ function togglecollapse() {
 }
 
 onMounted(() => {
-    router.push('/NotionalPrincipal') //router.push('/FormVue')
+    router.push('/OpTargetQuote') //router.push('/FormVue')
 })
 
 </script>
