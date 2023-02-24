@@ -16,12 +16,19 @@
 
 
 
-
                     <el-menu-item index="/OpNominalAmount">
                         <el-icon>
                             <icon-menu />
                         </el-icon>
                         <template #title>OpNominalAmount</template>
+                    </el-menu-item>
+
+
+                    <el-menu-item index="/OpContractQuote">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>OpContractQuote</template>
                     </el-menu-item>
 
 

@@ -364,6 +364,13 @@ export default {
                             { data: this.data[1], },
                             { data: this.data[2], },
                             { data: this.data[3], },
+                            { data: this.data[4], },
+                            { data: this.data[5], },
+                            { data: this.data[6], },
+                            { data: this.data[7], },
+                            { data: this.data[8], },
+                            { data: this.data[9], },
+                            { data: this.data[10], },
 
                         ]
                     })

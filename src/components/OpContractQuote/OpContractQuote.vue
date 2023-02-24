@@ -22,7 +22,7 @@
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpTargetQuote" ref="OpTargetQuote" style="width:60%; height:600% ;float:left"></div>
+        <div id="OpContractQuote" ref="OpContractQuote" style="width:60%; height:600% ;float:left"></div>
     </div>
 </template>
 
@@ -33,7 +33,7 @@ import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
-    name: 'OpTargetQuote',
+    name: 'OpContractQuote',
     components: { DatePicker, QuoteType, },
     data() {
         return {
@@ -68,7 +68,7 @@ export default {
         draw(data) {
             var option = {
                 title: {
-                    text: 'optargetquote',
+                    text: 'opcontractquote',
                     subtext: 'Demo 数据',
                     x: 'center'
                 },
@@ -78,8 +78,30 @@ export default {
                     y: 'bottom',
                     selected: {
                         "targetcode": true,
+                        "opcode": true,
+                        "type": true,
+
+                        "a1_p": false,
+                        "a1_v": false,
+                        "b1_p": false,
+                        "b1_v": false,
+                        "delta": true,
+                        "gamma": true,
+                        "theta": true,
+                        "vega": true,
+
+                        "close": true,
+                        "high": false,
+                        "iv": true,
+                        "money": false,
+                        "low": false,
+                        "open": false,
+
                         "pct": true,
-                        "price": true,
+
+                        "strike": false,
+                        "timevalue": true,
+                        "volume": false,
                     },
                 },
                 tooltip: {
@@ -92,34 +114,6 @@ export default {
 
                         align: 'left'
                     },
-                    formatter: function (params) {
-                        let str = '';
-                        params.forEach((item, idx) => {
-                            if (typeof item.data == 'string') {
-
-                                str += `${item.marker}${item.seriesName}: ${item.data}`
-                            }
-                            else {
-                                console.log(item.data)
-                                str += `${item.marker}${item.seriesName}: ${item.data.toFixed(4)}`
-                            }
-                            switch (idx) {
-                                case 0:
-                                    str += '';
-                                    break;
-                                case 1:
-                                    str += '';
-                                    break;
-                                case 2:
-                                    str += '';
-                                    break;
-                                default:
-                                    str += ''
-                            }
-                            str += idx === params.length - 1 ? '' : '<br/>'
-                        })
-                        return str
-                    }
 
                 },
                 grid: [
@@ -140,7 +134,6 @@ export default {
                     {
                         data: data[0],
                         //type: "time",
-                        
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -153,7 +146,7 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 7200
+                        minInterval: 8.64e7
                     },
                     {
                         type: "time",
@@ -164,8 +157,6 @@ export default {
                 ],
                 yAxis: [
                     {
-                        type: 'value',
-                        splitNumber: 3,
                         scale: true,
                         splitArea: {
                             show: true
@@ -179,10 +170,9 @@ export default {
 
                     },
                     {
-                        type: 'value',
-                        scale: true,
+                        gridIndex: 1,
                         splitNumber: 3,
-                        //name: 'price',
+                        //axisLine: {  },
                         axisTick: { show: false },
                         splitLine: { show: false },
                         axisLabel: {
@@ -223,55 +213,109 @@ export default {
                 ],
                 series: [
                     {
-                        name: "code",
+                        name: "opcode",
                         type: "line",
                         data: data[1],
                     },
                     {
-                        name: "pct",
+                        name: "targetcode",
                         type: "line",
                         data: data[2],
-                        //smooth: true,
-                        // lineStyle: {
-                        //     opacity: 0.5
-                        // }
-                        yAxisIndex: 1,
                     },
                     {
-                        name: "price",
+                        name: "type",
                         type: "line",
                         data: data[3],
-                        yAxisIndex: 0,
                     },
 
+                    {
+                        name: "a1_p",
+                        type: "line",
+                        data: data[4],
 
+                    },
+                    {
+                        name: "a1_v",
+                        type: "line",
+                        data: data[5],
 
-                    // },
-                    // {
-                    //     name: "MACD",
-                    //     type: "bar",
-                    //     xAxisIndex: 1,
-                    //     yAxisIndex: 1,
-                    //     data: data0.macds,
-                    //     itemStyle: {
-
-                    //         color: function (params) {
-                    //             var colorList;
-                    //             if (params.data >= 0) {
-                    //                 colorList = "#ef232a";
-                    //             } else {
-                    //                 colorList = "#14b143";
-                    //             }
-                    //             return colorList;
-                    //         }
-
-                    //     }
-
+                    },
+                    {
+                        name: "b1_p",
+                        type: "line",
+                        data: data[6],
+                    },
+                    {
+                        name: "b1_v",
+                        type: "line",
+                        data: data[7],
+                    },
+                    {
+                        name: "close",
+                        type: "line",
+                        data: data[8],
+                    },
+                    {
+                        name: "delta",
+                        type: "line",
+                        data: data[9],
+                    },
+                    {
+                        name: "gamma",
+                        type: "line",
+                        data: data[10],
+                    },
+                    {
+                        name: "high",
+                        type: "line",
+                        data: data[11],
+                    },
+                    {
+                        name: "iv",
+                        type: "line",
+                        data: data[12],
+                    }, {
+                        name: "low",
+                        type: "line",
+                        data: data[13],
+                    }, {
+                        name: "money",
+                        type: "line",
+                        data: data[14],
+                    }, {
+                        name: "open",
+                        type: "line",
+                        data: data[15],
+                    }, {
+                        name: "pct",
+                        type: "line",
+                        data: data[16],
+                    }, {
+                        name: "strikeprice",
+                        type: "line",
+                        data: data[17],
+                    }, {
+                        name: "theta",
+                        type: "line",
+                        data: data[18],
+                    }, {
+                        name: "timevalue",
+                        type: "line",
+                        data: data[19],
+                    }, {
+                        name: "vega",
+                        type: "line",
+                        data: data[20],
+                    }, {
+                        name: "volume",
+                        type: "line",
+                        data: data[21],
+                    }
                 ]
             };
             // 进行初始化
 
-            this.chartLeft = echarts.init(this.$refs.OpTargetQuote);
+            this.chartLeft = echarts.init(this.$refs.OpContractQuote);
             this.chartLeft.setOption(option);
             window.addEventListener("resize", () => {
                 // 执行echarts自带的resize方法，即可做到让echarts图表自适应
@@ -286,8 +330,8 @@ export default {
          * @return : void
         */
         fresh(data) {
-            //console.log({ "time": [data[0], data[1]], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     this.chartLeft.setOption({
@@ -297,6 +341,24 @@ export default {
                             { data: this.data[1], },
                             { data: this.data[2], },
                             { data: this.data[3], },
+                            { data: this.data[4], },
+                            { data: this.data[5], },
+                            { data: this.data[6], },
+                            { data: this.data[7], },
+                            { data: this.data[8], },
+                            { data: this.data[9], },
+                            { data: this.data[10], },
+                            { data: this.data[11], },
+                            { data: this.data[12], },
+                            { data: this.data[13], },
+                            { data: this.data[14], },
+                            { data: this.data[15], },
+                            { data: this.data[16], },
+                            { data: this.data[17], },
+                            { data: this.data[18], },
+                            { data: this.data[19], },
+                            { data: this.data[20], },
+                            { data: this.data[21], },
 
                         ]
                     })
@@ -329,8 +391,8 @@ export default {
 
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
             const start = startTime || new Date().getTime() - 8 * 8.64e7
-            //console.log({ "time": [start, stop], "name": "optargetquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": "optargetquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [start, stop], "name": "opcontractquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
+            get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     //console.log(this.data)

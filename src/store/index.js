@@ -11,6 +11,7 @@ const store = createStore({
             RightGraphType: '',
             Frequence: '',
             QuoteType: '510050.XSHG',
+            Contract:'',
         }
     },
     mutations: {
@@ -48,6 +49,9 @@ const store = createStore({
         //种类
         changeQuoteType(state, QuoteType) {
             state.QuoteType = QuoteType
+        },
+        changeContract(state, Contract) {
+            state.Contract = Contract
         },
     },
     actions: {

@@ -1,5 +1,5 @@
 <template>
-    <el-select v-model="type" placeholder="标的" @change="ContractChange" style="width: 100%;">
+    <el-select v-model="type" placeholder="期权" @change="ContractChange" style="width: 100%;">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
         </el-option>
     </el-select>
@@ -8,7 +8,7 @@
 //import { ref } from 'vue'
 //50ETF、300ETF沪、300ETF深、HS300、zz100
 export default {
-    name: 'QuoteType',
+    name: 'Contract',
     data() {
         return {
             options: [{

@@ -8,6 +8,10 @@ const MainPage = () => import("@/views/MainPage.vue")
 const NotionalPrincipal = () => import("@/components/NotionalPrincipal/NotionalPrincipal.vue")
 const OpTargetQuote = () => import("@/components/OpTargetQuote/OpTargetQuote.vue")
 const OpNominalAmount = () => import("@/components/OpNominalAmount/OpNominalAmount.vue")
+const OpContractQuote = () => import("@/components/OpContractQuote/OpContractQuote.vue")
+
+
+
 const Volatility = () => import("@/components/Volatility/Volatility.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
 const PremiumDiscount = () => import("@/components/PremiumDiscount/PremiumDiscount.vue")
@@ -33,8 +37,9 @@ const routes = [
       { path: "/OpTargetQuote", component: OpTargetQuote, },
 
       { path: "/OpNominalAmount", component: OpNominalAmount, },
+      { path: "/OpContractQuote", component: OpContractQuote, },
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },
-
+      
 
       { path: "/Volatility", component: Volatility, },
       { path: "/CPR", component: CPR, },
