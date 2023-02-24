@@ -9,20 +9,13 @@
             <DatePicker />
         </el-col>
 
-        <el-col :span="3">
-            <SelectRightGraph />
-        </el-col>
-
-        <el-col :span="3">
-            <SelectRightGraph />
-        </el-col>
 
     </el-row>
 
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpNominalAmount" ref="OpNominalAmount" style="width:60%; height:600% ;float:left"></div>
+        <div id="OpNominalAmount" ref="OpNominalAmount" style="width:90%; height:600% ;float:left"></div>
     </div>
 </template>
 
@@ -73,9 +66,10 @@ export default {
                     x: 'center'
                 },
                 legend: {
-                    orient: 'horizontal',
-                    x: 'center',
-                    y: 'bottom',
+                    orient: 'vertical',
+                    left:"right",
+                    top: 'center',
+                    align: 'left',
                     selected: {
                         "targetcode": true,
                         "money": true,

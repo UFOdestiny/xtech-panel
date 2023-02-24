@@ -13,9 +13,6 @@
                         <template #title>OpTargetQuote</template>
                     </el-menu-item>
 
-
-
-
                     <el-menu-item index="/OpNominalAmount">
                         <el-icon>
                             <icon-menu />

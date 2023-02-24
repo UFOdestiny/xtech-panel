@@ -1,5 +1,5 @@
 <template>
-    <el-select v-model="type" placeholder="标的" @change="ContractChange" style="width: 100%;">
+    <el-select v-model="type" placeholder="标的" @change="QuoteTypeChange" style="width: 100%;">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
         </el-option>
     </el-select>
@@ -46,8 +46,8 @@ export default {
         };
     },
     methods: {
-        ContractChange(selected) {
-            this.$store.commit('changeContract', selected)
+        QuoteTypeChange(selected) {
+            this.$store.commit('changeQuoteType', selected)
         },
     }
 

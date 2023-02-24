@@ -9,20 +9,13 @@
             <DatePicker />
         </el-col>
 
-        <el-col :span="3">
-            <SelectRightGraph />
-        </el-col>
-
-        <el-col :span="3">
-            <SelectRightGraph />
-        </el-col>
 
     </el-row>
 
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpContractQuote" ref="OpContractQuote" style="width:60%; height:600% ;float:left"></div>
+        <div id="OpContractQuote" ref="OpContractQuote" style="width:90%; height:600% ;float:left"></div>
     </div>
 </template>
 
@@ -73,9 +66,10 @@ export default {
                     x: 'center'
                 },
                 legend: {
-                    orient: 'horizontal',
-                    x: 'center',
-                    y: 'bottom',
+                    orient: 'vertical',
+                    left:"right",
+                    top: 'center',
+                    align: 'left',
                     selected: {
                         "targetcode": true,
                         "opcode": true,
@@ -331,7 +325,7 @@ export default {
         */
         fresh(data) {
             //console.log({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "10004405.XSHG", "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     this.chartLeft.setOption({
@@ -390,12 +384,12 @@ export default {
         InitialDataGraph(startTime, stopTime) {
 
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
-            const start = startTime || new Date().getTime() - 8 * 8.64e7
+            const start = startTime || new Date().getTime() - 4 * 8.64e7
             //console.log({ "time": [start, stop], "name": "opcontractquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {
                     this.data = response.data
-                    //console.log(this.data)
+                    console.log(this.data)
                     this.draw(this.data);
 
                     // this.chartLeft.on('updateAxisPointer',
