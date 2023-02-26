@@ -28,6 +28,13 @@
                         <template #title>OpContractQuote</template>
                     </el-menu-item>
 
+                    <el-menu-item index="/PutdMinusCalld">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>PutdMinusCalld</template>
+                    </el-menu-item>
+
 
                     <el-menu-item index="/NotionalPrincipal">
                         <el-icon>
@@ -91,17 +98,17 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { Document, Menu as IconMenu, Location, Setting, } from '@element-plus/icons-vue'
-import { useRouter } from "vue-router";
+//import { useRouter } from "vue-router";
 
 var collapse = ref(true)
-const router = useRouter()
+//const router = useRouter()
 
 function togglecollapse() {
     collapse.value = !collapse.value
 }
 
 onMounted(() => {
-    router.push('/OpTargetQuote') //router.push('/FormVue')
+   //router.push('/OpTargetQuote') //router.push('/FormVue')
 })
 
 </script>

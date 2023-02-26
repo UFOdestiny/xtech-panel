@@ -9,13 +9,12 @@
             <DatePicker />
         </el-col>
 
-
     </el-row>
 
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpNominalAmount" ref="OpNominalAmount" style="width:90%; height:700% ;float:left"></div>
+        <div id="PutdMinusCalld" ref="PutdMinusCalld" style="width:90%; height:700% ;float:left"></div>
     </div>
 </template>
 
@@ -26,8 +25,8 @@ import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
-    name: 'OpNominalAmount',
-    components: { DatePicker, QuoteType, },
+    name: 'PutdMinusCalld',
+    components: { DatePicker, QuoteType },
     data() {
         return {
             data: '',
@@ -61,29 +60,19 @@ export default {
         draw(data) {
             var option = {
                 title: {
-                    text: 'opnominalamount',
+                    text: 'putdminuscalld',
                     subtext: 'Demo 数据',
                     x: 'center'
                 },
                 legend: {
                     orient: 'vertical',
-                    left:"right",
+                    left: "right",
                     top: 'center',
                     align: 'left',
                     selected: {
                         "targetcode": true,
-                        "money": true,
-                        "money_c": true,
-                        "money_p": true,
-
-
-                        "money_00": false,
-                        "money_01": false,
-                        "money_c_00": false,
-                        "money_c_01": false,
-                        "money_p_00": false,
-                        "money_p_01": false,
-
+                        "pct": true,
+                        "price": true,
                     },
                 },
                 tooltip: {
@@ -96,38 +85,10 @@ export default {
 
                         align: 'left'
                     },
-                    // formatter: function (params) {
-                    //     let str = '';
-                    //     params.forEach((item, idx) => {
-                    //         if (typeof item.data == 'string') {
-
-                    //             str += `${item.marker}${item.seriesName}: ${item.data}`
-                    //         }
-                    //         else {
-                    //             console.log(item.data)
-                    //             str += `${item.marker}${item.seriesName}: ${item.data.toFixed(4)}`
-                    //         }
-                    //         switch (idx) {
-                    //             case 0:
-                    //                 str += '';
-                    //                 break;
-                    //             case 1:
-                    //                 str += '';
-                    //                 break;
-                    //             case 2:
-                    //                 str += '';
-                    //                 break;
-                    //             default:
-                    //                 str += ''
-                    //         }
-                    //         str += idx === params.length - 1 ? '' : '<br/>'
-                    //     })
-                    //     return str
-                    // }
 
                 },
                 grid: [
-                {
+                    {
                         left: "10%",
                         right: "10%",
                         top: "10%",
@@ -144,6 +105,7 @@ export default {
                     {
                         data: data[0],
                         //type: "time",
+
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -156,7 +118,7 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 8.64e7
+                        minInterval: 7200
                     },
                     {
                         type: "time",
@@ -167,6 +129,8 @@ export default {
                 ],
                 yAxis: [
                     {
+                        type: 'value',
+                        splitNumber: 3,
                         scale: true,
                         splitArea: {
                             show: true
@@ -180,9 +144,10 @@ export default {
 
                     },
                     {
-                        gridIndex: 1,
+                        type: 'value',
+                        scale: true,
                         splitNumber: 3,
-                        //axisLine: {  },
+                        //name: 'price',
                         axisTick: { show: false },
                         splitLine: { show: false },
                         axisLabel: {
@@ -222,87 +187,32 @@ export default {
                     }
                 ],
                 series: [
-
                     {
-                        name: "targetcode",
+                        name: "code",
                         type: "line",
                         data: data[1],
                     },
-
                     {
-                        name: "money",
+                        name: "called",
                         type: "line",
                         data: data[2],
-                        // markPoint: {
-                        //     data: [
-                        //         {
-                        //             type: 'max', name: '最大值'
-                        //         },
-                        //         {
-                        //             type: 'min', name: '最小值'
-                        //         }
-                        //     ]
-                        // },
-                        // markLine: {
-                        //     silent: true,
-                        //     label: {
-                        //         position: "start", //标线位置，start，middle，end
-                        //     },
-                        //     data: [
-                        //         {
-                        //             type: "average", //'min', 'max', 'average' 最小、最大、平均
-                        //             label: {
-                        //                 formatter: "Mean",
-                        //                 fontSize: "10",
-                        //             },
-                        //         },
-
-                        //     ],
-                        // }
-                    },
-                    {
-                        name: "money_00",
-                        type: "line",
-                        data: data[3],
                         //smooth: true,
                         // lineStyle: {
                         //     opacity: 0.5
                         // }
+                        yAxisIndex: 1,
                     },
                     {
-                        name: "money_01",
+                        name: "putd",
+                        type: "line",
+                        data: data[3],
+                        yAxisIndex: 0,
+                    },
+                    {
+                        name: "putd_calld",
                         type: "line",
                         data: data[4],
-                    },
-                    {
-                        name: "money_c",
-                        type: "line",
-                        data: data[5],
-                    },
-                    {
-                        name: "money_c_00",
-                        type: "line",
-                        data: data[6],
-                    },
-                    {
-                        name: "money_c_01",
-                        type: "line",
-                        data: data[7],
-                    },
-                    {
-                        name: "money_p",
-                        type: "line",
-                        data: data[8],
-                    },
-                    {
-                        name: "money_p_00",
-                        type: "line",
-                        data: data[9],
-                    },
-                    {
-                        name: "money_p_01",
-                        type: "line",
-                        data: data[10],
+                        yAxisIndex: 0,
                     },
 
 
@@ -332,7 +242,7 @@ export default {
             };
             // 进行初始化
 
-            this.chartLeft = echarts.init(this.$refs.OpNominalAmount);
+            this.chartLeft = echarts.init(this.$refs.PutdMinusCalld);
             this.chartLeft.setOption(option);
             window.addEventListener("resize", () => {
                 // 执行echarts自带的resize方法，即可做到让echarts图表自适应
@@ -347,8 +257,8 @@ export default {
          * @return : void
         */
         fresh(data) {
-            //console.log({ "time": [data[0], data[1]], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [data[0], data[1]], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     this.chartLeft.setOption({
@@ -359,12 +269,6 @@ export default {
                             { data: this.data[2], },
                             { data: this.data[3], },
                             { data: this.data[4], },
-                            { data: this.data[5], },
-                            { data: this.data[6], },
-                            { data: this.data[7], },
-                            { data: this.data[8], },
-                            { data: this.data[9], },
-                            { data: this.data[10], },
 
                         ]
                     })
@@ -397,8 +301,8 @@ export default {
 
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
             const start = startTime || new Date().getTime() - 8 * 8.64e7
-            //console.log({ "time": [start, stop], "name": "opnominalamount", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [start, stop], "name": "putdminuscalld", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
+            get_data({ "time": [start, stop], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data
                     //console.log(this.data)

@@ -1,55 +1,47 @@
 <template>
-    <el-select v-model="type" placeholder="期权" @change="ContractChange" style="width: 100%;">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" >
-        </el-option>
-    </el-select>
+    <div class="mt-4">
+        <el-input v-model="input" placeholder="请输入合约代码" class="input-with-select">
+            <template #prepend>
+                <el-button @click="changeContract"><el-icon>
+                        <Search />
+                    </el-icon></el-button>
+            </template>
+            <!-- <template #append>
+                <el-select v-model="select" placeholder="Select" style="width: 115px">
+                    <el-option label="Restaurant" value="1" />
+                    <el-option label="Order No." value="2" />
+                    <el-option label="Tel" value="3" />
+                </el-select>
+            </template> -->
+        </el-input>
+    </div>
 </template>
+
+
 <script>
-//import { ref } from 'vue'
-//50ETF、300ETF沪、300ETF深、HS300、zz100
+import { Search } from '@element-plus/icons-vue'
 export default {
-    name: 'Contract',
+    name: 'ContractPicker',
+    components: { Search },
     data() {
         return {
-            options: [{
-                value: '510050.XSHG',
-                label: '510050'
-            }, {
-                value: '510300.XSHG',
-                label: '510300'
-            }, {
-                value: '510500.XSHG',
-                label: '510500'
-            }, {
-                value: '159901.XSHE',
-                label: '159901'
-            }, {
-                value: '159915.XSHE',
-                label: '159915'
-            },{
-                value: '159919.XSHE',
-                label: '159919'
-            }, {
-                value: '159922.XSHE',
-                label: '159922'
-            }, {
-                value: '000016.XSHG',
-                label: '000016'
-            }, {
-                value: '000300.XSHE',
-                label: '000300'
-            }, {
-                value: '000852.XSHE',
-                label: '000852'
-            }],
-            type: '510050',
+            input: ""
         };
     },
     methods: {
-        ContractChange(selected) {
-            this.$store.commit('changeContract', selected)
+        changeContract() {
+            this.$store.commit('changeContract', this.input)
+
         },
-    }
+    },
+
 
 };
+
 </script>
+
+<style>
+.input-with-select .el-input-group__prepend {
+    background-color: var(--el-fill-color-blank);
+}
+</style>

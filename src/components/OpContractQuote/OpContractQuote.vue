@@ -1,12 +1,15 @@
 <template>
     <el-row justify="start" :gutter="10" style="width: 80%;">
 
-        <el-col :span="3">
+        <!-- <el-col :span="3">
             <QuoteType />
-        </el-col>
+        </el-col> -->
 
         <el-col :span="6">
             <DatePicker />
+        </el-col>
+        <el-col :span="6">
+            <ContractPicker />
         </el-col>
 
 
@@ -15,19 +18,20 @@
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpContractQuote" ref="OpContractQuote" style="width:90%; height:600% ;float:left"></div>
+        <div id="OpContractQuote" ref="OpContractQuote" style="width:90%; height:700% ;float:left"></div>
     </div>
 </template>
 
 <script>
 import DatePicker from '@/components/Utils/DatePicker.vue';
-import QuoteType from '@/components/Utils/QuoteType.vue';
+import ContractPicker from '@/components/Utils/ContractPicker.vue';
+//import QuoteType from '@/components/Utils/QuoteType.vue';
 import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
     name: 'OpContractQuote',
-    components: { DatePicker, QuoteType, },
+    components: { DatePicker, ContractPicker},//, QuoteType
     data() {
         return {
             data: '',
@@ -35,10 +39,9 @@ export default {
         };
     },
     watch: {
-
-        '$store.state.QuoteType': function () {
+        '$store.state.Contract': function () {
             const datetime = [
-                new Date().getTime() - 8 * 8.64e7,
+                new Date().getTime() - 2 * 8.64e7,
                 new Date().getTime() + 1 * 8.64e7,
             ]
             this.fresh(datetime)
@@ -111,16 +114,16 @@ export default {
 
                 },
                 grid: [
-                    {
+                {
                         left: "10%",
                         right: "10%",
                         top: "10%",
-                        height: "80%"
+                        height: "70%"
                     },
                     {
                         left: "10%",
                         right: "10%",
-                        top: "90%",
+                        bottom: "10%",
                         height: "10%"
                     }
                 ],
@@ -193,7 +196,7 @@ export default {
                     {
                         show: true,
                         type: "slider",
-                        y: "90%",
+                        y: "85%",
                         start: 50,
                         end: 100
                     },
@@ -324,8 +327,9 @@ export default {
          * @return : void
         */
         fresh(data) {
-            //console.log({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
+            //10004405.XSHG
+            //console.log({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": "opcontractquote", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
                 .then(response => {
                     this.data = response.data
                     this.chartLeft.setOption({
@@ -382,14 +386,13 @@ export default {
          * @return : void
         */
         InitialDataGraph(startTime, stopTime) {
-
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
-            const start = startTime || new Date().getTime() - 4 * 8.64e7
+            const start = startTime || new Date().getTime() - 2 * 8.64e7
             //console.log({ "time": [start, stop], "name": "opcontractquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {
                     this.data = response.data
-                    console.log(this.data)
+                    //console.log(this.data)
                     this.draw(this.data);
 
                     // this.chartLeft.on('updateAxisPointer',

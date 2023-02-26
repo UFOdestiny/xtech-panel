@@ -9,25 +9,25 @@
             <DatePicker />
         </el-col>
 
-
     </el-row>
 
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpTargetQuote" ref="OpTargetQuote" style="width:90%; height:600% ;float:left"></div>
+        <div id="OpTargetQuote" ref="OpTargetQuote" style="width:90%; height:700% ;float:left"></div>
     </div>
 </template>
 
 <script>
 import DatePicker from '@/components/Utils/DatePicker.vue';
+
 import QuoteType from '@/components/Utils/QuoteType.vue';
 import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
     name: 'OpTargetQuote',
-    components: { DatePicker, QuoteType, },
+    components: { DatePicker, QuoteType},
     data() {
         return {
             data: '',
@@ -121,12 +121,12 @@ export default {
                         left: "10%",
                         right: "10%",
                         top: "10%",
-                        height: "80%"
+                        height: "70%"
                     },
                     {
                         left: "10%",
                         right: "10%",
-                        top: "90%",
+                        bottom: "10%",
                         height: "10%"
                     }
                 ],
@@ -203,7 +203,7 @@ export default {
                     {
                         show: true,
                         type: "slider",
-                        y: "90%",
+                        y: "85%",
                         start: 50,
                         end: 100
                     },
