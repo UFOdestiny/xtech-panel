@@ -30,8 +30,7 @@ export default {
     },
     methods: {
         changeContract() {
-            this.$store.commit('changeContract', this.input)
-
+            if (this.input.length >= 3) { this.$store.commit('changeContract', this.input) }
         },
     },
 

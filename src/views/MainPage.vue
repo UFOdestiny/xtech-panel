@@ -42,6 +42,14 @@
                         <template #title>OpDiscount</template>
                     </el-menu-item>
 
+                    <el-menu-item index="/OpTargetDerivativeVol">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>OpTargetDerivativeVol</template>
+                    </el-menu-item>
+
+
 
                     <el-menu-item index="/NotionalPrincipal">
                         <el-icon>
@@ -115,7 +123,7 @@ function togglecollapse() {
 }
 
 onMounted(() => {
-   //router.push('/OpTargetQuote') //router.push('/FormVue')
+    //router.push('/OpTargetQuote') //router.push('/FormVue')
 })
 
 </script>

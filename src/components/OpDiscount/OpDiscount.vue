@@ -71,8 +71,6 @@ export default {
                     align: 'left',
                     selected: {
                         "targetcode": true,
-                        "pct": true,
-                        "price": true,
                     },
                 },
                 tooltip: {
