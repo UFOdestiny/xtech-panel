@@ -35,6 +35,13 @@
                         <template #title>PutdMinusCalld</template>
                     </el-menu-item>
 
+                    <el-menu-item index="/OpDiscount">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>OpDiscount</template>
+                    </el-menu-item>
+
 
                     <el-menu-item index="/NotionalPrincipal">
                         <el-icon>

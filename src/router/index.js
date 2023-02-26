@@ -10,7 +10,7 @@ const OpTargetQuote = () => import("@/components/OpTargetQuote/OpTargetQuote.vue
 const OpNominalAmount = () => import("@/components/OpNominalAmount/OpNominalAmount.vue")
 const OpContractQuote = () => import("@/components/OpContractQuote/OpContractQuote.vue")
 const PutdMinusCalld = () => import("@/components/PutdMinusCalld/PutdMinusCalld.vue")
-
+const OpDiscount = () => import("@/components/OpDiscount/OpDiscount.vue")
 
 const Volatility = () => import("@/components/Volatility/Volatility.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
@@ -38,6 +38,7 @@ const routes = [
       { path: "/OpNominalAmount", component: OpNominalAmount, },
       { path: "/OpContractQuote", component: OpContractQuote, },
       { path: "/PutdMinusCalld", component: PutdMinusCalld, },
+      { path: "/OpDiscount", component: OpDiscount, },
 
 
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },

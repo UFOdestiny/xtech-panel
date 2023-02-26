@@ -196,10 +196,6 @@ export default {
                         name: "discount_l_00",
                         type: "line",
                         data: data[2],
-                        //smooth: true,
-                        // lineStyle: {
-                        //     opacity: 0.5
-                        // }
                         yAxisIndex: 1,
                     },
                     {
@@ -267,8 +263,6 @@ export default {
                             { data: this.data[5], },
                             { data: this.data[6], },
                             { data: this.data[7], },
-
-
                         ]
                     })
                 });
