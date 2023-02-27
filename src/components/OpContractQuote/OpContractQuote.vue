@@ -41,9 +41,8 @@ export default {
     watch: {
         '$store.state.Contract': function () {
             const datetime = [
-                new Date().getTime() - 2 * 8.64e7,
-                new Date().getTime() + 1 * 8.64e7,
-            ]
+                new Date(this.$store.state.Date[0]).getTime(),
+                new Date(this.$store.state.Date[1]).getTime()]
             this.fresh(datetime)
         },
 
@@ -108,7 +107,6 @@ export default {
                         type: "cross"
                     },
                     textStyle: {
-
                         align: 'left'
                     },
 
@@ -387,7 +385,7 @@ export default {
         */
         InitialDataGraph(startTime, stopTime) {
             const stop = stopTime || new Date().getTime() + 1 * 8.64e7
-            const start = startTime || new Date().getTime() - 2 * 8.64e7
+            const start = startTime || new Date().getTime() - 4 * 8.64e7
             //console.log({ "time": [start, stop], "name": "opcontractquote", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {

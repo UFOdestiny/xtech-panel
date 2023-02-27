@@ -37,9 +37,8 @@ export default {
 
         '$store.state.QuoteType': function () {
             const datetime = [
-                new Date().getTime() - 8 * 8.64e7,
-                new Date().getTime() + 1 * 8.64e7,
-            ]
+                new Date(this.$store.state.Date[0]).getTime(),
+                new Date(this.$store.state.Date[1]).getTime()]
             this.fresh(datetime)
         },
 

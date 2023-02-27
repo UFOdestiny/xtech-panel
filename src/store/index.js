@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { defaultDate } from '@/utils/index'
 //import { delCookie, getCookie } from '@/utils/cookies.js'
 const store = createStore({
     namespaced: true,
@@ -7,7 +8,7 @@ const store = createStore({
             Token: '',
             UserInfo: '',
             TimeType: false,
-            Date: '',
+            Date: [defaultDate(new Date().getTime() - 8.64e7 * 4), defaultDate(new Date().getTime())],
             RightGraphType: '',
             Frequence: '',
             QuoteType: '510050.XSHG',

@@ -9,11 +9,9 @@
             <DatePicker />
         </el-col>
 
-        <el-col :span="6">
+        <el-col :span="3">
             <IntervalPicker />
         </el-col>
-
-
     </el-row>
 
 
