@@ -36,10 +36,10 @@ export default {
                 value: '000016.XSHG',
                 label: '000016'
             }, {
-                value: '000300.XSHE',
+                value: '000300.XSHG',
                 label: '000300'
             }, {
-                value: '000852.XSHE',
+                value: '000852.XSHG',
                 label: '000852'
             }],
             type: '510050',

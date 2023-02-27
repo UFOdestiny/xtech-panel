@@ -31,7 +31,7 @@ var echarts = require("echarts");
 
 export default {
     name: 'OpContractQuote',
-    components: { DatePicker, ContractPicker},//, QuoteType
+    components: { DatePicker, ContractPicker },//, QuoteType
     data() {
         return {
             data: '',
@@ -70,7 +70,7 @@ export default {
                 },
                 legend: {
                     orient: 'vertical',
-                    left:"right",
+                    left: "right",
                     top: 'center',
                     align: 'left',
                     selected: {
@@ -114,7 +114,7 @@ export default {
 
                 },
                 grid: [
-                {
+                    {
                         left: "10%",
                         right: "10%",
                         top: "10%",
@@ -392,7 +392,7 @@ export default {
             get_data({ "time": [start, stop], "name": "opcontractquote", "targetcode": "", "opcode": "10004405.XSHG", "front": "1" })
                 .then(response => {
                     this.data = response.data
-                    //console.log(this.data)
+                    console.log(this.data)
                     this.draw(this.data);
 
                     // this.chartLeft.on('updateAxisPointer',

@@ -27,11 +27,11 @@ var echarts = require("echarts");
 
 export default {
     name: 'OpTargetQuote',
-    components: { DatePicker, QuoteType},
+    components: { DatePicker, QuoteType },
     data() {
         return {
             data: '',
-            ontime: false,
+            ontime: true,
         };
     },
     watch: {
@@ -67,7 +67,7 @@ export default {
                 },
                 legend: {
                     orient: 'vertical',
-                    left:"right",
+                    left: "right",
                     top: 'center',
                     align: 'left',
                     selected: {
@@ -134,7 +134,7 @@ export default {
                     {
                         data: data[0],
                         //type: "time",
-                        
+
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -345,18 +345,24 @@ export default {
          * @description: start timer
          * @return : void
         */
-        // start_timer(interval = 2000) {
-        //     this.timer = setInterval(() => {
-        //         if (this.ontime) { this.freshLeft() }
+        start_timer(interval = 1000 * 30) {
+            this.timer = setInterval(() => {
+                if (this.ontime) {
+                    const datetime = [
+                        new Date().getTime() - 8 * 8.64e7,
+                        new Date().getTime() + 1 * 8.64e7,
+                    ]
+                    this.fresh(datetime)
+                }
 
-        //     }, interval)
-        // },
+            }, interval)
+        },
 
 
     },
     mounted() {
         this.InitialDataGraph()
-        //this.start_timer()
+        this.start_timer()
 
 
     },

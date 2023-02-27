@@ -11,7 +11,7 @@ const store = createStore({
             RightGraphType: '',
             Frequence: '',
             QuoteType: '510050.XSHG',
-            Contract:'',
+            Contract:'10004405.XSHG',
             Interval:'optargetderivativevol_1d',
         }
     },
@@ -51,9 +51,11 @@ const store = createStore({
         changeQuoteType(state, QuoteType) {
             state.QuoteType = QuoteType
         },
+
         changeContract(state, Contract) {
             state.Contract = Contract
         },
+        
         changeInterval(state, Interval) {
             state.Interval = Interval
         },

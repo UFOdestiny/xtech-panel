@@ -1,6 +1,6 @@
 <template>
     <div class="mt-4">
-        <el-input v-model="input" placeholder="请输入合约代码" class="input-with-select">
+        <el-input v-model="input" placeholder="10004405.XSHG" class="input-with-select">
             <template #prepend>
                 <el-button @click="changeContract"><el-icon>
                         <Search />
