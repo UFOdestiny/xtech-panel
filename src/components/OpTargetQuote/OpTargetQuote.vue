@@ -35,7 +35,6 @@ export default {
         };
     },
     watch: {
-
         '$store.state.QuoteType': function () {
             const datetime = [
                 new Date(this.$store.state.Date[0]).getTime(),
@@ -49,7 +48,6 @@ export default {
                 new Date(this.$store.state.Date[1]).getTime()]
             this.fresh(datetime)
         },
-
     },
     methods: {
         /** 
@@ -88,27 +86,18 @@ export default {
                     formatter: function (params) {
                         let str = '';
                         params.forEach((item, idx) => {
-                            if (typeof item.data == 'string') {
+                            str += `${item.marker}${item.seriesName}: ${item.data}`
+                            if (item.seriesName == 'pct') {
+                                str += `%`
+                            }
 
-                                str += `${item.marker}${item.seriesName}: ${item.data}`
-                            }
-                            else {
-                                //console.log(item.data)
-                                str += `${item.marker}${item.seriesName}: ${item.data.toFixed(4)}`
-                            }
-                            switch (idx) {
-                                case 0:
-                                    str += '';
-                                    break;
-                                case 1:
-                                    str += '';
-                                    break;
-                                case 2:
-                                    str += '';
-                                    break;
-                                default:
-                                    str += ''
-                            }
+                            // if (item.seriesName == 'pct') {
+                            //     str += `${item.marker}${item.seriesName}: ${item.data.toFixed(3)}%`
+                            //     }
+                            // else{
+                            //     str += `${item.marker}${item.seriesName}: ${item.data}`
+                            // }
+
                             str += idx === params.length - 1 ? '' : '<br/>'
                         })
                         return str
@@ -170,6 +159,7 @@ export default {
                         },
                         position: "right",
 
+
                     },
                     {
                         type: 'value',
@@ -180,6 +170,7 @@ export default {
                         splitLine: { show: false },
                         axisLabel: {
                             show: true,
+                            formatter: '{value}%'
 
                         },
                         axisLine: {
@@ -223,7 +214,10 @@ export default {
                     {
                         name: "pct",
                         type: "line",
-                        data: data[2],
+
+                        data: data[2].map(function (index) {
+                            return (index * 100).toFixed(3)
+                        }),
                         //smooth: true,
                         // lineStyle: {
                         //     opacity: 0.5
@@ -288,7 +282,11 @@ export default {
 
                         series: [
                             { data: this.data[1], },
-                            { data: this.data[2], },
+                            {
+                                data: this.data[2].map(function (index) {
+                                    return (index * 100).toFixed(3)
+                                }),
+                            },
                             { data: this.data[3], },
 
                         ]
@@ -348,9 +346,8 @@ export default {
             this.timer = setInterval(() => {
                 if (this.ontime) {
                     const datetime = [
-                        new Date().getTime() - 8 * 8.64e7,
-                        new Date().getTime() + 1 * 8.64e7,
-                    ]
+                        new Date(this.$store.state.Date[0]).getTime(),
+                        new Date(this.$store.state.Date[1]).getTime()]
                     this.fresh(datetime)
                 }
 

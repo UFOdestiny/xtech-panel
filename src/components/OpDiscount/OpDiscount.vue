@@ -74,14 +74,19 @@ export default {
                 },
                 tooltip: {
                     trigger: "axis",
-
-                    axisPointer: {
-                        type: "cross"
-                    },
-                    textStyle: {
-
-                        align: 'left'
-                    },
+                    axisPointer: {type: "cross"},
+                    textStyle: {align: 'left'},
+                    formatter: function (params) {
+                        let str = '';
+                        params.forEach((item, idx) => {
+                            str += `${item.marker}${item.seriesName}: ${item.data}`
+                            if (item.seriesName != 'code') {
+                                str += `%`
+                            }
+                            str += idx === params.length - 1 ? '' : '<br/>'
+                        })
+                        return str
+                    }
 
                 },
                 grid: [
@@ -193,37 +198,37 @@ export default {
                         name: "discount_l_00",
                         type: "line",
                         data: data[2],
-                        yAxisIndex: 1,
+                        //yAxisIndex: 1,
                     },
                     {
                         name: "discount_l_01",
                         type: "line",
                         data: data[3],
-                        yAxisIndex: 0,
+                        //yAxisIndex: 0,
                     },
                     {
                         name: "discount_l_02",
                         type: "line",
                         data: data[4],
-                        yAxisIndex: 0,
+                        //yAxisIndex: 0,
                     },
                     {
                         name: "discount_s_00",
                         type: "line",
                         data: data[5],
-                        yAxisIndex: 0,
+                        //yAxisIndex: 0,
                     },
                     {
                         name: "discount_s_01",
                         type: "line",
                         data: data[6],
-                        yAxisIndex: 0,
+                        //yAxisIndex: 0,
                     },
                     {
                         name: "discount_s_02",
                         type: "line",
                         data: data[7],
-                        yAxisIndex: 0,
+                        //yAxisIndex: 0,
                     },
 
                 ]
@@ -248,7 +253,7 @@ export default {
             //console.log({ "time": [data[0], data[1]], "name": "opdiscount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
             get_data({ "time": [data[0], data[1]], "name": "opdiscount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
+                    this.data = response.data.map(this.process)
                     this.chartLeft.setOption({
                         xAxis: [{ data: this.data[0] }],
 
@@ -294,7 +299,7 @@ export default {
             //console.log({ "time": [start, stop], "name": "opdiscount", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": "opdiscount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
+                    this.data = response.data.map(this.process)
                     //console.log(this.data)
                     this.draw(this.data);
 
@@ -308,6 +313,17 @@ export default {
                     // );
                 });
         },
+        
+        process(content, index) {
+            if (index <= 1) { return content }
+
+            var newArr = [];
+            content.forEach(function (item) {
+                item = (item * 100).toFixed(3);
+                newArr.push(item)
+            })
+            return newArr
+        }
 
         /** 
          * @description: start timer

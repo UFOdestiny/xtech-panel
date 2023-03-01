@@ -182,6 +182,17 @@ export default {
 
                         align: 'left'
                     },
+                    formatter: function (params) {
+                        let str = '';
+                        params.forEach((item, idx) => {
+                            str += `${item.marker}${item.seriesName}: ${item.data}`
+                            if (item.seriesName != 'code') {
+                                str += `%`
+                            }
+                            str += idx === params.length - 1 ? '' : '<br/>'
+                        })
+                        return str
+                    }
 
                 },
                 grid: [
@@ -715,7 +726,7 @@ export default {
             //console.log({ "time": [data[0], data[1]], "name": "optargetderivativevol", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
             get_data({ "time": [data[0], data[1]], "name": this.$store.state.Interval, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
+                    this.data = response.data.map(this.process)
                     this.chartLeft.setOption({
                         xAxis: [{ data: this.data[0] }],
 
@@ -829,7 +840,7 @@ export default {
             //console.log({ "time": [start, stop], "name": "optargetderivativevol", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": this.$store.state.Interval, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
+                    this.data = response.data.map(this.process)
                     //console.log(this.data)
                     this.draw(this.data);
 
@@ -843,6 +854,17 @@ export default {
                     // );
                 });
         },
+
+        process(content, index) {
+            if (index <= 1) { return content }
+
+            var newArr = [];
+            content.forEach(function (item) {
+                item = (item * 100).toFixed(3);
+                newArr.push(item)
+            })
+            return newArr
+        }
 
         /** 
          * @description: start timer

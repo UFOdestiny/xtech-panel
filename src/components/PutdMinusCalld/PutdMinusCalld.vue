@@ -77,7 +77,6 @@ export default {
                 },
                 tooltip: {
                     trigger: "axis",
-
                     axisPointer: {
                         type: "cross"
                     },
@@ -85,6 +84,17 @@ export default {
 
                         align: 'left'
                     },
+                    formatter: function (params) {
+                        let str = '';
+                        params.forEach((item, idx) => {
+                            str += `${item.marker}${item.seriesName}: ${item.data}`
+                            if (item.seriesName != 'code') {
+                                str += `%`
+                            }
+                            str += idx === params.length - 1 ? '' : '<br/>'
+                        })
+                        return str
+                    }
 
                 },
                 grid: [
@@ -118,7 +128,9 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 7200
+                        minInterval: 7200,
+                        axisLabel: { show: true }
+
                     },
                     {
                         type: "time",
@@ -141,6 +153,10 @@ export default {
                             }
                         },
                         position: "right",
+                        axisLabel: {
+                            formatter: '{value}%'
+
+                        },
 
                     },
                     {
@@ -151,7 +167,7 @@ export default {
                         axisTick: { show: false },
                         splitLine: { show: false },
                         axisLabel: {
-                            show: true,
+                            show: true
 
                         },
                         axisLine: {
@@ -195,24 +211,24 @@ export default {
                     {
                         name: "called",
                         type: "line",
-                        data: data[2],
+                        data: data[2]
                         //smooth: true,
                         // lineStyle: {
                         //     opacity: 0.5
                         // }
-                        yAxisIndex: 1,
+                        //yAxisIndex: 1,
                     },
                     {
                         name: "putd",
                         type: "line",
-                        data: data[3],
-                        yAxisIndex: 0,
+                        data: data[3]
+                        //yAxisIndex: 0,
                     },
                     {
                         name: "putd_calld",
                         type: "line",
-                        data: data[4],
-                        yAxisIndex: 0,
+                        data: data[4]
+                        //yAxisIndex: 0,
                     },
 
 
@@ -260,15 +276,22 @@ export default {
             //console.log({ "time": [data[0], data[1]], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
             get_data({ "time": [data[0], data[1]], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
+                    this.data = response.data.map(this.process)
+
                     this.chartLeft.setOption({
                         xAxis: [{ data: this.data[0] }],
 
                         series: [
                             { data: this.data[1], },
-                            { data: this.data[2], },
-                            { data: this.data[3], },
-                            { data: this.data[4], },
+                            {
+                                data: this.data[2]
+                            },
+                            {
+                                data: this.data[3]
+                            },
+                            {
+                                data: this.data[4]
+                            },
 
                         ]
                     })
@@ -304,8 +327,7 @@ export default {
             //console.log({ "time": [start, stop], "name": "putdminuscalld", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": "putdminuscalld", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data
-                    //console.log(this.data)
+                    this.data = response.data.map(this.process)
                     this.draw(this.data);
 
                     // this.chartLeft.on('updateAxisPointer',
@@ -318,7 +340,6 @@ export default {
                     // );
                 });
         },
-
         /** 
          * @description: start timer
          * @return : void
@@ -329,6 +350,17 @@ export default {
 
         //     }, interval)
         // },
+
+        process(content, index) {
+            if (index <= 1) { return content }
+
+            var newArr = [];
+            content.forEach(function (item) {
+                item = (item * 100).toFixed(3);
+                newArr.push(item)
+            })
+            return newArr
+        }
 
 
     },
