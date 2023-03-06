@@ -7,7 +7,7 @@
 </template>   
 
 <script>
-import { defaultDate } from '@/utils/index'
+import { daysInterval } from '@/utils/index'
 //快捷方式
 
 export default {
@@ -61,7 +61,7 @@ export default {
             ],
             //默认开始日期
             startDate: null,
-            date: [defaultDate(new Date().getTime() - 8.64e7 * 4), defaultDate(new Date().getTime())],
+            date: daysInterval(3),
             //下拉框
         };
     },
@@ -75,7 +75,7 @@ export default {
 
             return (
                 time.getTime() > Date.now() ||
-                time.getTime() < +new Date("2010-01-01")
+                time.getTime() < +new Date("2020-01-01")
             );
         },
 

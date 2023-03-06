@@ -74,8 +74,8 @@ export default {
                 },
                 tooltip: {
                     trigger: "axis",
-                    axisPointer: {type: "cross"},
-                    textStyle: {align: 'left'},
+                    axisPointer: { type: "cross" },
+                    textStyle: { align: 'left' },
                     formatter: function (params) {
                         let str = '';
                         params.forEach((item, idx) => {
@@ -120,7 +120,8 @@ export default {
                             show: false
                         },
                         splitNumber: 20,
-                        minInterval: 7200
+                        minInterval: 7200,
+
                     },
                     {
                         type: "time",
@@ -143,6 +144,10 @@ export default {
                             }
                         },
                         position: "right",
+                        axisLabel: {
+                            formatter: '{value}%'
+
+                        },
 
                     },
                     {
@@ -313,7 +318,7 @@ export default {
                     // );
                 });
         },
-        
+
         process(content, index) {
             if (index <= 1) { return content }
 

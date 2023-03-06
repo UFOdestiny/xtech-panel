@@ -292,3 +292,12 @@ export function dateConverter(index, date) {
     return time.year + "-" + time.month + "-" + time.day + " " + time.hour + ":" + time.minute;
   }
 }
+
+
+export function daysInterval(interval = 3) {
+  let today = new Date(new Date().toLocaleDateString()).getTime();
+  let a = today - 8.64e7 * 3 * interval
+  let b = today + 8.64e7
+  return [defaultDate(a), defaultDate(b)]
+}
+

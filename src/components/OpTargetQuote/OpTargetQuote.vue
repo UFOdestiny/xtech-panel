@@ -223,6 +223,11 @@ export default {
                         //     opacity: 0.5
                         // }
                         yAxisIndex: 1,
+                        markLine: {
+                            symbol: ['none', 'none'],
+                            label: { show: false, position: 'start', formatter: '{b}' },
+                            data: [{ yAxis: 0 }],
+                        }
                     },
                     {
                         name: "price",

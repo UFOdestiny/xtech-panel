@@ -246,6 +246,11 @@ export default {
                             }
                         },
                         position: "right",
+                        axisLabel: {
+                            show: true,
+                            formatter: '{value}%'
+
+                        },
 
                     },
                     {
@@ -264,7 +269,8 @@ export default {
                                 color: "red"
                             }
                         },
-                        position: "left"
+                        position: "left",
+
                     }
 
                 ],
