@@ -833,8 +833,8 @@ export default {
          * @return : void
         */
         InitialDataGraph(startTime, stopTime) {
-            const stop = stopTime || new Date().getTime() + 1 * 8.64e7
-            const start = startTime || new Date().getTime() - 5 * 8.64e7
+            const stop = stopTime || this.$store.state.Date[1]
+            const start = startTime || this.$store.state.Date[0]
             //console.log({ "time": [start, stop], "name": "optargetderivativevol", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": this.$store.state.Interval, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {

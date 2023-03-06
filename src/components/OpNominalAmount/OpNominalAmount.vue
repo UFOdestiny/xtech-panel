@@ -390,8 +390,8 @@ export default {
         */
         InitialDataGraph(startTime, stopTime) {
 
-            const stop = stopTime || new Date().getTime() + 1 * 8.64e7
-            const start = startTime || new Date().getTime() - 8 * 8.64e7
+            const stop = stopTime || this.$store.state.Date[1]
+            const start = startTime || this.$store.state.Date[0]
             //console.log({ "time": [start, stop], "name": "opnominalamount", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": "opnominalamount", "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
