@@ -296,8 +296,8 @@ export function dateConverter(index, date) {
 
 export function daysInterval(interval = 3) {
   let today = new Date(new Date().toLocaleDateString()).getTime();
-  let a = today - 8.64e7 * 3 * interval
-  let b = today + 8.64e7
+  let a = today - 8.64e7 * interval
+  let b = today + 8.64e7 - 1
   return [defaultDate(a), defaultDate(b)]
 }
 

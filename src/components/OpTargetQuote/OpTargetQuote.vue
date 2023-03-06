@@ -36,16 +36,12 @@ export default {
     },
     watch: {
         '$store.state.QuoteType': function () {
-            const datetime = [
-                new Date(this.$store.state.Date[0]).getTime(),
-                new Date(this.$store.state.Date[1]).getTime()]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
 
         '$store.state.Date': function () {
-            const datetime = [
-                new Date(this.$store.state.Date[0]).getTime(),
-                new Date(this.$store.state.Date[1]).getTime()]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
     },
@@ -350,12 +346,9 @@ export default {
         start_timer(interval = 1000 * 30) {
             this.timer = setInterval(() => {
                 if (this.ontime) {
-                    const datetime = [
-                        new Date(this.$store.state.Date[0]).getTime(),
-                        new Date(this.$store.state.Date[1]).getTime()]
+                    const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
                     this.fresh(datetime)
                 }
-
             }, interval)
         },
 

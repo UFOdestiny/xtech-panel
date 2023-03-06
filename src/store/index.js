@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { defaultDate } from '@/utils/index'
+import { daysInterval } from '@/utils/index'
 //import { delCookie, getCookie } from '@/utils/cookies.js'
 const store = createStore({
     namespaced: true,
@@ -8,12 +8,12 @@ const store = createStore({
             Token: '',
             UserInfo: '',
             TimeType: false,
-            Date: [defaultDate(new Date().getTime() - 8.64e7 * 4), defaultDate(new Date().getTime())],
+            Date: daysInterval(3),
             RightGraphType: '',
             Frequence: '',
             QuoteType: '510050.XSHG',
             Contract:'10004405.XSHG',
-            Interval:'optargetderivativevol_1d',
+            Interval:'optargetderivativevol_1h',
         }
     },
     mutations: {

@@ -36,16 +36,12 @@ export default {
     watch: {
 
         '$store.state.QuoteType': function () {
-            const datetime = [
-                new Date(this.$store.state.Date[0]).getTime(),
-                new Date(this.$store.state.Date[1]).getTime()]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
 
         '$store.state.Date': function () {
-            const datetime = [
-                new Date(this.$store.state.Date[0]).getTime(),
-                new Date(this.$store.state.Date[1]).getTime()]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
 
@@ -328,24 +324,26 @@ export default {
                 newArr.push(item)
             })
             return newArr
-        }
+        },
 
         /** 
-         * @description: start timer
-         * @return : void
+        * @description: start timer
+        * @return : void
         */
-        // start_timer(interval = 2000) {
-        //     this.timer = setInterval(() => {
-        //         if (this.ontime) { this.freshLeft() }
-
-        //     }, interval)
-        // },
+        start_timer(interval = 1000 * 30) {
+            this.timer = setInterval(() => {
+                if (this.ontime) {
+                    const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
+                    this.fresh(datetime)
+                }
+            }, interval)
+        },
 
 
     },
     mounted() {
         this.InitialDataGraph()
-        //this.start_timer()
+        this.start_timer()
 
 
     },

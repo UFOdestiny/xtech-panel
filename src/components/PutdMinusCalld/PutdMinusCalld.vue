@@ -11,7 +11,6 @@
 
     </el-row>
 
-
     <div style="padding-bottom: 20px;"></div>
     <div>
         <div id="PutdMinusCalld" ref="PutdMinusCalld" style="width:90%; height:700% ;float:left"></div>
@@ -36,17 +35,12 @@ export default {
     watch: {
 
         '$store.state.QuoteType': function () {
-            const datetime = [
-                new Date().getTime() - 8 * 8.64e7,
-                new Date().getTime() + 1 * 8.64e7,
-            ]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
 
         '$store.state.Date': function () {
-            const datetime = [
-                new Date(this.$store.state.Date[0]).getTime(),
-                new Date(this.$store.state.Date[1]).getTime()]
+            const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
 
@@ -344,12 +338,14 @@ export default {
          * @description: start timer
          * @return : void
         */
-        // start_timer(interval = 2000) {
-        //     this.timer = setInterval(() => {
-        //         if (this.ontime) { this.freshLeft() }
-
-        //     }, interval)
-        // },
+        start_timer(interval = 1000 * 30) {
+            this.timer = setInterval(() => {
+                if (this.ontime) {
+                    const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
+                    this.fresh(datetime)
+                }
+            }, interval)
+        },
 
         process(content, index) {
             if (index <= 1) { return content }
@@ -366,7 +362,7 @@ export default {
     },
     mounted() {
         this.InitialDataGraph()
-        //this.start_timer()
+        this.start_timer()
 
 
     },
