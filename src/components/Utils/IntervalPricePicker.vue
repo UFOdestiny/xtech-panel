@@ -1,5 +1,5 @@
 <template>
-    <el-select v-model="type" placeholder="时间间隔" @change="IntervalChange" style="width: 100%;">
+    <el-select v-model="type" placeholder="时间间隔" @change="IntervalPriceChange" style="width: 100%;">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
         </el-option>
     </el-select>
@@ -20,13 +20,22 @@ export default {
             }, {
                 value: 'optargetderivativevol_1h',
                 label: '1h'
+            },{
+                value: 'optargetderivativevol_5m',
+                label: '5m'
+            }, {
+                value: 'optargetderivativevol_15m',
+                label: '15m'
+            }, {
+                value: 'optargetderivativevol_30m',
+                label: '30m'
             }],
-            type: '1d',
+            type: '1h',
         };
     },
     methods: {
-        IntervalChange(selected) {
-            this.$store.commit('changeInterval', selected)
+        IntervalPriceChange(selected) {
+            this.$store.commit('changePriceInterval', selected)
         },
     }
 

@@ -10,27 +10,27 @@
         </el-col>
 
         <el-col :span="3">
-            <IntervalVolPicker />
+            <IntervalPricePicker />
         </el-col>
     </el-row>
 
 
     <div style="padding-bottom: 20px;"></div>
     <div>
-        <div id="OpTargetDerivativeVol" ref="OpTargetDerivativeVol" style="width:90%; height:700% ;float:left"></div>
+        <div id="OpTargetDerivativePrice" ref="OpTargetDerivativePrice" style="width:90%; height:700% ;float:left"></div>
     </div>
 </template>
 
 <script>
 import DatePicker from '@/components/Utils/DatePicker.vue';
 import QuoteType from '@/components/Utils/QuoteType.vue';
-import IntervalVolPicker from '@/components/Utils/IntervalVolPicker.vue';
+import IntervalPricePicker from '@/components/Utils/IntervalPricePicker.vue';
 import { get_data } from '@/request/index.js';
 var echarts = require("echarts");
 
 export default {
-    name: 'OpTargetDerivativeVol',
-    components: { DatePicker, QuoteType, IntervalVolPicker },//, QuoteType
+    name: 'OpTargetDerivativePrice',
+    components: { DatePicker, QuoteType, IntervalPricePicker },//, QuoteType
     data() {
         return {
             data: '',
@@ -63,7 +63,7 @@ export default {
         draw(data) {
             var option = {
                 title: {
-                    text: 'optargetderivativevol',
+                    text: 'optargetderivativeprice',
                     subtext: 'Demo 数据',
                     x: 'center'
                 },
@@ -705,7 +705,7 @@ export default {
             };
             // 进行初始化
 
-            this.chartLeft = echarts.init(this.$refs.OpTargetDerivativeVol);
+            this.chartLeft = echarts.init(this.$refs.OpTargetDerivativePrice);
             this.chartLeft.setOption(option);
             window.addEventListener("resize", () => {
                 // 执行echarts自带的resize方法，即可做到让echarts图表自适应
@@ -721,8 +721,8 @@ export default {
         */
         fresh(data) {
             //10004405.XSHG
-            //console.log({ "time": [data[0], data[1]], "name": "optargetderivativevol", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
-            get_data({ "time": [data[0], data[1]], "name": this.$store.state.IntervalVol, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [data[0], data[1]], "name": "optargetderivativeprice", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
+            get_data({ "time": [data[0], data[1]], "name": this.$store.state.IntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data.map(this.process)
                     this.chartLeft.setOption({
@@ -835,8 +835,8 @@ export default {
         InitialDataGraph(startTime, stopTime) {
             const stop = stopTime || this.$store.state.Date[1]
             const start = startTime || this.$store.state.Date[0]
-            //console.log({ "time": [start, stop], "name": "optargetderivativevol", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": this.$store.state.IntervalVol, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+            //console.log({ "time": [start, stop], "name": "optargetderivativeprice", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
+            get_data({ "time": [start, stop], "name": this.$store.state.IntervalIntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data.map(this.process)
                     //console.log(this.data)
@@ -863,7 +863,7 @@ export default {
             })
             return newArr
         },
-        
+
 
         /** 
          * @description: start timer

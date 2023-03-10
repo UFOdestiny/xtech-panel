@@ -13,7 +13,8 @@ const store = createStore({
             Frequence: '',
             QuoteType: '510050.XSHG',
             Contract:'10004405.XSHG',
-            Interval:'optargetderivativevol_1h',
+            IntervalVol:'optargetderivativevol_1h',
+            IntervalPrice:'optargetderivativeprice_1h',
         }
     },
     mutations: {
@@ -57,8 +58,11 @@ const store = createStore({
             state.Contract = Contract
         },
         
-        changeInterval(state, Interval) {
-            state.Interval = Interval
+        changeVolInterval(state, Interval) {
+            state.IntervalVol = Interval
+        },
+        changePriceInterval(state, Interval) {
+            state.IntervalPrice = Interval
         },
     },
     actions: {

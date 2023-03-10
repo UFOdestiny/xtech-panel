@@ -276,16 +276,10 @@ export default {
                         xAxis: [{ data: this.data[0] }],
 
                         series: [
-                            { data: this.data[1], },
-                            {
-                                data: this.data[2]
-                            },
-                            {
-                                data: this.data[3]
-                            },
-                            {
-                                data: this.data[4]
-                            },
+                            { data: this.data[1] },
+                            { data: this.data[2] },
+                            { data: this.data[3] },
+                            { data: this.data[4] },
 
                         ]
                     })
