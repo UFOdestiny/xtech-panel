@@ -82,7 +82,7 @@ export default {
                         let str = '';
                         params.forEach((item, idx) => {
                             str += `${item.marker}${item.seriesName}: ${item.data}`
-                            if (item.seriesName != 'code') {
+                            if ((item.seriesName != 'code') & (item.seriesName != 'price')) {
                                 str += `%`
                             }
                             str += idx === params.length - 1 ? '' : '<br/>'
@@ -213,15 +213,21 @@ export default {
                         //yAxisIndex: 1,
                     },
                     {
+                        name: "price",
+                        type: "line",
+                        data: data[3],
+                        yAxisIndex: 1,
+                    },
+                    {
                         name: "putd",
                         type: "line",
-                        data: data[3]
+                        data: data[4]
                         //yAxisIndex: 0,
                     },
                     {
                         name: "putd_calld",
                         type: "line",
-                        data: data[4]
+                        data: data[5]
                         //yAxisIndex: 0,
                     },
 
@@ -280,6 +286,7 @@ export default {
                             { data: this.data[2] },
                             { data: this.data[3] },
                             { data: this.data[4] },
+                            { data: this.data[5] },
 
                         ]
                     })
@@ -343,12 +350,14 @@ export default {
 
         process(content, index) {
             if (index <= 1) { return content }
-
+            if (index == 3) { return content }
             var newArr = [];
             content.forEach(function (item) {
                 item = (item * 100).toFixed(3);
                 newArr.push(item)
+
             })
+
             return newArr
         }
 

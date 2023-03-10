@@ -14,7 +14,7 @@ const store = createStore({
             QuoteType: '510050.XSHG',
             Contract:'10004405.XSHG',
             IntervalVol:'optargetderivativevol_1h',
-            IntervalPrice:'optargetderivativeprice_1h',
+            IntervalPrice:'optargetderivativeprice_15m',
         }
     },
     mutations: {

@@ -43,7 +43,7 @@ export default {
             this.fresh(datetime)
         },
 
-        '$store.state.Interval': function () {
+        '$store.state.IntervalVol': function () {
             const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },

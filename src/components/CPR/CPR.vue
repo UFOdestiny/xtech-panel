@@ -79,18 +79,17 @@ export default {
 
                         align: 'left'
                     },
-                    // formatter: function (params) {
-                    //     let str = '';
-                    //     params.forEach((item, idx) => {
-                    //         str += `${item.marker}${item.seriesName}: ${item.data}`
-                    //         if (item.seriesName == 'pct') {
-                    //             str += `%`
-                    //         }
-
-                    //         str += idx === params.length - 1 ? '' : '<br/>'
-                    //     })
-                    //     return str
-                    // }
+                    formatter: function (params) {
+                        let str = '';
+                        params.forEach((item, idx) => {
+                            str += `${item.marker}${item.seriesName}: ${item.data}`
+                            if (item.seriesName != 'code') {
+                                str += `%`
+                            }
+                            str += idx === params.length - 1 ? '' : '<br/>'
+                        })
+                        return str
+                    }
 
                 },
                 grid: [
@@ -147,6 +146,11 @@ export default {
                             }
                         },
                         position: "right",
+                        axisLabel: {
+                            show: true,
+                            formatter: '{value}%'
+
+                        },
 
 
                     },
@@ -203,7 +207,12 @@ export default {
                     {
                         name: "money",
                         type: "line",
-                        data: data[2]
+                        data: data[2],
+                        markLine: {
+                            symbol: ['none', 'none'],
+                            label: { show: false, position: 'start', formatter: '{b}' },
+                            data: [{ yAxis: 100 }],
+                        }
                     },
                     {
                         name: "money_scroll",

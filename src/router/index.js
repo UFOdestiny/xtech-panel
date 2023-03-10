@@ -12,7 +12,7 @@ const OpContractQuote = () => import("@/components/OpContractQuote/OpContractQuo
 const PutdMinusCalld = () => import("@/components/PutdMinusCalld/PutdMinusCalld.vue")
 const OpDiscount = () => import("@/components/OpDiscount/OpDiscount.vue")
 const OpTargetDerivativeVol = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativeVol.vue")
-const OpTargetDerivativePrice = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativePrice.vue")
+const OpTargetDerivativePrice = () => import("@/components/OpTargetDerivativePrice/OpTargetDerivativePrice.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
 
 

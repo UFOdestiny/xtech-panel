@@ -76,7 +76,7 @@ export default {
                         let str = '';
                         params.forEach((item, idx) => {
                             str += `${item.marker}${item.seriesName}: ${item.data}`
-                            if (item.seriesName != 'code') {
+                            if ((item.seriesName != 'code') & (item.seriesName != 'price')) {
                                 str += `%`
                             }
                             str += idx === params.length - 1 ? '' : '<br/>'
@@ -231,6 +231,12 @@ export default {
                         data: data[7],
                         //yAxisIndex: 0,
                     },
+                    {
+                        name: "price",
+                        type: "line",
+                        data: data[8],
+                        yAxisIndex: 1,
+                    },
 
                 ]
             };
@@ -266,6 +272,7 @@ export default {
                             { data: this.data[5], },
                             { data: this.data[6], },
                             { data: this.data[7], },
+                            { data: this.data[8], },
                         ]
                     })
                 });
@@ -317,6 +324,7 @@ export default {
 
         process(content, index) {
             if (index <= 1) { return content }
+            if (index == 8) { return content }
 
             var newArr = [];
             content.forEach(function (item) {

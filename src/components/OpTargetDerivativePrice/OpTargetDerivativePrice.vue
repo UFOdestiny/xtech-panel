@@ -43,7 +43,7 @@ export default {
             this.fresh(datetime)
         },
 
-        '$store.state.Interval': function () {
+        '$store.state.IntervalPrice': function () {
             const datetime = [this.$store.state.Date[0], this.$store.state.Date[1]]
             this.fresh(datetime)
         },
@@ -75,91 +75,91 @@ export default {
                     selected: {
                         "targetcode": true,
 
-                        "volatility_120_120_20": false,
-                        "volatility_120_120_80": false,
-                        "volatility_120_120_max": false,
-                        "volatility_120_120_mean": false,
-                        "volatility_120_120_min": false,
-                        "volatility_120_now": false,
+                        "price_120_120_20": false,
+                        "price_120_120_80": false,
+                        "price_120_120_max": false,
+                        "price_120_120_mean": false,
+                        "price_120_120_min": false,
+                        "price_120_now": false,
 
-                        "volatility_20_120_20": false,
-                        "volatility_20_120_80": false,
-                        "volatility_20_120_max": false,
-                        "volatility_20_120_mean": false,
-                        "volatility_20_120_min": false,
-                        "volatility_20_now": true,
+                        "price_20_120_20": false,
+                        "price_20_120_80": false,
+                        "price_20_120_max": false,
+                        "price_20_120_mean": false,
+                        "price_20_120_min": false,
+                        "price_20_now": true,
 
-                        "volatility_40_120_20": false,
-                        "volatility_40_120_80": false,
-                        "volatility_40_120_max": false,
-                        "volatility_40_120_mean": false,
-                        "volatility_40_120_min": false,
-                        "volatility_40_now": false,
+                        "price_40_120_20": false,
+                        "price_40_120_80": false,
+                        "price_40_120_max": false,
+                        "price_40_120_mean": false,
+                        "price_40_120_min": false,
+                        "price_40_now": false,
 
-                        "volatility_60_120_20": false,
-                        "volatility_60_120_80": false,
-                        "volatility_60_120_max": false,
-                        "volatility_60_120_mean": false,
-                        "volatility_60_120_min": false,
-                        "volatility_60_now": false,
-
-
-                        // "1h_volatility_120_120_20": false,
-                        // "1h_volatility_120_120_80": false,
-                        // "1h_volatility_120_120_max": false,
-                        // "1h_volatility_120_120_mean": false,
-                        // "1h_volatility_120_120_min": false,
-                        // "1h_volatility_120_now": false,
-
-                        // "1h_volatility_20_120_20": false,
-                        // "1h_volatility_20_120_80": false,
-                        // "1h_volatility_20_120_max": false,
-                        // "1h_volatility_20_120_mean": false,
-                        // "1h_volatility_20_120_min": false,
-                        // "1h_volatility_20_now": true,
-
-                        // "1h_volatility_40_120_20": false,
-                        // "1h_volatility_40_120_80": false,
-                        // "1h_volatility_40_120_max": false,
-                        // "1h_volatility_40_120_mean": false,
-                        // "1h_volatility_40_120_min": false,
-                        // "1h_volatility_40_now": false,
-
-                        // "1h_volatility_60_120_20": false,
-                        // "1h_volatility_60_120_80": false,
-                        // "1h_volatility_60_120_max": false,
-                        // "1h_volatility_60_120_mean": false,
-                        // "1h_volatility_60_120_min": false,
-                        // "1h_volatility_60_now": false,
+                        "price_60_120_20": false,
+                        "price_60_120_80": false,
+                        "price_60_120_max": false,
+                        "price_60_120_mean": false,
+                        "price_60_120_min": false,
+                        "price_60_now": false,
 
 
-                        // "2h_volatility_120_120_20": false,
-                        // "2h_volatility_120_120_80": false,
-                        // "2h_volatility_120_120_max": false,
-                        // "2h_volatility_120_120_mean": false,
-                        // "2h_volatility_120_120_min": false,
-                        // "2h_volatility_120_now": false,
+                        // "1h_price_120_120_20": false,
+                        // "1h_price_120_120_80": false,
+                        // "1h_price_120_120_max": false,
+                        // "1h_price_120_120_mean": false,
+                        // "1h_price_120_120_min": false,
+                        // "1h_price_120_now": false,
 
-                        // "2h_volatility_20_120_20": false,
-                        // "2h_volatility_20_120_80": false,
-                        // "2h_volatility_20_120_max": false,
-                        // "2h_volatility_20_120_mean": false,
-                        // "2h_volatility_20_120_min": false,
-                        // "2h_volatility_20_now": true,
+                        // "1h_price_20_120_20": false,
+                        // "1h_price_20_120_80": false,
+                        // "1h_price_20_120_max": false,
+                        // "1h_price_20_120_mean": false,
+                        // "1h_price_20_120_min": false,
+                        // "1h_price_20_now": true,
 
-                        // "2h_volatility_40_120_20": false,
-                        // "2h_volatility_40_120_80": false,
-                        // "2h_volatility_40_120_max": false,
-                        // "2h_volatility_40_120_mean": false,
-                        // "2h_volatility_40_120_min": false,
-                        // "2h_volatility_40_now": false,
+                        // "1h_price_40_120_20": false,
+                        // "1h_price_40_120_80": false,
+                        // "1h_price_40_120_max": false,
+                        // "1h_price_40_120_mean": false,
+                        // "1h_price_40_120_min": false,
+                        // "1h_price_40_now": false,
 
-                        // "2h_volatility_60_120_20": false,
-                        // "2h_volatility_60_120_80": false,
-                        // "2h_volatility_60_120_max": false,
-                        // "2h_volatility_60_120_mean": false,
-                        // "2h_volatility_60_120_min": false,
-                        // "2h_volatility_60_now": false,
+                        // "1h_price_60_120_20": false,
+                        // "1h_price_60_120_80": false,
+                        // "1h_price_60_120_max": false,
+                        // "1h_price_60_120_mean": false,
+                        // "1h_price_60_120_min": false,
+                        // "1h_price_60_now": false,
+
+
+                        // "2h_price_120_120_20": false,
+                        // "2h_price_120_120_80": false,
+                        // "2h_price_120_120_max": false,
+                        // "2h_price_120_120_mean": false,
+                        // "2h_price_120_120_min": false,
+                        // "2h_price_120_now": false,
+
+                        // "2h_price_20_120_20": false,
+                        // "2h_price_20_120_80": false,
+                        // "2h_price_20_120_max": false,
+                        // "2h_price_20_120_mean": false,
+                        // "2h_price_20_120_min": false,
+                        // "2h_price_20_now": true,
+
+                        // "2h_price_40_120_20": false,
+                        // "2h_price_40_120_80": false,
+                        // "2h_price_40_120_max": false,
+                        // "2h_price_40_120_mean": false,
+                        // "2h_price_40_120_min": false,
+                        // "2h_price_40_now": false,
+
+                        // "2h_price_60_120_20": false,
+                        // "2h_price_60_120_80": false,
+                        // "2h_price_60_120_max": false,
+                        // "2h_price_60_120_mean": false,
+                        // "2h_price_60_120_min": false,
+                        // "2h_price_60_now": false,
 
 
                     },
@@ -294,135 +294,135 @@ export default {
                         data: data[1],
                     },
                     {
-                        name: "volatility_120_120_20",
+                        name: "price_120_120_20",
                         type: "line",
                         data: data[2],
                     },
                     {
-                        name: "volatility_120_120_80",
+                        name: "price_120_120_80",
                         type: "line",
                         data: data[3],
                     },
 
                     {
-                        name: "volatility_120_120_max",
+                        name: "price_120_120_max",
                         type: "line",
                         data: data[4],
 
                     },
                     {
-                        name: "volatility_120_120_mean",
+                        name: "price_120_120_mean",
                         type: "line",
                         data: data[5],
 
                     },
                     {
-                        name: "volatility_120_120_min",
+                        name: "price_120_120_min",
                         type: "line",
                         data: data[6],
                     },
                     {
-                        name: "volatility_120_now",
+                        name: "price_120_now",
                         type: "line",
                         data: data[7],
                     },
 
                     {
-                        name: "volatility_20_120_20",
+                        name: "price_20_120_20",
                         type: "line",
                         data: data[8],
                     },
                     {
-                        name: "volatility_20_120_80",
+                        name: "price_20_120_80",
                         type: "line",
                         data: data[9],
                     },
 
                     {
-                        name: "volatility_20_120_max",
+                        name: "price_20_120_max",
                         type: "line",
                         data: data[10],
 
                     },
                     {
-                        name: "volatility_20_120_mean",
+                        name: "price_20_120_mean",
                         type: "line",
                         data: data[11],
 
                     },
                     {
-                        name: "volatility_20_120_min",
+                        name: "price_20_120_min",
                         type: "line",
                         data: data[12],
                     },
                     {
-                        name: "volatility_20_now",
+                        name: "price_20_now",
                         type: "line",
                         data: data[13],
                     },
                     {
-                        name: "volatility_40_120_20",
+                        name: "price_40_120_20",
                         type: "line",
                         data: data[14],
                     },
                     {
-                        name: "volatility_40_120_80",
+                        name: "price_40_120_80",
                         type: "line",
                         data: data[15],
                     },
 
                     {
-                        name: "volatility_40_120_max",
+                        name: "price_40_120_max",
                         type: "line",
                         data: data[16],
 
                     },
                     {
-                        name: "volatility_40_120_mean",
+                        name: "price_40_120_mean",
                         type: "line",
                         data: data[17],
 
                     },
                     {
-                        name: "volatility_40_120_min",
+                        name: "price_40_120_min",
                         type: "line",
                         data: data[18],
                     },
                     {
-                        name: "volatility_40_now",
+                        name: "price_40_now",
                         type: "line",
                         data: data[19],
                     },
 
                     {
-                        name: "volatility_60_120_20",
+                        name: "price_60_120_20",
                         type: "line",
                         data: data[20],
                     },
                     {
-                        name: "volatility_60_120_80",
+                        name: "price_60_120_80",
                         type: "line",
                         data: data[21],
                     },
                     {
-                        name: "volatility_60_120_max",
+                        name: "price_60_120_max",
                         type: "line",
                         data: data[22],
 
                     },
                     {
-                        name: "volatility_60_120_mean",
+                        name: "price_60_120_mean",
                         type: "line",
                         data: data[23],
 
                     },
                     {
-                        name: "volatility_60_120_min",
+                        name: "price_60_120_min",
                         type: "line",
                         data: data[24],
                     },
                     {
-                        name: "volatility_60_now",
+                        name: "price_60_now",
                         type: "line",
                         data: data[25],
                     },
@@ -431,135 +431,135 @@ export default {
 
 
                     // {
-                    //     name: "1h_volatility_120_120_20",
+                    //     name: "1h_price_120_120_20",
                     //     type: "line",
                     //     data: data[26],
                     // },
                     // {
-                    //     name: "1h_volatility_120_120_80",
+                    //     name: "1h_price_120_120_80",
                     //     type: "line",
                     //     data: data[27],
                     // },
 
                     // {
-                    //     name: "1h_volatility_120_120_max",
+                    //     name: "1h_price_120_120_max",
                     //     type: "line",
                     //     data: data[28],
 
                     // },
                     // {
-                    //     name: "1h_volatility_120_120_mean",
+                    //     name: "1h_price_120_120_mean",
                     //     type: "line",
                     //     data: data[29],
 
                     // },
                     // {
-                    //     name: "1h_volatility_120_120_min",
+                    //     name: "1h_price_120_120_min",
                     //     type: "line",
                     //     data: data[30],
                     // },
                     // {
-                    //     name: "1h_volatility_120_now",
+                    //     name: "1h_price_120_now",
                     //     type: "line",
                     //     data: data[31],
                     // },
 
                     // {
-                    //     name: "1h_volatility_20_120_20",
+                    //     name: "1h_price_20_120_20",
                     //     type: "line",
                     //     data: data[32],
                     // },
                     // {
-                    //     name: "1h_volatility_20_120_80",
+                    //     name: "1h_price_20_120_80",
                     //     type: "line",
                     //     data: data[33],
                     // },
 
                     // {
-                    //     name: "1h_volatility_20_120_max",
+                    //     name: "1h_price_20_120_max",
                     //     type: "line",
                     //     data: data[34],
 
                     // },
                     // {
-                    //     name: "1h_volatility_20_120_mean",
+                    //     name: "1h_price_20_120_mean",
                     //     type: "line",
                     //     data: data[35],
 
                     // },
                     // {
-                    //     name: "1h_volatility_20_120_min",
+                    //     name: "1h_price_20_120_min",
                     //     type: "line",
                     //     data: data[36],
                     // },
                     // {
-                    //     name: "1h_volatility_20_now",
+                    //     name: "1h_price_20_now",
                     //     type: "line",
                     //     data: data[37],
                     // },
                     // {
-                    //     name: "1h_volatility_40_120_20",
+                    //     name: "1h_price_40_120_20",
                     //     type: "line",
                     //     data: data[38],
                     // },
                     // {
-                    //     name: "1h_volatility_40_120_80",
+                    //     name: "1h_price_40_120_80",
                     //     type: "line",
                     //     data: data[39],
                     // },
 
                     // {
-                    //     name: "1h_volatility_40_120_max",
+                    //     name: "1h_price_40_120_max",
                     //     type: "line",
                     //     data: data[40],
 
                     // },
                     // {
-                    //     name: "1h_volatility_40_120_mean",
+                    //     name: "1h_price_40_120_mean",
                     //     type: "line",
                     //     data: data[41],
 
                     // },
                     // {
-                    //     name: "1h_volatility_40_120_min",
+                    //     name: "1h_price_40_120_min",
                     //     type: "line",
                     //     data: data[42],
                     // },
                     // {
-                    //     name: "1h_volatility_40_now",
+                    //     name: "1h_price_40_now",
                     //     type: "line",
                     //     data: data[43],
                     // },
 
                     // {
-                    //     name: "1h_volatility_60_120_20",
+                    //     name: "1h_price_60_120_20",
                     //     type: "line",
                     //     data: data[44],
                     // },
                     // {
-                    //     name: "1h_volatility_60_120_80",
+                    //     name: "1h_price_60_120_80",
                     //     type: "line",
                     //     data: data[45],
                     // },
                     // {
-                    //     name: "1h_volatility_60_120_max",
+                    //     name: "1h_price_60_120_max",
                     //     type: "line",
                     //     data: data[46],
 
                     // },
                     // {
-                    //     name: "1h_volatility_60_120_mean",
+                    //     name: "1h_price_60_120_mean",
                     //     type: "line",
                     //     data: data[47],
 
                     // },
                     // {
-                    //     name: "1h_volatility_60_120_min",
+                    //     name: "1h_price_60_120_min",
                     //     type: "line",
                     //     data: data[48],
                     // },
                     // {
-                    //     name: "1h_volatility_60_now",
+                    //     name: "1h_price_60_now",
                     //     type: "line",
                     //     data: data[49],
                     // },
@@ -567,135 +567,135 @@ export default {
                     // ///////////////
 
                     // {
-                    //     name: "2h_volatility_120_120_20",
+                    //     name: "2h_price_120_120_20",
                     //     type: "line",
                     //     data: data[50],
                     // },
                     // {
-                    //     name: "2h_volatility_120_120_80",
+                    //     name: "2h_price_120_120_80",
                     //     type: "line",
                     //     data: data[51],
                     // },
 
                     // {
-                    //     name: "2h_volatility_120_120_max",
+                    //     name: "2h_price_120_120_max",
                     //     type: "line",
                     //     data: data[52],
 
                     // },
                     // {
-                    //     name: "2h_volatility_120_120_mean",
+                    //     name: "2h_price_120_120_mean",
                     //     type: "line",
                     //     data: data[53],
 
                     // },
                     // {
-                    //     name: "2h_volatility_120_120_min",
+                    //     name: "2h_price_120_120_min",
                     //     type: "line",
                     //     data: data[54],
                     // },
                     // {
-                    //     name: "2h_volatility_120_now",
+                    //     name: "2h_price_120_now",
                     //     type: "line",
                     //     data: data[55],
                     // },
 
                     // {
-                    //     name: "2h_volatility_20_120_20",
+                    //     name: "2h_price_20_120_20",
                     //     type: "line",
                     //     data: data[56],
                     // },
                     // {
-                    //     name: "2h_volatility_20_120_80",
+                    //     name: "2h_price_20_120_80",
                     //     type: "line",
                     //     data: data[57],
                     // },
 
                     // {
-                    //     name: "2h_volatility_20_120_max",
+                    //     name: "2h_price_20_120_max",
                     //     type: "line",
                     //     data: data[58],
 
                     // },
                     // {
-                    //     name: "2h_volatility_20_120_mean",
+                    //     name: "2h_price_20_120_mean",
                     //     type: "line",
                     //     data: data[59],
 
                     // },
                     // {
-                    //     name: "2h_volatility_20_120_min",
+                    //     name: "2h_price_20_120_min",
                     //     type: "line",
                     //     data: data[60],
                     // },
                     // {
-                    //     name: "2h_volatility_20_now",
+                    //     name: "2h_price_20_now",
                     //     type: "line",
                     //     data: data[61],
                     // },
                     // {
-                    //     name: "2h_volatility_40_120_20",
+                    //     name: "2h_price_40_120_20",
                     //     type: "line",
                     //     data: data[62],
                     // },
                     // {
-                    //     name: "2h_volatility_40_120_80",
+                    //     name: "2h_price_40_120_80",
                     //     type: "line",
                     //     data: data[63],
                     // },
 
                     // {
-                    //     name: "2h_volatility_40_120_max",
+                    //     name: "2h_price_40_120_max",
                     //     type: "line",
                     //     data: data[64],
 
                     // },
                     // {
-                    //     name: "2h_volatility_40_120_mean",
+                    //     name: "2h_price_40_120_mean",
                     //     type: "line",
                     //     data: data[65],
 
                     // },
                     // {
-                    //     name: "2h_volatility_40_120_min",
+                    //     name: "2h_price_40_120_min",
                     //     type: "line",
                     //     data: data[66],
                     // },
                     // {
-                    //     name: "2h_volatility_40_now",
+                    //     name: "2h_price_40_now",
                     //     type: "line",
                     //     data: data[67],
                     // },
 
                     // {
-                    //     name: "2h_volatility_60_120_20",
+                    //     name: "2h_price_60_120_20",
                     //     type: "line",
                     //     data: data[68],
                     // },
                     // {
-                    //     name: "2h_volatility_60_120_80",
+                    //     name: "2h_price_60_120_80",
                     //     type: "line",
                     //     data: data[69],
                     // },
                     // {
-                    //     name: "2h_volatility_60_120_max",
+                    //     name: "2h_price_60_120_max",
                     //     type: "line",
                     //     data: data[70],
 
                     // },
                     // {
-                    //     name: "2h_volatility_60_120_mean",
+                    //     name: "2h_price_60_120_mean",
                     //     type: "line",
                     //     data: data[71],
 
                     // },
                     // {
-                    //     name: "2h_volatility_60_120_min",
+                    //     name: "2h_price_60_120_min",
                     //     type: "line",
                     //     data: data[72],
                     // },
                     // {
-                    //     name: "2h_volatility_60_now",
+                    //     name: "2h_price_60_now",
                     //     type: "line",
                     //     data: data[73],
                     // },
@@ -835,8 +835,8 @@ export default {
         InitialDataGraph(startTime, stopTime) {
             const stop = stopTime || this.$store.state.Date[1]
             const start = startTime || this.$store.state.Date[0]
-            //console.log({ "time": [start, stop], "name": "optargetderivativeprice", "targetcode": "510050.XSHG", "opcode": "", "front": "1" })
-            get_data({ "time": [start, stop], "name": this.$store.state.IntervalIntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
+
+            get_data({ "time": [start, stop], "name": this.$store.state.IntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
                     this.data = response.data.map(this.process)
                     //console.log(this.data)

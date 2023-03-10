@@ -30,7 +30,7 @@ export default {
                 value: 'optargetderivativevol_30m',
                 label: '30m'
             }],
-            type: '1h',
+            type: '15m',
         };
     },
     methods: {
