@@ -12,11 +12,13 @@ const OpContractQuote = () => import("@/components/OpContractQuote/OpContractQuo
 const PutdMinusCalld = () => import("@/components/PutdMinusCalld/PutdMinusCalld.vue")
 const OpDiscount = () => import("@/components/OpDiscount/OpDiscount.vue")
 const OpTargetDerivativeVol = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativeVol.vue")
+const OpTargetDerivativePrice = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativePrice.vue")
+const CPR = () => import("@/components/CPR/CPR.vue")
 
 
 
 const Volatility = () => import("@/components/Volatility/Volatility.vue")
-const CPR = () => import("@/components/CPR/CPR.vue")
+
 const PremiumDiscount = () => import("@/components/PremiumDiscount/PremiumDiscount.vue")
 const Skewness = () => import("@/components/Skewness/Skewness.vue")
 const SmileSurface = () => import("@/components/SmileSurface/SmileSurface.vue")
@@ -43,11 +45,13 @@ const routes = [
       { path: "/PutdMinusCalld", component: PutdMinusCalld, },
       { path: "/OpDiscount", component: OpDiscount, },
       { path: "/OpTargetDerivativeVol", component: OpTargetDerivativeVol, },
+      { path: "/OpTargetDerivativePrice", component: OpTargetDerivativePrice, },
+      { path: "/CPR", component: CPR, },
 
 
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },
       { path: "/Volatility", component: Volatility, },
-      { path: "/CPR", component: CPR, },
+
       { path: "/PremiumDiscount", component: PremiumDiscount, },
       { path: "/Skewness", component: Skewness, },
       { path: "/SmileSurface", component: SmileSurface, },

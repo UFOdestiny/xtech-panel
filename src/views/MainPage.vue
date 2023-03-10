@@ -49,6 +49,20 @@
                         <template #title>OpTargetDerivativeVol</template>
                     </el-menu-item>
 
+                    <el-menu-item index="/OpTargetDerivativePrice">
+                        <el-icon>
+                            <icon-menu />
+                        </el-icon>
+                        <template #title>OpTargetDerivativePrice</template>
+                    </el-menu-item>
+
+                    <el-menu-item index="/CPR">
+                        <el-icon>
+                            <document />
+                        </el-icon>
+                        <template #title>CPR</template>
+                    </el-menu-item>
+
 
 
                     <el-menu-item index="/NotionalPrincipal">
@@ -59,12 +73,7 @@
                     </el-menu-item>
 
 
-                    <el-menu-item index="/CPR">
-                        <el-icon>
-                            <document />
-                        </el-icon>
-                        <template #title>CPR</template>
-                    </el-menu-item>
+
                     <el-menu-item index="/PremiumDiscount">
                         <el-icon>
                             <setting />
