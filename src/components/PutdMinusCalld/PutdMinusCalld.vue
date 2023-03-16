@@ -203,31 +203,46 @@ export default {
                         data: data[1],
                     },
                     {
-                        name: "called",
+                        name: "c25iv",
                         type: "line",
                         data: data[2]
-                        //smooth: true,
-                        // lineStyle: {
-                        //     opacity: 0.5
-                        // }
-                        //yAxisIndex: 1,
+                    },
+                    {
+                        name: "c50iv",
+                        type: "line",
+                        data: data[3]
+                    },
+                    {
+                        name: "called",
+                        type: "line",
+                        data: data[4]
+                    },
+                    {
+                        name: "p25iv",
+                        type: "line",
+                        data: data[5]
+                    },
+                    {
+                        name: "p50iv",
+                        type: "line",
+                        data: data[6]
                     },
                     {
                         name: "price",
                         type: "line",
-                        data: data[3],
+                        data: data[7],
                         yAxisIndex: 1,
                     },
                     {
                         name: "putd",
                         type: "line",
-                        data: data[4]
+                        data: data[8]
                         //yAxisIndex: 0,
                     },
                     {
                         name: "putd_calld",
                         type: "line",
-                        data: data[5]
+                        data: data[9]
                         //yAxisIndex: 0,
                     },
 
@@ -287,6 +302,11 @@ export default {
                             { data: this.data[3] },
                             { data: this.data[4] },
                             { data: this.data[5] },
+                            { data: this.data[6] },
+                            { data: this.data[7] },
+                            { data: this.data[8] },
+                            { data: this.data[9] },
+
 
                         ]
                     })
@@ -350,7 +370,7 @@ export default {
 
         process(content, index) {
             if (index <= 1) { return content }
-            if (index == 3) { return content }
+            if (index == 7) { return content }
             var newArr = [];
             content.forEach(function (item) {
                 item = (item * 100).toFixed(3);

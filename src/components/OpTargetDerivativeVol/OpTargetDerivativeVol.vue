@@ -178,7 +178,7 @@ export default {
                         let str = '';
                         params.forEach((item, idx) => {
                             str += `${item.marker}${item.seriesName}: ${item.data}`
-                            if (item.seriesName != 'code') {
+                            if (item.seriesName != 'targetcode') {
                                 str += `%`
                             }
                             str += idx === params.length - 1 ? '' : '<br/>'

@@ -83,9 +83,9 @@ export default {
                         let str = '';
                         params.forEach((item, idx) => {
                             str += `${item.marker}${item.seriesName}: ${item.data}`
-                            if (item.seriesName != 'code') {
-                                str += `%`
-                            }
+                            // if ((item.seriesName != 'targetcode') & (item.seriesName != 'price')){
+                            //     str += `%`
+                            // }
                             str += idx === params.length - 1 ? '' : '<br/>'
                         })
                         return str
@@ -148,7 +148,7 @@ export default {
                         position: "right",
                         axisLabel: {
                             show: true,
-                            formatter: '{value}%'
+                            //formatter: '{value}%'
 
                         },
 
@@ -163,7 +163,7 @@ export default {
                         splitLine: { show: false },
                         axisLabel: {
                             show: true,
-                            formatter: '{value}%'
+                            //formatter: '{value}%'
 
                         },
                         axisLine: {
@@ -232,7 +232,8 @@ export default {
                     {
                         name: "price",
                         type: "line",
-                        data: data[6]
+                        data: data[6],
+                        yAxisIndex: 1,
                     },
                     {
                         name: "volume",
@@ -346,10 +347,11 @@ export default {
 
         process(content, index) {
             if (index <= 1) { return content }
+            if (index == 6) { return content }
 
             var newArr = [];
             content.forEach(function (item) {
-                item = (item * 100).toFixed(3);
+                item = item.toFixed(3);
                 newArr.push(item)
             })
             return newArr
