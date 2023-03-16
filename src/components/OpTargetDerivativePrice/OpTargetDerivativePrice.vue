@@ -178,9 +178,9 @@ export default {
                         let str = '';
                         params.forEach((item, idx) => {
                             str += `${item.marker}${item.seriesName}: ${item.data}`
-                            if (item.seriesName != 'code') {
-                                str += `%`
-                            }
+                            // if (item.seriesName != 'code') {
+                            //     str += `%`
+                            // }
                             str += idx === params.length - 1 ? '' : '<br/>'
                         })
                         return str
@@ -240,7 +240,7 @@ export default {
                         position: "right",
                         axisLabel: {
                             show: true,
-                            formatter: '{value}%'
+                            //formatter: '{value}%'
 
                         },
 
@@ -262,7 +262,6 @@ export default {
                             }
                         },
                         position: "left",
-
                     }
 
                 ],
@@ -724,7 +723,7 @@ export default {
             //console.log({ "time": [data[0], data[1]], "name": "optargetderivativeprice", "targetcode": "", "opcode": this.$store.state.Contract, "front": "1" })
             get_data({ "time": [data[0], data[1]], "name": this.$store.state.IntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data.map(this.process)
+                    this.data = response.data
                     this.chartLeft.setOption({
                         xAxis: [{ data: this.data[0] }],
 
@@ -835,10 +834,11 @@ export default {
         InitialDataGraph(startTime, stopTime) {
             const stop = stopTime || this.$store.state.Date[1]
             const start = startTime || this.$store.state.Date[0]
-
+            
+            console.log({ "time": [start, stop], "name": this.$store.state.IntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
             get_data({ "time": [start, stop], "name": this.$store.state.IntervalPrice, "targetcode": this.$store.state.QuoteType, "opcode": "", "front": "1" })
                 .then(response => {
-                    this.data = response.data.map(this.process)
+                    this.data = response.data
                     //console.log(this.data)
                     this.draw(this.data);
 
@@ -853,16 +853,7 @@ export default {
                 });
         },
 
-        process(content, index) {
-            if (index <= 1) { return content }
 
-            var newArr = [];
-            content.forEach(function (item) {
-                item = (item * 100).toFixed(3);
-                newArr.push(item)
-            })
-            return newArr
-        },
 
 
         /** 

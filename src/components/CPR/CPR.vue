@@ -230,14 +230,19 @@ export default {
                         data: data[5]
                     },
                     {
+                        name: "price",
+                        type: "line",
+                        data: data[6]
+                    },
+                    {
                         name: "volume",
                         type: "line",
-                        data: data[6],
+                        data: data[7],
                     },
                     {
                         name: "volume_scroll",
                         type: "line",
-                        data: data[7],
+                        data: data[8],
                     },
 
 
@@ -276,6 +281,7 @@ export default {
                             { data: this.data[5] },
                             { data: this.data[6] },
                             { data: this.data[7] },
+                            { data: this.data[8] },
                         ]
                     })
                 });

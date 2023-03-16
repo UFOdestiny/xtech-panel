@@ -12,22 +12,22 @@ export default {
     data() {
         return {
             options: [{
-                value: 'optargetderivativevol_1d',
+                value: 'optargetderivativeprice_1d',
                 label: '1d'
             }, {
-                value: 'optargetderivativevol_2h',
+                value: 'optargetderivativeprice_2h',
                 label: '2h'
             }, {
-                value: 'optargetderivativevol_1h',
+                value: 'optargetderivativeprice_1h',
                 label: '1h'
             },{
-                value: 'optargetderivativevol_5m',
+                value: 'optargetderivativeprice_5m',
                 label: '5m'
             }, {
-                value: 'optargetderivativevol_15m',
+                value: 'optargetderivativeprice_15m',
                 label: '15m'
             }, {
-                value: 'optargetderivativevol_30m',
+                value: 'optargetderivativeprice_30m',
                 label: '30m'
             }],
             type: '15m',
