@@ -14,8 +14,8 @@ const OpDiscount = () => import("@/components/OpDiscount/OpDiscount.vue")
 const OpTargetDerivativeVol = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativeVol.vue")
 const OpTargetDerivativePrice = () => import("@/components/OpTargetDerivativePrice/OpTargetDerivativePrice.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
-const Vix = () => import("@/components/CPR/Vix.vue")
-const Skew = () => import("@/components/CPR/Skew.vue")
+const Vix = () => import("@/components/OpVix/OpVix.vue")
+const Skew = () => import("@/components/OpSkew/OpSkew.vue")
 
 
 

@@ -166,7 +166,7 @@ export default {
                         splitLine: { show: false },
                         axisLabel: {
                             show: true,
-                            formatter: '{value}%'
+                            //formatter: '{value}%'
 
                         },
                         axisLine: {
@@ -212,7 +212,7 @@ export default {
                         type: "line",
 
                         data: data[2],
-                        yAxisIndex: 0,
+                        yAxisIndex: 1,
                         //smooth: true,
                         // lineStyle: {
                         //     opacity: 0.5
