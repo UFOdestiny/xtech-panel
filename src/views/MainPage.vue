@@ -94,7 +94,7 @@
                         </el-icon>
                         <template #title>升贴水</template>
                     </el-menu-item>
-                    <el-menu-item index="/Skewness">
+                    <!-- <el-menu-item index="/Skewness">
                         <el-icon>
                             <setting />
                         </el-icon>
@@ -123,7 +123,7 @@
                             <setting />
                         </el-icon>
                         <template #title>垂直价差</template>
-                    </el-menu-item>
+                    </el-menu-item> -->
                 </el-menu>
             </el-aside>
             <el-main>
