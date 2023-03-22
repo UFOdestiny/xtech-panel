@@ -63,6 +63,20 @@
                         <template #title>CPR</template>
                     </el-menu-item>
 
+                    <el-menu-item index="/Vix">
+                        <el-icon>
+                            <document />
+                        </el-icon>
+                        <template #title>Vix</template>
+                    </el-menu-item>
+
+                    <el-menu-item index="/Skew">
+                        <el-icon>
+                            <document />
+                        </el-icon>
+                        <template #title>Skew</template>
+                    </el-menu-item>
+
 
 
                     <el-menu-item index="/NotionalPrincipal">

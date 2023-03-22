@@ -14,6 +14,9 @@ const OpDiscount = () => import("@/components/OpDiscount/OpDiscount.vue")
 const OpTargetDerivativeVol = () => import("@/components/OpTargetDerivativeVol/OpTargetDerivativeVol.vue")
 const OpTargetDerivativePrice = () => import("@/components/OpTargetDerivativePrice/OpTargetDerivativePrice.vue")
 const CPR = () => import("@/components/CPR/CPR.vue")
+const Vix = () => import("@/components/CPR/Vix.vue")
+const Skew = () => import("@/components/CPR/Skew.vue")
+
 
 
 
@@ -48,6 +51,9 @@ const routes = [
       { path: "/OpTargetDerivativePrice", component: OpTargetDerivativePrice, },
       { path: "/CPR", component: CPR, },
 
+      { path: "/Vix", component: Vix, },
+      { path: "/Skew", component: Skew, },
+
 
       { path: "/NotionalPrincipal", component: NotionalPrincipal, },
       { path: "/Volatility", component: Volatility, },
@@ -58,7 +64,7 @@ const routes = [
       { path: "/IVDiff", component: IVDiff, },
       { path: "/IVATM", component: IVATM, },
       { path: "/VerticalSpread", component: VerticalSpread, },
-      
+
       { path: "/FormVue", component: FormVue, },
     ]
   },
